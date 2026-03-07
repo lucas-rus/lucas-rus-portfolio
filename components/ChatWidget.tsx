@@ -172,7 +172,7 @@ export default function ChatWidget() {
                       <div className="flex flex-wrap justify-center gap-2 mt-3">
                         <span className="px-2 py-1 bg-slate-800 rounded-md text-xs">iTec Hackathon</span>
                         <span className="px-2 py-1 bg-slate-800 rounded-md text-xs">CyberSecurity</span>
-                        <span className="px-2 py-1 bg-slate-800 rounded-md text-xs">Future Jump</span>
+                        <span className="px-2 py-1 bg-slate-800 rounded-md text-xs">SAT Solver</span>
                       </div>
                     </div>
                   )}

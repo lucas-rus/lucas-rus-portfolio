@@ -151,7 +151,7 @@ export default function Home() {
           <FadeIn delay={0.2} className="relative grid md:grid-cols-[140px_auto_1fr] gap-4 md:gap-0">
             {/* Date Column (Desktop) */}
             <div className="hidden md:block text-right py-6 pr-6">
-              <span className="text-sm font-semibold text-slate-500">2024 - Present</span>
+              <span className="text-sm font-semibold text-slate-500">2024 - 2025</span>
             </div>
             
             {/* Timeline Column */}
@@ -168,7 +168,7 @@ export default function Home() {
                 <div className="mb-4">
                   <h3 className="text-xl font-bold text-white">Junior Software Developer</h3>
                   <p className="text-secondary font-medium">Arhebis Digital Systems</p>
-                  <span className="md:hidden text-xs font-semibold bg-slate-800 text-slate-400 px-2 py-1 rounded mt-2 inline-block">2024 - Present</span>
+                  <span className="md:hidden text-xs font-semibold bg-slate-800 text-slate-400 px-2 py-1 rounded mt-2 inline-block">2024 - 2025</span>
                 </div>
                 <ul className="list-disc list-inside text-slate-300 space-y-2 text-sm">
                   <li>Developed custom <strong>JavaScript scripts</strong> to automate repetitive data entry tasks, significantly reducing manual labor.</li>
@@ -210,25 +210,31 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            {/* Future Jump */}
+            {/* SAT Solver */}
             <FadeIn delay={0.2} className="group glass-card rounded-xl overflow-hidden hover:border-secondary/50 flex flex-col">
               <div className="h-48 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                <Gamepad2 className="w-16 h-16 text-secondary" />
+                <Terminal className="w-16 h-16 text-secondary" />
               </div>
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-white">Future Jump</h3>
-                  <div title="3rd Place Winner">
-                    <Award className="w-6 h-6 text-orange-400" />
-                  </div>
+                  <h3 className="text-xl font-bold text-white">SAT Solving Comparison</h3>
+                  <a 
+                    href="https://github.com/lucas-rus/Theoretical_and_Experimental_Comparison_of_SAT_Solving_Algorithms" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-secondary hover:text-white transition-colors"
+                    title="View on GitHub"
+                  >
+                    <Github className="w-6 h-6" />
+                  </a>
                 </div>
                 <p className="text-slate-400 text-sm mb-4 flex-1">
-                  A story-driven platformer featuring immersive wall-jump mechanics and custom physics engine inspired by <em>Celeste</em>. Won <strong className="text-secondary">3rd Place</strong> at iTec National Hackathon 2024.
+                  Theoretical and experimental analysis of <strong>Boolean Satisfiability (SAT)</strong> algorithms, comparing heuristics and performance across diverse problem sets.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded-md border border-slate-600/20">Unity</span>
-                  <span className="px-2 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-md border border-purple-500/20">C#</span>
-                  <span className="px-2 py-1 bg-green-900/30 text-green-200 text-xs rounded-md border border-green-500/20">Game Physics</span>
+                  <span className="px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded-md border border-slate-600/20">Algorithms</span>
+                  <span className="px-2 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-md border border-purple-500/20">Theory</span>
+                  <span className="px-2 py-1 bg-green-900/30 text-green-200 text-xs rounded-md border border-green-500/20">Optimization</span>
                 </div>
               </div>
             </FadeIn>

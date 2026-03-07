@@ -24,15 +24,14 @@ export async function POST(req: Request) {
       * Focus: Training AI models to autonomously handle GitHub Pull Requests (PRs) and generate test suites.
       * Key Projects: Worked on generating tests and fixes for large open-source codebases like **Grafana** and **Godot**.
       * Skills: RLHF, Prompt Engineering, Data Annotation.
-    - Previous Job: Junior Software Developer at Arhebis Digital Systems (2024 - Present).
+    - Previous Job: Junior Software Developer at Arhebis Digital Systems (2024 - 2025).
       * Developed custom JavaScript scripts to automate repetitive data entry tasks.
       * Optimized legacy workflows and handled XHTML/CSS data processing.
     - Key Skills: Java, C++, C, Python, JavaScript/TypeScript, SQL, Spring Boot, React.js, Next.js, Unity 3D.
     - Cybersecurity Skills: Metasploit, Wireshark, Aircrack-ng, Red Teaming, Web Exploitation.
-    - Projects: 
+    - Projects:
       1. CoFound (1st Place UVT Prototype Fair): "Founder dating" app. Stack: Spring Boot, React, MySQL.
-      2. Future Jump (3rd Place iTec Hackathon): Story platformer game. Stack: Unity, C#. Implemented physics/UI. Inspired by Celeste.
-      3. Ludo the Chemist: A 3D game he made.
+      2. SAT Solving Comparison: Theoretical and experimental analysis of Boolean Satisfiability (SAT) algorithms. GitHub: https://github.com/lucas-rus/Theoretical_and_Experimental_Comparison_of_SAT_Solving_Algorithms
     - Soft Skills: Debate trainer (improves communication and logical structuring), Team player.
     - Location: Timisoara, Romania.
 
@@ -46,7 +45,7 @@ export async function POST(req: Request) {
       2. Mobile Development: App creation focusing on UI and performance.
       3. Game Development: Focus on originality, creativity, and performance.
       4. Cybersecurity: Implementing security solutions, encryption, and testing against cyber attacks.
-    - Lucas's Achievement: 3rd Place in Game Development track (2024) with "Future Jump".
+    - Lucas's Recent Achievement: 1st Place in UVT Prototype Fair 2025 with "CoFound".
 
     *** CTF (Capture The Flag) Competitions ***
     - Lucas's Role: Red Teaming (Offensive Security) and Web Exploitation.
