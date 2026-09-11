@@ -266,13 +266,13 @@ export default function Home() {
               </a>
 
               <a
-                href="https://lucas-rus.itch.io"
+                href="https://www.linkedin.com/in/lucas-rus-96492a222"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
-                title="Itch.io Games"
+                title="LinkedIn"
               >
-                <Gamepad2 className="w-5 h-5 text-red-400" />
+                <Linkedin className="w-5 h-5 text-blue-400" />
               </a>
             </div>
           </FadeIn>
@@ -838,7 +838,7 @@ export default function Home() {
               className="px-6 py-3 border border-slate-700 bg-slate-800/40 hover:bg-slate-800 text-white rounded-xl font-medium transition-all flex items-center space-x-2 text-sm"
             >
               <Download className="w-4 h-4 text-secondary" />
-              <span>Download Dark Resume</span>
+              <span>Download CV</span>
             </a>
           </div>
 
