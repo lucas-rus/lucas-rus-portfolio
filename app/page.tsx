@@ -1,82 +1,330 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Terminal, Shield, Gamepad2, Database, Code2, Cpu, ExternalLink, ChevronDown, Award, Zap, Smartphone, Layout, MousePointerClick, Layers } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Terminal,
+  Shield,
+  Gamepad2,
+  Database,
+  Code2,
+  Cpu,
+  ExternalLink,
+  Award,
+  Zap,
+  Layers,
+  FileText,
+  Sparkles,
+  Download,
+  Building2,
+  BookOpen,
+  Eye,
+  CheckCircle2,
+  ArrowUpRight,
+  Search,
+} from "lucide-react";
 import { FadeIn, SlideInLeft } from "@/components/Animations";
 import ChatWidget from "@/components/ChatWidget";
+import Interactive3DCore from "@/components/Interactive3DCore";
+import { CyberCircuitBackground, SectionDividerWithTelemetry } from "@/components/CyberCircuitLines";
+
+type ProjectCategory = "all" | "ai" | "fullstack" | "systems";
+
+interface ProjectItem {
+  title: string;
+  subtitle?: string;
+  category: "ai" | "fullstack" | "systems";
+  badge?: string;
+  badgeColor?: string;
+  description: string;
+  stack: string[];
+  github?: string;
+  live?: string;
+  icon: any;
+  iconBg: string;
+}
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
+
+  const projects: ProjectItem[] = [
+    {
+      title: "Company Data Hub v2",
+      subtitle: "Enterprise Corporate BI & OLAP Engine",
+      category: "fullstack",
+      badge: "Production at Vitas",
+      badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+      description:
+        "Zero-dependency columnar OLAP intelligence engine in DuckDB consolidating 1.8M+ Romanian commercial entities and 16 years of national fiscal filings. Powers sub-5ms solvency queries, 360° corporate dossiers, and portfolio watchlist snapshot differential tracking.",
+      stack: ["DuckDB", "Python", "Polars", "Parquet", "Pytest (130 tests)"],
+      icon: Database,
+      iconBg: "from-blue-600/20 to-indigo-700/20 text-primary",
+    },
+    {
+      title: "Font Recognition AI",
+      subtitle: "26-Class Print Typography Classifier",
+      category: "ai",
+      badge: "96.53% Top-3 Accuracy",
+      badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+      description:
+        "Computer vision print font family classifier using EfficientNet-B0 (4.04M params) trained on 312k synthetic documents. Features multi-scale sliding-window patch extraction and ink-density-weighted probability aggregation deployed via interactive Gradio UI.",
+      stack: ["PyTorch", "EfficientNet-B0", "OpenCV", "Gradio UI", "Synthetic Synthesis"],
+      github: "https://github.com/lucas-rus/font-recognition-ai",
+      icon: Eye,
+      iconBg: "from-emerald-500/20 to-teal-600/20 text-emerald-400",
+    },
+    {
+      title: "GigTim",
+      subtitle: "Day-Laborer Marketplace (Legea 52/2011)",
+      category: "fullstack",
+      badge: "Upcoming Flagship Venture",
+      badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+      description:
+        "Next-generation Romanian HoReCa day-laborer marketplace (zilieri) modernizing short-term staffing in Timișoara. Features instant shift matching, interactive animated SVG map with live route paths, automated ITM compliance CSV generation, and deferred GDPR identity verification.",
+      stack: ["Next.js 16", "React 19", "Tailwind CSS v4", "Supabase", "PostgreSQL"],
+      live: "https://gigtim.arhebis.ro",
+      icon: Zap,
+      iconBg: "from-amber-500/20 to-orange-600/20 text-amber-400",
+    },
+    {
+      title: "ContaAI",
+      subtitle: "Automated Document OCR & Audit Engine",
+      category: "ai",
+      badge: "FastAPI + Avalonia .NET",
+      badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+      description:
+        "Enterprise document OCR and accounting verification pairing a high-throughput FastAPI backend with a cross-platform Avalonia .NET C# desktop UI. Integrates multi-provider LLMs, 6-axis confidence scoring, live Romanian ANAF API CUI validation, and SAGA XML export.",
+      stack: ["FastAPI", "Python", "Avalonia .NET (C#)", "ANAF API", "LLM Ensembles"],
+      github: "https://github.com/lucas-rus/Conta",
+      icon: Sparkles,
+      iconBg: "from-purple-500/20 to-pink-600/20 text-purple-400",
+    },
+    {
+      title: "German Legal Book Digitizer",
+      subtitle: "Enterprise Commentary Pipeline",
+      category: "ai",
+      badge: "Collab with Arhebis",
+      badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+      description:
+        "Scalable digitization pipeline built in collaboration with Arhebis Digital Systems for German legal commentaries (400k+ pages). Engineered an agentic self-correction loop validating LLM output against strict DTD schemas with compiler-guided auto-repair, cutting manual costs by 90%.",
+      stack: ["Docling (CUDA)", "Tesseract OCR", "OpenAI / Gemini", "Streamlit", "XML DTD"],
+      icon: BookOpen,
+      iconBg: "from-cyan-500/20 to-blue-600/20 text-cyan-400",
+    },
+    {
+      title: "CoFound",
+      subtitle: "Founder Dating & Startup Collaboration",
+      category: "fullstack",
+      badge: "1st Place Winner",
+      badgeColor: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
+      description:
+        "Awarded 1st Place at UVT Prototype Fair 2025. Full-stack platform connecting technical founders with collaborator teams for equity-based side projects. Features real-time bidirectional STOMP WebSockets messaging, skill-matching search, and collaboration agreements.",
+      stack: ["Spring Boot 3", "React 18", "STOMP WebSockets", "Hibernate JPA", "MySQL"],
+      live: "https://cofound-app.vercel.app",
+      icon: Award,
+      iconBg: "from-yellow-500/20 to-amber-600/20 text-yellow-400",
+    },
+    {
+      title: "SAT Solving & CSP Solvers",
+      subtitle: "Theoretical & Experimental Benchmark",
+      category: "systems",
+      badge: "AC-2001 Map Coloring",
+      badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+      description:
+        "Comparative runtime and memory benchmarking of Resolution, Davis–Putnam (DP), DPLL, and Glucose3 solvers across SAT instances. Implemented Bessiere et al.'s optimal Arc Consistency (AC-2001 O(ed^2)) solver in C++ for the Map Coloring constraint satisfaction problem using support pointers.",
+      stack: ["C++", "Python", "PySAT", "Algorithms & Theory", "Optimization"],
+      github: "https://github.com/lucas-rus/Theoretical_and_Experimental_Comparison_of_SAT_Solving_Algorithms",
+      icon: Terminal,
+      iconBg: "from-teal-500/20 to-emerald-600/20 text-secondary",
+    },
+    {
+      title: "Systems & Creative Tech",
+      subtitle: "Interactive Games & OS Background Utilities",
+      category: "systems",
+      badge: "lucas-rus.itch.io",
+      badgeColor: "bg-red-500/20 text-red-300 border-red-500/30",
+      description:
+        "Engineering native utilities and interactive simulations: 'Mouse Mover' (C++11/Obj-C++ using Win32 SendInput and macOS Cocoa/IOKit APIs), 'Ludo' (educational 3D chemistry simulation & synthesis game in Unity C# modeling compound reaction stoichiometries and commercial marketplace sales loops), and 'Future Jump' (3rd Place iTec Hackathon).",
+      stack: ["Unity C#", "C++11", "Objective-C++", "Win32 APIs", "Cocoa / IOKit"],
+      live: "https://lucas-rus.itch.io",
+      icon: Gamepad2,
+      iconBg: "from-red-500/20 to-orange-600/20 text-red-400",
+    },
+  ];
+
+  const filteredProjects =
+    activeCategory === "all"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
+
   return (
-    <div className="min-h-screen font-sans relative overflow-x-hidden bg-slate-900">
-      {/* Animated Background */}
-      <div className="background-animate"></div>
-      
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-40 glass-panel">
+    <div className="min-h-screen font-sans relative overflow-x-hidden bg-[#0a0f1d] text-slate-100 selection:bg-primary/30 selection:text-white">
+      {/* Ambient Depth Gradients & Cyber Circuit Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px]"></div>
+        <div className="absolute top-1/3 -right-40 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-10 left-1/4 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[130px]"></div>
+        <CyberCircuitBackground />
+      </div>
+
+      {/* Top Navigation */}
+      <nav className="fixed top-0 w-full z-40 bg-[#0a0f1d]/85 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold tracking-tight text-primary">LR.</div>
-            <div className="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+            <Link href="#" className="flex items-center space-x-2 group">
+              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-300 bg-clip-text text-transparent">
+                LR.
+              </span>
+              <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-800/80 border border-slate-700/60 text-slate-400 group-hover:text-primary transition-colors">
+                Software Engineer
+              </span>
+            </Link>
+
+            <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
               <a href="#about" className="hover:text-primary transition-colors">About</a>
               <a href="#experience" className="hover:text-primary transition-colors">Experience</a>
-              <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
+              <a href="#projects" className="hover:text-primary transition-colors">Ventures</a>
+              <a href="#credentials" className="hover:text-primary transition-colors">Credentials</a>
               <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
               <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <a
+                href="/Lucas_Rus_CV.pdf"
+                download="Lucas_Rus_CV.pdf"
+                className="hidden sm:inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/40 text-slate-200 hover:text-white transition-all shadow-sm"
+              >
+                <Download className="w-3.5 h-3.5 text-primary" />
+                <span>Resume</span>
+              </a>
+              <a
+                href="#contact"
+                className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-primary hover:bg-blue-600 text-white transition-all shadow-md shadow-blue-900/30 hover:shadow-blue-900/50"
+              >
+                Contact
+              </a>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <FadeIn className="space-y-6" delay={0.1}>
-            <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary backdrop-blur-sm">
-              <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-              Available for opportunities
+      <section className="relative pt-32 pb-20 md:pt-44 md:pb-28 px-4 max-w-6xl mx-auto z-10">
+        <div className="grid md:grid-cols-12 gap-12 items-center">
+          <FadeIn className="md:col-span-7 space-y-6" delay={0.1}>
+            <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-medium text-teal-300 backdrop-blur-sm shadow-sm">
+              <span className="flex h-2 w-2 rounded-full bg-teal-400 mr-2 animate-pulse"></span>
+              Available for Software Engineering & AI Systems Roles
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
-              Lucas <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Rus</span>
+
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+              Lucas{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-300">
+                Rus
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 font-light">
-              Software Engineer & Cybersecurity Enthusiast.
+
+            <p className="text-xl md:text-2xl text-slate-300 font-light leading-snug">
+              High-throughput data engines, agentic LLM automation & offensive security.
             </p>
-            <p className="text-lg text-slate-400 max-w-lg leading-relaxed">
-              Bridging the gap between robust software architecture and offensive security operations. 
-              Passionate about building secure, efficient systems and solving complex problems.
+
+            <p className="text-base md:text-lg text-slate-400 max-w-xl leading-relaxed">
+              Software engineer focused on architecting mission-critical systems: consolidating 1.8M+ entities with sub-5ms query performance, engineering compiler-guided document pipelines, and training frontier autonomous coding agents.
             </p>
-            <div className="flex space-x-4 pt-4">
-              <Link 
-                href="#contact"
-                className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40"
-              >
-                Get in Touch
-              </Link>
-              <Link 
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a
                 href="#projects"
-                className="px-6 py-3 border border-slate-700 bg-slate-800/50 text-white rounded-lg font-medium hover:bg-slate-800 transition-all backdrop-blur-sm"
+                className="px-6 py-3 bg-primary text-white rounded-xl font-medium hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/30 hover:shadow-blue-900/50 flex items-center space-x-2"
               >
-                View Work
-              </Link>
+                <span>Explore Ventures</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="/Lucas_Rus_CV.pdf"
+                download="Lucas_Rus_CV.pdf"
+                className="px-6 py-3 border border-slate-700/80 bg-slate-800/40 hover:bg-slate-800/80 text-white rounded-xl font-medium transition-all backdrop-blur-sm flex items-center space-x-2 shadow-sm"
+              >
+                <Download className="w-4 h-4 text-secondary" />
+                <span>Download CV</span>
+              </a>
+
+              <a
+                href="https://github.com/lucas-rus"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
+                title="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+
+              <a
+                href="https://lucas-rus.itch.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
+                title="Itch.io Games"
+              >
+                <Gamepad2 className="w-5 h-5 text-red-400" />
+              </a>
             </div>
           </FadeIn>
-          
-          <FadeIn className="relative hidden md:block" delay={0.3}>
-            {/* Abstract visual element representing structure/code */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-            <div className="relative glass-card p-8 rounded-2xl shadow-2xl border border-white/10">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+
+          {/* Interactive 3D Core & Live System Console */}
+          <FadeIn className="md:col-span-5 relative space-y-4" delay={0.25}>
+            <Interactive3DCore />
+
+            <div className="relative glass-card p-5 rounded-2xl shadow-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl">
+              {/* Terminal Window Header */}
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/5">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                </div>
+                <div className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
+                  <Terminal className="w-3 h-3 text-cyan-400" />
+                  <span>lucas_sys_monitor.sh</span>
+                </div>
               </div>
-              <div className="font-mono text-sm space-y-2 text-slate-300">
-                <p><span className="text-purple-400">class</span> <span className="text-yellow-300">Developer</span> <span className="text-slate-500">{`{`}</span></p>
-                <p className="pl-4"><span className="text-purple-400">const</span> passion = <span className="text-green-400">"Knowledge"</span>;</p>
-                <p className="pl-4"><span className="text-purple-400">let</span> skills = [<span className="text-green-400">"FullStack"</span>, <span className="text-green-400">"CyberSec"</span>, <span className="text-green-400">"GameDev"</span>];</p>
-                <p className="pl-4"><span className="text-purple-400">function</span> <span className="text-blue-400">innovate</span>() <span className="text-slate-500">{`{`}</span></p>
-                <p className="pl-8"><span className="text-purple-400">return</span> <span className="text-green-400">"Impactful Solutions"</span>;</p>
-                <p className="pl-4"><span className="text-slate-500">{`}`}</span></p>
-                <p><span className="text-slate-500">{`}`}</span></p>
+
+              {/* Console Metrics */}
+              <div className="font-mono text-xs space-y-2.5">
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-slate-500">primary_engine:</span>
+                  <span className="text-cyan-400 font-semibold">DuckDB Columnar OLAP</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-slate-500">commercial_entities:</span>
+                  <span className="text-teal-300 font-semibold">1,824,500 rows</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-slate-500">solvency_query_latency:</span>
+                  <span className="text-emerald-400 font-semibold">&lt; 4.8ms</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-slate-500">vision_classifier_acc:</span>
+                  <span className="text-purple-300 font-semibold">96.53% Top-3</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-slate-500">agentic_validation_loop:</span>
+                  <span className="text-amber-300 font-semibold">Compiler-Guided DTD</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-400">
+                  <span className="text-slate-500">oss_contributions:</span>
+                  <span className="text-slate-300">Grafana, Godot Engine</span>
+                </div>
+
+                <div className="pt-2.5 border-t border-white/5 text-[11px] text-slate-400 leading-relaxed">
+                  <span className="text-emerald-400 font-bold">$</span> sys.status = <span className="text-teal-300">&quot;Ready for high-throughput challenges&quot;</span>;
+                </div>
               </div>
             </div>
           </FadeIn>
@@ -84,276 +332,554 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 relative">
+      <section id="about" className="py-20 relative z-10">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white">About Me</h2>
-            <div className="w-16 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white tracking-tight">About Me</h2>
+            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-3 rounded-full"></div>
           </div>
+
           <SlideInLeft>
-            <div className="glass-card p-8 rounded-2xl text-slate-300 leading-relaxed text-lg">
-              <p className="mb-6">
-                I am currently pursuing a degree in <strong className="text-white">Computer Science (English)</strong> at the <strong>West University of Timisoara (UVT)</strong>. 
-                My journey in technology is driven by an insatiable thirst for knowledge—a trait that not only defines my academic career but also my professional ethos.
-              </p>
-              <p className="mb-6">
-                Beyond code, I have a background as a <strong className="text-white">debate trainer</strong>, a role that honed my ability to research deeply, construct logical arguments, and communicate complex technical concepts with clarity. This "soft skill" has become my secret weapon in engineering teams, bridging the gap between technical execution and strategic vision.
+            <div className="glass-card p-8 rounded-2xl text-slate-300 leading-relaxed text-base md:text-lg border border-white/5 bg-slate-900/50 space-y-6">
+              <p>
+                I am pursuing a degree in <strong className="text-white">Computer Science (English Stream)</strong> at the <strong>West University of Timișoara (UVT)</strong>. My approach pairs theoretical rigor in data structures and constraint satisfaction with battle-tested systems engineering.
               </p>
               <p>
-                Whether I'm analyzing a system for security vulnerabilities using <strong className="text-secondary">Metasploit</strong> or architecting a scalable web application with <strong className="text-primary">Spring Boot</strong>, I approach every challenge with the same rigorous, analytical mindset.
+                As a former <strong className="text-white">competitive debate trainer and tournament referee</strong> at C.D. Loga National College, I spent years dissecting arguments, structuring formal logic, and communicating complex technical abstractions with clarity. In software teams, this enables me to rapidly bridge the gap between low-level architectural execution and strategic product goals.
+              </p>
+              <p>
+                From architecting zero-dependency columnar OLAP intelligence engines indexing millions of records in <strong className="text-primary">DuckDB</strong> to validating autonomous coding agent trajectories on <strong className="text-secondary">Grafana and Godot</strong>, I engineer systems that are deterministic, fast, and secure.
               </p>
             </div>
           </SlideInLeft>
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-16">Professional Experience</h2>
-        
-        <div className="space-y-0">
-          
-          {/* JoinStellar */}
-          <FadeIn delay={0.1} className="relative grid md:grid-cols-[140px_auto_1fr] gap-4 md:gap-0">
-            {/* Date Column (Desktop) */}
-            <div className="hidden md:block text-right py-6 pr-6">
-              <span className="text-sm font-semibold text-primary">2024 - Present</span>
-            </div>
-            
-            {/* Timeline Column */}
-            <div className="hidden md:flex flex-col items-center">
-              {/* Dot */}
-              <div className="w-3 h-3 rounded-full bg-primary border-2 border-slate-900 z-10 mt-8 relative">
-                <div className="absolute inset-0 bg-primary rounded-full animate-ping opacity-20"></div>
+      {/* Section Divider */}
+      <div className="max-w-6xl mx-auto px-4">
+        <SectionDividerWithTelemetry label="SEC_01 // ENTERPRISE PRODUCTION & WORK" />
+      </div>
+
+      {/* Professional Experience Section */}
+      <section id="experience" className="py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white tracking-tight">Professional Experience</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+        </div>
+
+        <div className="space-y-8">
+          {/* Vitas Romania - Enterprise Showcase */}
+          <FadeIn delay={0.1} className="relative glass-card p-6 sm:p-8 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/60 transition-all bg-gradient-to-b from-slate-900/90 to-slate-950/90 shadow-2xl overflow-hidden">
+            {/* Cyber Corner Accents */}
+            <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-cyan-400"></div>
+            <div className="absolute top-0 right-0 w-3.5 h-3.5 border-t-2 border-r-2 border-cyan-400"></div>
+            <div className="absolute bottom-0 left-0 w-3.5 h-3.5 border-b-2 border-l-2 border-cyan-400"></div>
+            <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-cyan-400"></div>
+
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-3 pb-6 border-b border-white/10">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                    ENTERPRISE PLATFORM
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                    SUB-5MS QUERY SPEED
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white">Software Engineering Intern (Automation & Development)</h3>
+                <p className="text-cyan-400 font-medium text-sm mt-1 flex items-center gap-1.5">
+                  <Building2 className="w-4 h-4 text-cyan-400" />
+                  <span>Vitas Romania • Timișoara, RO</span>
+                </p>
               </div>
-              {/* Line */}
-              <div className="w-px h-full bg-slate-800 absolute top-0 bottom-0"></div>
+              <div className="md:text-right">
+                <span className="inline-block text-xs font-mono px-3.5 py-1.5 bg-slate-800/90 border border-slate-700/80 text-cyan-300 rounded-lg shadow-inner">
+                  Feb 2026 — Aug 2026
+                </span>
+                <p className="text-[11px] font-mono text-slate-500 mt-1">Full Production Deployment</p>
+              </div>
             </div>
 
-            {/* Content Card */}
-            <div className="pb-12 md:pl-8">
-              <div className="glass-card p-6 rounded-xl border border-white/5 relative hover:border-primary/30 transition-colors">
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-white">Private Contractor</h3>
-                  <p className="text-primary font-medium">JoinStellar.ai</p>
-                  <span className="md:hidden text-xs font-semibold bg-primary/20 text-primary px-2 py-1 rounded mt-2 inline-block">2024 - Present</span>
+            {/* Two Core Systems Subsections */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* System 1: Company Data Hub v2 */}
+              <div className="p-5 rounded-xl bg-slate-900/90 border border-cyan-500/20 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-1.5">
+                      <Database className="w-3.5 h-3.5 text-cyan-400" />
+                      01 // Company Data Hub v2
+                    </span>
+                    <span className="text-[10px] font-mono bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-500/30">
+                      OLAP Platform
+                    </span>
+                  </div>
+
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                    Architected an enterprise Business Intelligence platform indexing <strong className="text-white">1.8M+ Romanian commercial entities</strong> and 16 years of open-source national fiscal filings. Embedded a columnar OLAP engine delivering borrower solvency queries in <strong className="text-emerald-400">sub-5ms</strong>.
+                  </p>
+
+                  <ul className="text-xs text-slate-400 space-y-2 mb-4">
+                    <li className="flex items-start gap-2">
+                      <span className="text-cyan-400 font-bold">•</span>
+                      <span><strong className="text-slate-200">360° Corporate Profiles:</strong> Ingests executive boards, ownership chains, revenue trajectories, and liquidity/solvency ratios.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-cyan-400 font-bold">•</span>
+                      <span><strong className="text-slate-200">Watchlist Differential Tracking:</strong> Atomic snapshot migrations detecting fiscal anomalies across loan portfolios.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-cyan-400 font-bold">•</span>
+                      <span><strong className="text-slate-200">Production Rigor:</strong> 130 automated Pytest test suites ensuring zero-drift data integrity (MIT License).</span>
+                    </li>
+                  </ul>
                 </div>
-                <ul className="list-disc list-inside text-slate-300 space-y-2 text-sm">
-                  <li>Training AI models to autonomously handle <strong>GitHub Pull Requests</strong> and generate robust test suites.</li>
-                  <li>Specializing in creating test files and validation logic for complex open-source projects like <strong>Grafana</strong> and <strong>Godot</strong>.</li>
-                  <li>Conducting high-precision data annotation and prompt engineering for code-generation models.</li>
-                </ul>
+
+                <div className="pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 bg-cyan-950/60 text-cyan-300 text-[11px] font-mono rounded border border-cyan-500/30">DuckDB OLAP</span>
+                  <span className="px-2 py-0.5 bg-blue-950/60 text-blue-300 text-[11px] font-mono rounded border border-blue-500/30">Python</span>
+                  <span className="px-2 py-0.5 bg-slate-800 text-slate-300 text-[11px] font-mono rounded border border-slate-700">Parquet / Polars</span>
+                  <span className="px-2 py-0.5 bg-emerald-950/60 text-emerald-300 text-[11px] font-mono rounded border border-emerald-500/30">&lt;5ms Latency</span>
+                </div>
+              </div>
+
+              {/* System 2: Trial Balance Parser */}
+              <div className="p-5 rounded-xl bg-slate-900/90 border border-teal-500/20 hover:border-teal-500/40 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-mono font-bold text-teal-300 uppercase tracking-wider flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-teal-400" />
+                      02 // Trial Balance Parser
+                    </span>
+                    <span className="text-[10px] font-mono bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded border border-teal-500/30">
+                      Underwriting AI
+                    </span>
+                  </div>
+
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                    Automated the SME credit underwriting pipeline by transforming non-standard PDF trial balances (<em className="text-teal-200">Balanță de Verificare</em>) directly into official Balance Sheets (<em className="text-teal-200">Bilanț</em>) and P&amp;L statements.
+                  </p>
+
+                  <ul className="text-xs text-slate-400 space-y-2 mb-4">
+                    <li className="flex items-start gap-2">
+                      <span className="text-teal-400 font-bold">•</span>
+                      <span><strong className="text-slate-200">OMFP 1802/2014 Compliance:</strong> Bottom-up automated account netting accurate down to the cent.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-teal-400 font-bold">•</span>
+                      <span><strong className="text-slate-200">Sub-2s Execution:</strong> Deterministic spatial coordinate reconstruction with SHA-256 layout caching.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-teal-400 font-bold">•</span>
+                      <span><strong className="text-slate-200">3-Tier Vision Fallback:</strong> OpenAI multimodal fallback for complex or scanned accounting documents.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 bg-teal-950/60 text-teal-300 text-[11px] font-mono rounded border border-teal-500/30">OMFP 1802/2014</span>
+                  <span className="px-2 py-0.5 bg-purple-950/60 text-purple-300 text-[11px] font-mono rounded border border-purple-500/30">OpenAI Vision</span>
+                  <span className="px-2 py-0.5 bg-slate-800 text-slate-300 text-[11px] font-mono rounded border border-slate-700">Streamlit UI</span>
+                  <span className="px-2 py-0.5 bg-emerald-950/60 text-emerald-300 text-[11px] font-mono rounded border border-emerald-500/30">&lt;2s Cache</span>
+                </div>
               </div>
             </div>
           </FadeIn>
 
-          {/* Arhebis */}
-          <FadeIn delay={0.2} className="relative grid md:grid-cols-[140px_auto_1fr] gap-4 md:gap-0">
-            {/* Date Column (Desktop) */}
-            <div className="hidden md:block text-right py-6 pr-6">
-              <span className="text-sm font-semibold text-slate-500">2024 - 2025</span>
-            </div>
-            
-            {/* Timeline Column */}
-            <div className="hidden md:flex flex-col items-center">
-              {/* Dot */}
-              <div className="w-3 h-3 rounded-full bg-secondary border-2 border-slate-900 z-10 mt-8"></div>
-              {/* Line - Only show if there were more items below, but for the last item we can fade it out or keep it consistent */}
-              <div className="w-px h-full bg-slate-800 absolute top-0 bottom-0"></div> 
+          {/* JoinStellar.ai */}
+          <FadeIn delay={0.2} className="glass-card p-7 rounded-2xl border border-white/5 hover:border-secondary/40 transition-all bg-slate-900/50">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <div className="flex items-center gap-3">
+                  <h3 className="text-xl font-bold text-white">AI Training & Agent Evaluation Contractor</h3>
+                  <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                    Agentic AI
+                  </span>
+                </div>
+                <p className="text-secondary font-medium text-sm mt-0.5">JoinStellar.ai • Remote</p>
+              </div>
+              <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
+                Nov 2024 — Present
+              </span>
             </div>
 
-            {/* Content Card */}
-            <div className="pb-12 md:pl-8">
-              <div className="glass-card p-6 rounded-xl border border-white/5 relative hover:border-secondary/30 transition-colors">
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-white">Junior Software Developer</h3>
-                  <p className="text-secondary font-medium">Arhebis Digital Systems</p>
-                  <span className="md:hidden text-xs font-semibold bg-slate-800 text-slate-400 px-2 py-1 rounded mt-2 inline-block">2024 - 2025</span>
-                </div>
-                <ul className="list-disc list-inside text-slate-300 space-y-2 text-sm">
-                  <li>Developed custom <strong>JavaScript scripts</strong> to automate repetitive data entry tasks, significantly reducing manual labor.</li>
-                  <li>Optimized legacy workflows and handled XHTML/CSS data processing.</li>
-                </ul>
-              </div>
+            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+              Trained frontier autonomous coding agents to resolve real-world GitHub Pull Requests and pass comprehensive integration test suites across large open-source codebases (including <strong className="text-white">Grafana</strong> and <strong className="text-white">Godot Engine</strong>). Benchmarked multi-agent execution trajectories, stress-testing autonomous tool call sequences, code repair loops, environment interactions, and database state transitions.
+            </p>
+
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Autonomous Agents</span>
+              <span className="px-2.5 py-1 bg-teal-900/30 text-teal-200 text-xs rounded-lg border border-teal-500/20">TypeScript</span>
+              <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">Python</span>
+              <span className="px-2.5 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-lg border border-purple-500/20">Tool Benchmarking</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Grafana & Godot</span>
             </div>
           </FadeIn>
 
+          {/* Arhebis Digital Systems */}
+          <FadeIn delay={0.3} className="glass-card p-7 rounded-2xl border border-white/5 hover:border-accent/40 transition-all bg-slate-900/50">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <h3 className="text-xl font-bold text-white">Junior Software Developer</h3>
+                <p className="text-accent font-medium text-sm mt-0.5">Arhebis Digital Systems • Timișoara, RO</p>
+              </div>
+              <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
+                Sep 2024 — Aug 2025
+              </span>
+            </div>
+
+            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+              Automated commercial digital production in Photoshop and Illustrator via ExtendScript JavaScript, reducing manual graphic prep time by 60%. Built Python automation tools interfacing with Google Maps APIs to geocode addresses and automate Points of Interest (POI) maps; engineered end-to-end XML/XHTML and CSS transformation pipelines converting fixed PDFs into reflowable ePub3 books.
+            </p>
+
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+              <span className="px-2.5 py-1 bg-orange-900/30 text-orange-200 text-xs rounded-lg border border-orange-500/20">ExtendScript (JS)</span>
+              <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">Python</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Google Maps API</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">XML/XHTML & ePub3</span>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-12">Featured Projects</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            
-            {/* CoFound */}
-            <FadeIn delay={0.1} className="group glass-card rounded-xl overflow-hidden hover:border-primary/50 flex flex-col">
-              <div className="h-48 bg-gradient-to-br from-blue-600/20 to-indigo-700/20 flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                <Database className="w-16 h-16 text-primary" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-white">CoFound</h3>
-                  <div title="1st Place Winner">
-                    <Award className="w-6 h-6 text-yellow-500" />
-                  </div>
-                </div>
-                <p className="text-slate-400 text-sm mb-4 flex-1">
-                  A &quot;founder dating&quot; platform for startups. Facilitates equity-based collaboration for unpaid/low-budget projects. Won <strong className="text-primary">1st Place</strong> at the UVT Prototype Fair 2025.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-md border border-blue-500/20">Spring Boot</span>
-                  <span className="px-2 py-1 bg-cyan-900/30 text-cyan-200 text-xs rounded-md border border-cyan-500/20">React.js</span>
-                  <span className="px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded-md border border-slate-600/20">MySQL</span>
-                </div>
-              </div>
-            </FadeIn>
+      {/* Section Divider */}
+      <div className="max-w-6xl mx-auto px-4">
+        <SectionDividerWithTelemetry label="SEC_02 // VENTURES & AI ARCHITECTURE" />
+      </div>
 
-            {/* SAT Solver */}
-            <FadeIn delay={0.2} className="group glass-card rounded-xl overflow-hidden hover:border-secondary/50 flex flex-col">
-              <div className="h-48 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                <Terminal className="w-16 h-16 text-secondary" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-white">SAT Solving Comparison</h3>
-                  <a 
-                    href="https://github.com/lucas-rus/Theoretical_and_Experimental_Comparison_of_SAT_Solving_Algorithms" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-secondary hover:text-white transition-colors"
-                    title="View on GitHub"
-                  >
-                    <Github className="w-6 h-6" />
-                  </a>
-                </div>
-                <p className="text-slate-400 text-sm mb-4 flex-1">
-                  Theoretical and experimental analysis of <strong>Boolean Satisfiability (SAT)</strong> algorithms, comparing heuristics and performance across diverse problem sets.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded-md border border-slate-600/20">Algorithms</span>
-                  <span className="px-2 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-md border border-purple-500/20">Theory</span>
-                  <span className="px-2 py-1 bg-green-900/30 text-green-200 text-xs rounded-md border border-green-500/20">Optimization</span>
-                </div>
-              </div>
-            </FadeIn>
+      {/* Featured Ventures & Projects Section */}
+      <section id="projects" className="py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <h2 className="text-3xl font-bold text-white tracking-tight">Ventures & Technical Projects</h2>
+            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+          </div>
 
-            {/* CyberSec/CTF */}
-            <FadeIn delay={0.3} className="group glass-card rounded-xl overflow-hidden hover:border-accent/50 flex flex-col">
-              <div className="h-48 bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                <Shield className="w-16 h-16 text-accent" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-white mb-4">Security Research & CTF</h3>
-                <p className="text-slate-400 text-sm mb-4 flex-1">
-                  Active participant in the <strong>UVT CTF Team</strong> and iTec CyberSecurity Hackathon 2025. Focused on Red Teaming operations and Web Exploitation.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-red-900/30 text-red-200 text-xs rounded-md border border-red-500/20">Metasploit</span>
-                  <span className="px-2 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-md border border-blue-500/20">Wireshark</span>
-                  <span className="px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded-md border border-slate-600/20">Aircrack-ng</span>
-                </div>
-              </div>
-            </FadeIn>
-
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap gap-2 bg-slate-900/80 p-1.5 rounded-xl border border-white/5 w-fit">
+            {[
+              { id: "all", label: "All Ventures" },
+              { id: "ai", label: "AI & Vision" },
+              { id: "fullstack", label: "Full-Stack & OLAP" },
+              { id: "systems", label: "Systems & Creative" },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveCategory(tab.id as ProjectCategory)}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  activeCategory === tab.id
+                    ? "bg-primary text-white shadow-sm"
+                    : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 gap-7">
+          {filteredProjects.map((project, idx) => {
+            const IconComponent = project.icon;
+            return (
+              <FadeIn
+                key={project.title}
+                delay={0.05 * idx}
+                className="group glass-card rounded-2xl overflow-hidden hover:border-primary/50 transition-all flex flex-col bg-slate-900/50 border border-white/5"
+              >
+                <div className="p-7 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start gap-4 mb-3">
+                      <div className="flex items-center space-x-3">
+                        <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.iconBg} border border-white/5`}>
+                          <IconComponent className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                            {project.title}
+                          </h3>
+                          {project.subtitle && (
+                            <p className="text-xs text-slate-400 font-medium">{project.subtitle}</p>
+                          )}
+                        </div>
+                      </div>
+
+                      {project.badge && (
+                        <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${project.badgeColor} whitespace-nowrap`}>
+                          {project.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="text-slate-300 text-sm leading-relaxed mt-4">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-0.5 bg-slate-800/80 text-slate-300 text-[11px] font-mono rounded border border-slate-700/50"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center space-x-2 pl-3">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+                          title="View on GitHub"
+                        >
+                          <Github className="w-4 h-4" />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 text-primary hover:text-blue-300 hover:bg-slate-800 rounded-lg transition-colors"
+                          title="Visit Project"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            );
+          })}
+        </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="max-w-6xl mx-auto px-4">
+        <SectionDividerWithTelemetry label="SEC_03 // VERIFIED CREDENTIALS & DEBATE" />
+      </div>
+
+      {/* Credentials & Certifications Section (NO GPA) */}
+      <section id="credentials" className="py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white tracking-tight">Credentials & Certifications</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <FadeIn delay={0.1} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-mono text-primary font-bold">University Education</span>
+              <h3 className="font-bold text-base text-white mt-1">West University of Timișoara</h3>
+              <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                BSc in Computer Science (English Stream, 2024–2027). Core focus on algorithms, data structures, and computer systems.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
+              UVT • Timișoara, Romania
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-mono text-secondary font-bold">Language Mastery</span>
+              <h3 className="font-bold text-base text-white mt-1">Cambridge English (CAE)</h3>
+              <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                Grade A (Score 200+). Certified CEFR Level C2 — Native English language equivalence.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
+              Certified CEFR C2
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.3} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-mono text-accent font-bold">Security Training</span>
+              <h3 className="font-bold text-base text-white mt-1">Google.org Cybersecurity</h3>
+              <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                Virtual Routes at UVT. Labs covering MITRE ATT&CK, AI SecOps, Splunk SIEM, Snort IDS, and network defense.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-orange-300 font-medium">
+              SecOps & Defense
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.4} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-mono text-purple-400 font-bold">National Credential</span>
+              <h3 className="font-bold text-base text-white mt-1">CS Professional Competence</h3>
+              <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                Romanian Ministry of Education (2024). Intensive Mathematics & Informatics track. Capstone: <em>Ludo 3D</em>.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-purple-300 font-medium">
+              Ministry of Education
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="max-w-6xl mx-auto px-4">
+        <SectionDividerWithTelemetry label="SEC_04 // TECHNICAL PROFICIENCIES & PROTOCOLS" />
+      </div>
+
       {/* Skills Section - Miller's Law (Chunking) */}
-      <section id="skills" className="py-20 px-4 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-12">Technical Skills</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          <SlideInLeft delay={0.1} className="p-6 glass-card rounded-lg border-t-2 border-primary">
+      <section id="skills" className="py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white tracking-tight">Technical Proficiencies</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+          <SlideInLeft delay={0.1} className="p-6 glass-card rounded-xl border-t-2 border-primary bg-slate-900/50">
             <div className="flex items-center space-x-3 mb-4">
               <Terminal className="w-6 h-6 text-primary" />
               <h3 className="font-bold text-lg text-white">Languages</h3>
             </div>
-            <ul className="space-y-2 text-slate-400 text-sm">
-              <li>Java</li>
-              <li>C++</li>
-              <li>C</li>
+            <ul className="space-y-2 text-slate-300 text-sm">
               <li>Python</li>
-              <li>C#</li>
-              <li>JavaScript/TypeScript</li>
+              <li>TypeScript / JavaScript</li>
+              <li>Java 17+</li>
+              <li>C++ / C</li>
+              <li>C# (.NET)</li>
               <li>SQL</li>
+              <li>HTML5 / SCSS</li>
             </ul>
           </SlideInLeft>
 
-          <SlideInLeft delay={0.2} className="p-6 glass-card rounded-lg border-t-2 border-secondary">
+          <SlideInLeft delay={0.2} className="p-6 glass-card rounded-xl border-t-2 border-secondary bg-slate-900/50">
             <div className="flex items-center space-x-3 mb-4">
               <Code2 className="w-6 h-6 text-secondary" />
-              <h3 className="font-bold text-lg text-white">Web Stack</h3>
+              <h3 className="font-bold text-lg text-white">Full-Stack & Data</h3>
             </div>
-            <ul className="space-y-2 text-slate-400 text-sm">
-              <li>Spring Boot</li>
-              <li>React.js / Next.js</li>
-              <li>Tailwind CSS</li>
-              <li>HTML5 / CSS3</li>
-              <li>Node.js</li>
+            <ul className="space-y-2 text-slate-300 text-sm">
+              <li>Next.js (App Router) / React 19</li>
+              <li>DuckDB (Columnar OLAP)</li>
+              <li>Spring Boot 3 (JPA)</li>
+              <li>FastAPI / Flask</li>
+              <li>PostgreSQL / MySQL</li>
+              <li>Tailwind CSS v4</li>
+              <li>Avalonia .NET C#</li>
             </ul>
           </SlideInLeft>
 
-          <SlideInLeft delay={0.3} className="p-6 glass-card rounded-lg border-t-2 border-accent">
+          <SlideInLeft delay={0.3} className="p-6 glass-card rounded-xl border-t-2 border-purple-400 bg-slate-900/50">
+            <div className="flex items-center space-x-3 mb-4">
+              <Cpu className="w-6 h-6 text-purple-400" />
+              <h3 className="font-bold text-lg text-white">AI & Vision</h3>
+            </div>
+            <ul className="space-y-2 text-slate-300 text-sm">
+              <li>PyTorch & EfficientNet</li>
+              <li>Multimodal LLMs (OpenAI, Gemini)</li>
+              <li>Docling (CUDA) Layout OCR</li>
+              <li>Tesseract OCR & OpenCV</li>
+              <li>Agentic Self-Correction Loops</li>
+              <li>RLHF & Data Annotation</li>
+              <li>Gradio & Streamlit</li>
+            </ul>
+          </SlideInLeft>
+
+          <SlideInLeft delay={0.4} className="p-6 glass-card rounded-xl border-t-2 border-accent bg-slate-900/50">
             <div className="flex items-center space-x-3 mb-4">
               <Shield className="w-6 h-6 text-accent" />
-              <h3 className="font-bold text-lg text-white">Security</h3>
+              <h3 className="font-bold text-lg text-white">Systems & Security</h3>
             </div>
-            <ul className="space-y-2 text-slate-400 text-sm">
-              <li>Red Teaming</li>
-              <li>Web Exploitation</li>
-              <li>Metasploit Framework</li>
-              <li>Wireshark Analysis</li>
-              <li>Airmon/Aircrack Suite</li>
+            <ul className="space-y-2 text-slate-300 text-sm">
+              <li>Linux / Bash Automation</li>
+              <li>Docker Containerization</li>
+              <li>Win32 & Cocoa/IOKit APIs</li>
+              <li>Unity 3D Engine</li>
+              <li>Metasploit & Wireshark</li>
+              <li>Splunk SIEM & Snort IDS</li>
+              <li>Git / GitHub Actions</li>
             </ul>
           </SlideInLeft>
-
-          <SlideInLeft delay={0.4} className="p-6 glass-card rounded-lg border-t-2 border-purple-500">
-            <div className="flex items-center space-x-3 mb-4">
-              <Cpu className="w-6 h-6 text-purple-500" />
-              <h3 className="font-bold text-lg text-white">Tools & Dev</h3>
-            </div>
-            <ul className="space-y-2 text-slate-400 text-sm">
-              <li>Unity 3D</li>
-              <li>Git / GitHub</li>
-              <li>Linux / Bash</li>
-              <li>Docker</li>
-              <li>IntelliJ IDEA</li>
-            </ul>
-          </SlideInLeft>
-
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="max-w-4xl mx-auto px-4">
+        <SectionDividerWithTelemetry label="SEC_05 // COMMS & DIRECT TRANSMISSION" />
+      </div>
+
       {/* Footer / Contact */}
-      <footer id="contact" className="bg-slate-900 border-t border-white/5 py-16">
+      <footer id="contact" className="bg-[#070b14] border-t border-white/5 py-16 z-10 relative">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-white">Ready to collaborate?</h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto">
-            I am always open to discussing new projects, security challenges, or innovative ideas. Let's connect.
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-white tracking-tight">
+            Let&apos;s build something impactful.
+          </h2>
+          <p className="text-slate-400 mb-8 max-w-lg mx-auto text-sm md:text-base leading-relaxed">
+            I am always open to discussing new engineering ventures, high-performance data systems, or offensive security challenges.
           </p>
-          <div className="flex justify-center space-x-6">
-            <a href="https://www.linkedin.com/in/lucas-rus-96492a222" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white hover:text-slate-900 transition-all">
-              <Linkedin className="w-6 h-6" />
+
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            <a
+              href="mailto:lucas.rus.gheorghiu@gmail.com"
+              className="px-6 py-3 bg-primary hover:bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg shadow-blue-900/30 flex items-center space-x-2 text-sm"
+            >
+              <Mail className="w-4 h-4" />
+              <span>lucas.rus.gheorghiu@gmail.com</span>
             </a>
-            <a href="https://github.com/lucas-rus" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white hover:text-slate-900 transition-all">
-              <Github className="w-6 h-6" />
-            </a>
-            <a href="mailto:lucas.rus.gheorghiu@gmail.com" className="p-3 bg-white/5 rounded-full hover:bg-white hover:text-slate-900 transition-all">
-              <Mail className="w-6 h-6" />
+
+            <a
+              href="/Lucas_Rus_CV.pdf"
+              download="Lucas_Rus_CV.pdf"
+              className="px-6 py-3 border border-slate-700 bg-slate-800/40 hover:bg-slate-800 text-white rounded-xl font-medium transition-all flex items-center space-x-2 text-sm"
+            >
+              <Download className="w-4 h-4 text-secondary" />
+              <span>Download Dark Resume</span>
             </a>
           </div>
-          <div className="mt-12 text-sm text-slate-500">
-            © {new Date().getFullYear()} Lucas Rus. Built with Next.js & Tailwind.
+
+          <div className="flex justify-center space-x-4 mb-12">
+            <a
+              href="https://github.com/lucas-rus"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-primary/50 text-slate-400 hover:text-white transition-all"
+              title="GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/lucas-rus-96492a222"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-primary/50 text-slate-400 hover:text-white transition-all"
+              title="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="https://lucas-rus.itch.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-primary/50 text-slate-400 hover:text-white transition-all"
+              title="Itch.io Games & Prototypes"
+            >
+              <Gamepad2 className="w-5 h-5 text-red-400" />
+            </a>
+          </div>
+
+          <div className="text-xs text-slate-500 font-mono">
+            © {new Date().getFullYear()} Lucas Rus. Designed & engineered with Next.js 16, React 19 & Tailwind CSS v4.
           </div>
         </div>
       </footer>
 
+      {/* Floating AI Chatbot Assistant */}
       <ChatWidget />
     </div>
   );
 }
-
-import { Eye, Maximize, Search } from "lucide-react";
