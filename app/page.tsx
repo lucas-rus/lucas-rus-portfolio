@@ -178,9 +178,6 @@ export default function Home() {
               <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-300 bg-clip-text text-transparent">
                 LR.
               </span>
-              <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-800/80 border border-slate-700/60 text-slate-400 group-hover:text-primary transition-colors">
-                Software Engineer
-              </span>
             </Link>
 
             <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
