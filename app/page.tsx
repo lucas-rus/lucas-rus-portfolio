@@ -64,6 +64,18 @@ export default function Home() {
       iconBg: "from-blue-600/20 to-indigo-700/20 text-primary",
     },
     {
+      title: "Trial Balance Parser & Mapper",
+      subtitle: "Automated SME Credit Underwriting Engine",
+      category: "systems",
+      badge: "Production at Vitas",
+      badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+      description:
+        "Automated credit underwriting pipeline transforming non-standard trial balance PDFs (Balanță de Verificare) directly into official Balance Sheets and P&L statements. Features deterministic coordinate boundary reconstruction, SHA-256 layout caching (<2s execution), cent-accurate OMFP 1802/2014 account netting, and 3-tier OpenAI multimodal vision fallbacks.",
+      stack: ["Python", "Streamlit", "PyMuPDF", "OpenAI Vision", "OMFP 1802/2014"],
+      icon: FileText,
+      iconBg: "from-teal-600/20 to-emerald-700/20 text-teal-400",
+    },
+    {
       title: "Font Recognition AI",
       subtitle: "26-Class Print Typography Classifier",
       category: "ai",
@@ -134,7 +146,7 @@ export default function Home() {
       badge: "AC-2001 Map Coloring",
       badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
       description:
-        "Comparative runtime and memory benchmarking of Resolution, Davis–Putnam (DP), DPLL, and Glucose3 solvers across SAT instances. Implemented Bessiere et al.'s optimal Arc Consistency (AC-2001 O(ed^2)) solver in C++ for the Map Coloring constraint satisfaction problem using support pointers.",
+        "Comparative runtime and memory benchmarking of Resolution, Davis-Putnam (DP), DPLL, and Glucose3 solvers across SAT instances. Implemented Bessiere et al.'s optimal Arc Consistency (AC-2001 O(ed^2)) solver in C++ for the Map Coloring constraint satisfaction problem using support pointers.",
       stack: ["C++", "Python", "PySAT", "Algorithms & Theory", "Optimization"],
       github: "https://github.com/lucas-rus/Theoretical_and_Experimental_Comparison_of_SAT_Solving_Algorithms",
       icon: Terminal,
@@ -416,7 +428,7 @@ export default function Home() {
               </div>
               <div className="md:text-right">
                 <span className="inline-block text-xs font-mono px-3.5 py-1.5 bg-slate-800/90 border border-slate-700/80 text-cyan-300 rounded-lg shadow-inner">
-                  Feb 2026 — Aug 2026
+                  Feb 2026 - Aug 2026
                 </span>
                 <p className="text-[11px] font-mono text-slate-500 mt-1">Full Production Deployment</p>
               </div>
@@ -512,16 +524,16 @@ export default function Home() {
           <FadeIn delay={0.2} className="glass-card p-7 rounded-2xl border border-white/5 hover:border-secondary/40 transition-all bg-slate-900/50">
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
               <div>
-                <div className="flex items-center gap-3">
-                  <h3 className="text-xl font-bold text-white">AI Training & Agent Evaluation Contractor</h3>
-                  <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-white">Private Contractor (AI Training & Evaluation)</h3>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/10 text-secondary border border-secondary/20">
                     Agentic AI
                   </span>
                 </div>
                 <p className="text-secondary font-medium text-sm mt-0.5">JoinStellar.ai • Remote</p>
               </div>
               <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
-                Nov 2024 — Present
+                Nov 2024 - Present
               </span>
             </div>
 
@@ -546,7 +558,7 @@ export default function Home() {
                 <p className="text-accent font-medium text-sm mt-0.5">Arhebis Digital Systems • Timișoara, RO</p>
               </div>
               <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
-                Sep 2024 — Aug 2025
+                Sep 2024 - Aug 2025
               </span>
             </div>
 
@@ -685,7 +697,7 @@ export default function Home() {
 
       {/* Section Divider */}
       <div className="max-w-6xl mx-auto px-4">
-        <SectionDividerWithTelemetry label="SEC_03 // VERIFIED CREDENTIALS & DEBATE" />
+        <SectionDividerWithTelemetry label="SEC_03 // VERIFIED CREDENTIALS & CERTIFICATIONS" />
       </div>
 
       {/* Credentials & Certifications Section (NO GPA) */}
@@ -701,7 +713,7 @@ export default function Home() {
               <span className="text-xs font-mono text-primary font-bold">University Education</span>
               <h3 className="font-bold text-base text-white mt-1">West University of Timișoara</h3>
               <p className="text-slate-400 text-xs mt-2 leading-relaxed">
-                BSc in Computer Science (English Stream, 2024–2027). Core focus on algorithms, data structures, and computer systems.
+                BSc in Computer Science (English Stream, 2024-2027). Core focus on algorithms, data structures, and computer systems.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
@@ -714,7 +726,7 @@ export default function Home() {
               <span className="text-xs font-mono text-secondary font-bold">Language Mastery</span>
               <h3 className="font-bold text-base text-white mt-1">Cambridge English (CAE)</h3>
               <p className="text-slate-400 text-xs mt-2 leading-relaxed">
-                Grade A (Score 200+). Certified CEFR Level C2 — Native English language equivalence.
+                Grade A (Score 200+). Certified CEFR Level C2: Native English language equivalence.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
