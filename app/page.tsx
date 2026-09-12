@@ -745,7 +745,7 @@ export default function Home() {
           <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-2 sm:mt-3 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-5">
           <FadeIn delay={0.1} className="glass-card p-4 sm:p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
             <div>
               <span className="text-xs font-mono text-primary font-bold">University Education</span>
@@ -795,6 +795,19 @@ export default function Home() {
             </div>
             <div className="mt-3 sm:mt-4 pt-3 border-t border-white/5 text-[11px] text-purple-300 font-medium">
               Ministry of Education
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.5} className="glass-card p-4 sm:p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-mono text-sky-400 font-bold">Digital Literacy</span>
+              <h3 className="font-bold text-base text-white mt-1">IC3 Digital Literacy (GS5)</h3>
+              <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                Certiport / Pearson VUE international certification validating Computing Fundamentals, Key Applications, and Living Online.
+              </p>
+            </div>
+            <div className="mt-3 sm:mt-4 pt-3 border-t border-white/5 text-[11px] text-sky-300 font-medium">
+              Certiport • Global Standard 5
             </div>
           </FadeIn>
         </div>

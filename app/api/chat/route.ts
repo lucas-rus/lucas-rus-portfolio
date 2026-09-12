@@ -76,6 +76,7 @@ EDUCATION & CREDENTIALS:
 - Cambridge English (CAE): Grade A - Score 200+ (Certified CEFR Level C2 / Native English Equivalence).
 - Google.org Cybersecurity Program: Virtual Routes at UVT (MITRE ATT&CK, AI SecOps, Splunk SIEM, Snort IDS, pfSense, Okta IAM, OWASP Top 10).
 - Professional Competence Certificate in CS: Romanian Ministry of Education (2024, Intensive Math & CS Track, Capstone: Ludo 3D).
+- IC3 Digital Literacy Certification (GS5): Certiport / Pearson VUE international credential validating Computing Fundamentals, Key Applications, and Living Online.
 - Chrome Debate Club: Trainer & Tournament Referee at C.D. Loga National College. Coached debaters in formal logic, competitive argumentation, and systems rhetoric.
 
 PROFESSIONAL EXPERIENCE:
@@ -160,7 +161,8 @@ function generateFallbackResponse(userPrompt: string): string {
     "digitizer", "book", "skills", "stack", "tech", "contact", "hire",
     "email", "about", "education", "cv", "resume", "cybersecurity",
     "security", "duckdb", "olap", "ai", "python", "typescript", "c++",
-    "trial balance", "balanta", "bilant", "who are you", "who is lucas"
+    "trial balance", "balanta", "bilant", "who are you", "who is lucas",
+    "ic3", "certiport"
   ];
 
   const isRelevant = portfolioKeywords.some((kw) => p.includes(kw)) ||
@@ -183,15 +185,15 @@ function generateFallbackResponse(userPrompt: string): string {
   }
 
   if (p.includes("conta") || p.includes("contaai") || p.includes("accounting")) {
-    return `**ContaAI** is an automated document OCR and audit engine:\n\n- **Stack:** Pairing a **FastAPI** backend with a cross-platform **Avalonia .NET C#** desktop UI for macOS and Windows.\n- **Features:** Integrates multi-provider LLMs (Gemini, OpenAI) with 6-axis confidence scoring, live Romanian ANAF API CUI validation, and automatic e-Factura / SAGA XML export.\n- **GitHub:** [github.com/lucas-rus/Conta](https://github.com/lucas-rus/Conta)`;
+    return `**ContaAI** is an intelligent accounting & audit desktop suite:\n\n- Pair an asynchronous **FastAPI** backend with an **Avalonia .NET C#** desktop UI for macOS and Windows.\n- Integrates multi-provider LLMs (Gemini, OpenAI, OpenRouter) with 6-axis confidence scoring.\n- Validates Romanian company CUIs against the official **ANAF API** in real-time.\n- Generates validated XML for *e-Factura* and SAGA accounting import.\n- **GitHub:** [github.com/lucas-rus/Conta](https://github.com/lucas-rus/Conta)`;
   }
 
-  if (p.includes("gigtim") || p.includes("zilieri") || p.includes("venture")) {
-    return `**GigTim** ([gigtim.arhebis.ro](https://gigtim.arhebis.ro)) is Lucas's upcoming flagship venture:\n\n- **Mission:** A next-generation Romanian HoReCa day-laborer marketplace (*zilieri*, under Legea 52/2011) designed to modernize short-term staffing and transform local hiring in Timișoara.\n- **Capabilities:** Instant shift matching, animated interactive SVG map of Timișoara with live route paths, automated ITM compliance CSV generation, and deferred GDPR identity verification.\n- **Tech Stack:** Built with Next.js 16 (React 19), Tailwind CSS v4, and Supabase (PostgreSQL, Realtime, Row-Level Security).`;
+  if (p.includes("gigtim")) {
+    return `**GigTim** (https://gigtim.arhebis.ro) is Lucas's upcoming flagship venture in development:\n\n- A specialized Romanian HoReCa day-laborer marketplace (*zilieri*, under Legea 52/2011) modernizing short-term restaurant and event staffing in Timișoara.\n- Features real-time shift matching, an interactive SVG city map with animated route paths, automated ITM compliance CSV reporting, and deferred GDPR identity verification.\n- Built with Next.js 16, React 19, Tailwind CSS v4, and Supabase (PostgreSQL, Realtime).`;
   }
 
   if (p.includes("cofound")) {
-    return `**CoFound** won **1st Place at the UVT Prototype Fair 2025** ([cofound-app.vercel.app](https://cofound-app.vercel.app)):\n\n- **Concept:** A founder collaboration platform for startups and equity-based side projects (unpaid/low-budget).\n- **Features:** Real-time bidirectional STOMP WebSockets messaging, skill-matching search, and collaboration agreements.\n- **Tech Stack:** Spring Boot 3, React 18, Hibernate JPA, MySQL.`;
+    return `**CoFound** (https://cofound-app.vercel.app) won **1st Place at the UVT Prototype Fair 2025**:\n\n- Connects startup founders with technical collaborators for equity-based side projects.\n- Features live bidirectional STOMP WebSockets messaging, skill-matching search, peer reviews, and automated founder agreements.\n- Built with Spring Boot 3, Hibernate JPA, MySQL, and React 18.`;
   }
 
   if (p.includes("game") || p.includes("itch") || p.includes("ludo") || p.includes("mouse mover")) {
@@ -206,7 +208,7 @@ function generateFallbackResponse(userPrompt: string): string {
     return `Lucas possesses a versatile engineering stack spanning full-stack, data systems, and security:\n\n- **Languages:** Python, TypeScript, Java 17+, C++, C#, SQL, C, HTML5/CSS3, XML/XHTML\n- **Frontend & UX:** React (18/19), Next.js (App Router), Tailwind CSS v4, Avalonia .NET, STOMP WebSockets, Streamlit, Gradio\n- **Backend & OLAP:** Spring Boot 3, FastAPI, Flask, Node.js, DuckDB, PostgreSQL, MySQL, Docker\n- **AI & Vision:** PyTorch, EfficientNet, Multimodal LLMs (OpenAI, Gemini), Docling (CUDA), Tesseract, Agentic Loops, RLHF\n- **Security & Systems:** Linux/Bash, Win32 & Cocoa APIs, MITRE ATT&CK, Splunk SIEM, Snort IDS, pfSense, Metasploit, Wireshark, Aircrack-ng`;
   }
 
-  return `Lucas Rus is a Software Engineer based in Timișoara, Romania, specializing in high-throughput data engines (DuckDB), agentic AI workflows, full-stack systems (Next.js, Spring Boot, FastAPI), and cybersecurity.\n\n**Notable Highlights:**\n- **Enterprise Engineering:** Company Data Hub v2 (DuckDB OLAP over 1.8M+ entities) & Trial Balance Parser at Vitas Romania.\n- **AI Ventures:** Font Recognition AI (96.5% top-3 accuracy), ContaAI (FastAPI + Avalonia .NET C#), and German Legal Book Digitizer (400k+ pages).\n- **Upcoming Venture:** GigTim (day-laborer marketplace under Legea 52/2011).\n- **Awards & Credentials:** 1st Place UVT Prototype Fair (CoFound), Cambridge English Grade A (C2 Native level), Google.org Cybersecurity, and Ministry of Education CS Certificate.\n\nFeel free to ask about any specific project, his experience at JoinStellar or Vitas, or how to get in touch!`;
+  return `Lucas Rus is a Software Engineer based in Timișoara, Romania, specializing in high-throughput data engines (DuckDB), agentic AI workflows, full-stack systems (Next.js, Spring Boot, FastAPI), and cybersecurity.\n\n**Notable Highlights:**\n- **Enterprise Engineering:** Company Data Hub v2 (DuckDB OLAP over 1.8M+ entities) & Trial Balance Parser at Vitas Romania.\n- **AI Ventures:** Font Recognition AI (96.5% top-3 accuracy), ContaAI (FastAPI + Avalonia .NET C#), and German Legal Book Digitizer (400k+ pages).\n- **Upcoming Venture:** GigTim (day-laborer marketplace under Legea 52/2011).\n- **Awards & Credentials:** 1st Place UVT Prototype Fair (CoFound), Cambridge English Grade A (C2 Native level), Google.org Cybersecurity, Ministry of Education CS Certificate, and IC3 Digital Literacy (GS5).\n\nFeel free to ask about any specific project, his experience at JoinStellar or Vitas, or how to get in touch!`;
 }
 
 export async function POST(req: Request) {
@@ -225,6 +227,7 @@ export async function POST(req: Request) {
       "security", "duckdb", "olap", "ai", "python", "typescript", "c++", "c#",
       "trial balance", "balanta", "bilant", "who are you", "who is lucas",
       "work", "job", "career", "background", "role", "tell me about yourself",
+      "qualification", "credentials", "ic3", "certiport",
       "hi", "hello", "hey", "help", "good morning", "good evening", "what can you do"
     ];
 
