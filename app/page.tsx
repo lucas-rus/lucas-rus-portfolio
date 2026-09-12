@@ -877,7 +877,7 @@ export default function Home() {
                   </span>
                   <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 mr-1.5" />
-                    Open to Remote &amp; On-Site
+                    Open to Remote &amp; Hybrid
                   </span>
                 </div>
               </div>
