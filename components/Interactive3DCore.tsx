@@ -23,6 +23,22 @@ interface EdgePacket {
   color: string;
 }
 
+interface AmbientStar3D {
+  baseSize: number;
+  color: string;
+  twinklePhase: number;
+  twinkleSpeed: number;
+  driftAngle: number;
+  orbitRadius: number;
+  altitude: number;
+}
+
+type Matrix3x3 = [
+  number, number, number,
+  number, number, number,
+  number, number, number
+];
+
 export default function Interactive3DCore() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -57,7 +73,7 @@ export default function Interactive3DCore() {
 
     // ================= 3D GEOMETRY DEFINITIONS =================
 
-    // 1. Outer Icosahedron / Geodesic Cage (radius ~92)
+    // 1. Outer Icosahedron / Geodesic Cage (radius ~90)
     const phi = (1 + Math.sqrt(5)) / 2;
     const outerBase: Point3D[] = [
       { x: -1, y: phi, z: 0 },
@@ -92,7 +108,7 @@ export default function Interactive3DCore() {
       }
     }
 
-    // 2. Inner Counter-Rotating Core (Octahedron, radius ~46)
+    // 2. Inner Counter-Rotating Octahedron Core (radius ~46)
     const innerBase: Point3D[] = [
       { x: 46, y: 0, z: 0 },
       { x: -46, y: 0, z: 0 },
@@ -108,25 +124,40 @@ export default function Interactive3DCore() {
       [2, 4], [4, 3], [3, 5], [5, 2],
     ];
 
-    // 3. Orbital Ring 1 Points (Circle in XZ plane, tilted 25 deg on Z axis)
-    const ring1Count = 28;
-    const ring1Radius = 112;
-    const ring1Points: Point3D[] = [];
-    for (let i = 0; i < ring1Count; i++) {
-      const angle = (i / ring1Count) * Math.PI * 2;
-      const rx = Math.cos(angle) * ring1Radius;
-      const rz = Math.sin(angle) * ring1Radius;
-      // Tilt around Z by 25 deg
-      const cosZ = Math.cos(0.44);
-      const sinZ = Math.sin(0.44);
-      ring1Points.push({
-        x: rx * cosZ,
-        y: rx * sinZ,
-        z: rz,
+    // 3. Inner Secondary Star Lattice (Stellated crystalline heart)
+    const starBase: Point3D[] = [
+      { x: 26, y: 26, z: 0 },
+      { x: -26, y: -26, z: 0 },
+      { x: 26, y: -26, z: 0 },
+      { x: -26, y: 26, z: 0 },
+      { x: 0, y: 26, z: 26 },
+      { x: 0, y: -26, z: -26 },
+    ];
+    const starEdges: [number, number][] = [
+      [0, 1], [2, 3], [4, 5],
+      [0, 4], [1, 5], [2, 4], [3, 5],
+    ];
+
+    // 4. Surrounding Ambient Celestial Starfield (3D Stardust Dots around the object)
+    const ambientStars: AmbientStar3D[] = [];
+    const starColors = ["#38bdf8", "#2dd4bf", "#818cf8", "#ffffff", "#c084fc", "#67e8f9"];
+    const ambientCount = 96;
+    for (let i = 0; i < ambientCount; i++) {
+      const r = 95 + Math.random() * 95;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(Math.random() * 2 - 1);
+      ambientStars.push({
+        baseSize: Math.random() < 0.22 ? Math.random() * 1.2 + 1.6 : Math.random() * 0.9 + 0.7,
+        color: starColors[Math.floor(Math.random() * starColors.length)],
+        twinklePhase: Math.random() * Math.PI * 2,
+        twinkleSpeed: 1.8 + Math.random() * 2.2,
+        driftAngle: theta,
+        orbitRadius: r,
+        altitude: phi,
       });
     }
 
-    // 4. Traveling Photon Energy Packets along outer edges
+    // 5. Traveling Photon Energy Packets along outer edges
     const edgePackets: EdgePacket[] = [];
     for (let i = 0; i < 7; i++) {
       edgePackets.push({
@@ -137,12 +168,12 @@ export default function Interactive3DCore() {
       });
     }
 
-    // 5. Internal Constellation / Synaptic Plexus Particles
+    // 6. Internal Constellation / Synaptic Plexus Particles
     const particles: Particle3D[] = [];
     for (let i = 0; i < 36; i++) {
       const theta = Math.random() * Math.PI * 2;
       const ph = Math.acos(Math.random() * 2 - 1);
-      const rad = 15 + Math.random() * 55;
+      const rad = 15 + Math.random() * 50;
       particles.push({
         x: rad * Math.sin(ph) * Math.cos(theta),
         y: rad * Math.sin(ph) * Math.sin(theta),
@@ -155,47 +186,121 @@ export default function Interactive3DCore() {
       });
     }
 
-    // ================= ROTATION & INERTIAL INTERACTION =================
-    let rotX = 0.35;
-    let rotY = 0.5;
-    let velX = 0;
-    let velY = 0;
-    let isPointerDown = false;
+    // ================= ROTATION MATRIX ENGINE (NO GIMBAL LOCK) =================
+    const multiplyMatrix = (a: Matrix3x3, b: Matrix3x3): Matrix3x3 => [
+      a[0] * b[0] + a[1] * b[3] + a[2] * b[6],
+      a[0] * b[1] + a[1] * b[4] + a[2] * b[7],
+      a[0] * b[2] + a[1] * b[5] + a[2] * b[8],
+
+      a[3] * b[0] + a[4] * b[3] + a[5] * b[6],
+      a[3] * b[1] + a[4] * b[4] + a[5] * b[7],
+      a[3] * b[2] + a[4] * b[5] + a[5] * b[8],
+
+      a[6] * b[0] + a[7] * b[3] + a[8] * b[6],
+      a[6] * b[1] + a[7] * b[4] + a[8] * b[7],
+      a[6] * b[2] + a[7] * b[5] + a[8] * b[8],
+    ];
+
+    const rotatePitch = (m: Matrix3x3, angle: number): Matrix3x3 => {
+      const c = Math.cos(angle);
+      const s = Math.sin(angle);
+      const rot: Matrix3x3 = [
+        1, 0, 0,
+        0, c, -s,
+        0, s, c
+      ];
+      return multiplyMatrix(rot, m);
+    };
+
+    const rotateYaw = (m: Matrix3x3, angle: number): Matrix3x3 => {
+      const c = Math.cos(angle);
+      const s = Math.sin(angle);
+      const rot: Matrix3x3 = [
+        c, 0, -s,
+        0, 1, 0,
+        s, 0, c
+      ];
+      return multiplyMatrix(rot, m);
+    };
+
+    const orthonormalize = (m: Matrix3x3): Matrix3x3 => {
+      let r0x = m[0], r0y = m[1], r0z = m[2];
+      const l0 = Math.hypot(r0x, r0y, r0z) || 1;
+      r0x /= l0; r0y /= l0; r0z /= l0;
+
+      let r1x = m[3], r1y = m[4], r1z = m[5];
+      const dot = r1x * r0x + r1y * r0y + r1z * r0z;
+      r1x -= dot * r0x; r1y -= dot * r0y; r1z -= dot * r0z;
+      const l1 = Math.hypot(r1x, r1y, r1z) || 1;
+      r1x /= l1; r1y /= l1; r1z /= l1;
+
+      const r2x = r0y * r1z - r0z * r1y;
+      const r2y = r0z * r1x - r0x * r1z;
+      const r2z = r0x * r1y - r0y * r1x;
+
+      return [
+        r0x, r0y, r0z,
+        r1x, r1y, r1z,
+        r2x, r2y, r2z
+      ];
+    };
+
+    const transformPoint = (p: Point3D, m: Matrix3x3): Point3D => ({
+      x: m[0] * p.x + m[1] * p.y + m[2] * p.z,
+      y: m[3] * p.x + m[4] * p.y + m[5] * p.z,
+      z: m[6] * p.x + m[7] * p.y + m[8] * p.z,
+    });
+
+    const project = (p: Point3D, cx: number, cy: number) => {
+      const cameraDist = 280;
+      const scale = cameraDist / Math.max(40, cameraDist + p.z);
+      return {
+        x: cx + p.x * scale,
+        y: cy + p.y * scale,
+        z: p.z,
+        scale,
+      };
+    };
+
+    let mat: Matrix3x3 = [
+      1, 0, 0,
+      0, 1, 0,
+      0, 0, 1
+    ];
+    mat = rotateYaw(mat, 0.45);
+    mat = rotatePitch(mat, 0.32);
+
+    let velYaw = 0;
+    let velPitch = 0;
     let prevX = 0;
     let prevY = 0;
-    let targetParallaxX = 0;
-    let targetParallaxY = 0;
+    let isPointerDown = false;
 
     const onPointerDown = (e: PointerEvent) => {
       isPointerDown = true;
       setIsDragging(true);
       prevX = e.clientX;
       prevY = e.clientY;
-      velX = 0;
-      velY = 0;
+      velYaw = 0;
+      velPitch = 0;
       canvas.setPointerCapture(e.pointerId);
       setStatusText("3D_MANUAL_ORBIT");
     };
 
     const onPointerMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left - rect.width / 2;
-      const mouseY = e.clientY - rect.top - rect.height / 2;
-      targetParallaxX = (mouseY / rect.height) * 0.15;
-      targetParallaxY = (mouseX / rect.width) * 0.15;
-
       if (!isPointerDown) return;
       const dx = e.clientX - prevX;
       const dy = e.clientY - prevY;
 
-      const deltaRotY = dx * 0.008;
-      const deltaRotX = -dy * 0.008;
+      // Unconstrained 360 degree rotation in camera space
+      const dYaw = dx * 0.0075;
+      const dPitch = dy * 0.0075;
 
-      rotY += deltaRotY;
-      rotX += deltaRotX;
+      mat = rotateYaw(mat, dYaw);
+      mat = rotatePitch(mat, dPitch);
 
-      velY = deltaRotY;
-      velX = deltaRotX;
+      velYaw = dYaw;
+      velPitch = dPitch;
 
       prevX = e.clientX;
       prevY = e.clientY;
@@ -216,28 +321,6 @@ export default function Interactive3DCore() {
     canvas.addEventListener("pointerup", onPointerUp);
     canvas.addEventListener("pointercancel", onPointerUp);
 
-    // 3D Perspective Projection Function
-    const project = (p: Point3D, rx: number, ry: number, cx: number, cy: number) => {
-      const cosY = Math.cos(ry);
-      const sinY = Math.sin(ry);
-      const x1 = p.x * cosY + p.z * sinY;
-      const z1 = -p.x * sinY + p.z * cosY;
-
-      const cosX = Math.cos(rx);
-      const sinX = Math.sin(rx);
-      const y2 = p.y * cosX - z1 * sinX;
-      const z2 = p.y * sinX + z1 * cosX;
-
-      const cameraDist = 280;
-      const scale = cameraDist / (cameraDist + z2);
-      return {
-        x: cx + x1 * scale,
-        y: cy + y2 * scale,
-        z: z2,
-        scale,
-      };
-    };
-
     let time = 0;
 
     // ================= ANIMATION RENDER LOOP =================
@@ -245,30 +328,28 @@ export default function Interactive3DCore() {
       time += 0.018;
 
       if (isPointerDown) {
-        // Direct touch / mouse orbit
+        // Direct pointer control
       } else {
-        // Inertia coasting with smooth damping
-        rotX += velX;
-        rotY += velY;
-        velX *= 0.93;
-        velY *= 0.93;
+        // Smooth inertia
+        mat = rotateYaw(mat, velYaw);
+        mat = rotatePitch(mat, velPitch);
+        velYaw *= 0.93;
+        velPitch *= 0.93;
 
-        // Gentle auto-rotation when stationary
-        if (Math.hypot(velX, velY) < 0.0008) {
-          rotY += 0.0035;
-          rotX += 0.0012;
+        // Gentle auto-rotation when at rest
+        if (Math.hypot(velYaw, velPitch) < 0.0008) {
+          mat = rotateYaw(mat, 0.0035);
+          mat = rotatePitch(mat, 0.0012);
         }
-
-        // Subtle parallax attraction
-        rotX += (targetParallaxX - 0) * 0.01;
-        rotY += (targetParallaxY - 0) * 0.01;
       }
+
+      mat = orthonormalize(mat);
 
       ctx.clearRect(0, 0, cssWidth, cssHeight);
       const cx = cssWidth / 2;
       const cy = cssHeight / 2;
 
-      // 1. Ambient Background Core Glow (Atmospheric Singularity)
+      // 1. Ambient Background Core Glow
       const corePulse = 1 + Math.sin(time * 2.5) * 0.08;
       const grad = ctx.createRadialGradient(cx, cy, 4, cx, cy, 110 * corePulse);
       grad.addColorStop(0, "rgba(56, 189, 248, 0.18)");
@@ -280,44 +361,62 @@ export default function Interactive3DCore() {
       ctx.arc(cx, cy, 110 * corePulse, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. Projected Orbital Ring with Orbiting Satellite Node
-      const projRing = ring1Points.map((pt) => project(pt, rotX * 0.85, rotY * 0.85, cx, cy));
-      ctx.beginPath();
-      for (let i = 0; i < projRing.length; i++) {
-        const p = projRing[i];
-        if (i === 0) ctx.moveTo(p.x, p.y);
-        else ctx.lineTo(p.x, p.y);
-      }
-      ctx.closePath();
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.16)";
-      ctx.lineWidth = 0.85;
-      ctx.setLineDash([3, 5]);
-      ctx.stroke();
-      ctx.setLineDash([]);
+      // 2. Surrounding Ambient Celestial Starfield (3D Stardust Dots around the object)
+      ambientStars.forEach((star) => {
+        star.driftAngle += 0.0012;
+        const worldX = star.orbitRadius * Math.sin(star.altitude) * Math.cos(star.driftAngle);
+        const worldY = star.orbitRadius * Math.sin(star.altitude) * Math.sin(star.driftAngle);
+        const worldZ = star.orbitRadius * Math.cos(star.altitude);
 
-      // Satellite node traveling around the orbital ring
-      const satAngle = time * 1.4;
-      const satIndex = Math.floor((((satAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)) / ((Math.PI * 2) / ring1Count));
-      const satPt = projRing[satIndex % projRing.length];
-      if (satPt) {
+        const tp = transformPoint({ x: worldX, y: worldY, z: worldZ }, mat);
+        const p = project(tp, cx, cy);
+
+        const depthAlpha = Math.max(0.12, Math.min(0.95, (p.z + 200) / 400));
+        const twinkle = 0.5 + 0.5 * Math.sin(time * star.twinkleSpeed + star.twinklePhase);
+        const alpha = depthAlpha * twinkle;
+
         ctx.beginPath();
-        ctx.arc(satPt.x, satPt.y, 2.5 * satPt.scale, 0, Math.PI * 2);
-        ctx.fillStyle = "#38bdf8";
-        ctx.shadowColor = "#38bdf8";
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
+        const renderSize = star.baseSize * p.scale * (0.85 + 0.35 * twinkle);
+        ctx.arc(p.x, p.y, Math.max(0.6, renderSize), 0, Math.PI * 2);
+        ctx.fillStyle = star.color;
+        ctx.globalAlpha = alpha;
 
-      // 3. Inner Counter-Rotating Octahedron Core
-      const innerRotX = -rotX * 1.15 + time * 0.5;
-      const innerRotY = -rotY * 1.15 + time * 0.7;
-      const projInner = innerBase.map((v) => {
-        const breathe = 1 + Math.sin(time * 3 + v.x) * 0.04;
-        return project({ x: v.x * breathe, y: v.y * breathe, z: v.z * breathe }, innerRotX, innerRotY, cx, cy);
+        if (p.z > 10 && twinkle > 0.7) {
+          ctx.shadowColor = star.color;
+          ctx.shadowBlur = 5 * p.scale;
+          ctx.fill();
+
+          if (star.baseSize > 1.8 && twinkle > 0.88) {
+            ctx.strokeStyle = star.color;
+            ctx.lineWidth = 0.6;
+            const arm = 3.5 * p.scale;
+            ctx.beginPath();
+            ctx.moveTo(p.x - arm, p.y);
+            ctx.lineTo(p.x + arm, p.y);
+            ctx.moveTo(p.x, p.y - arm);
+            ctx.lineTo(p.x, p.y + arm);
+            ctx.stroke();
+          }
+        } else {
+          ctx.fill();
+        }
+
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1.0;
       });
 
-      // Draw Inner Edges (Deeper Indigo/Violet Luminescence)
+      // 3. Inner Counter-Rotating Octahedron Core
+      const innerSpinYaw = -time * 0.7;
+      const innerSpinPitch = time * 0.45;
+      const innerMat = rotatePitch(rotateYaw(mat, innerSpinYaw), innerSpinPitch);
+
+      const projInner = innerBase.map((v) => {
+        const breathe = 1 + Math.sin(time * 3 + v.x) * 0.04;
+        const tp = transformPoint({ x: v.x * breathe, y: v.y * breathe, z: v.z * breathe }, innerMat);
+        return project(tp, cx, cy);
+      });
+
+      // Draw Inner Edges (Luminous Indigo/Violet)
       innerEdges.forEach(([i, j]) => {
         const p1 = projInner[i];
         const p2 = projInner[j];
@@ -341,25 +440,49 @@ export default function Interactive3DCore() {
         ctx.fill();
       });
 
-      // 4. Internal Synaptic Plexus (Particles with Dynamic Micro-Filaments)
+      // 4. Inner Secondary Star Lattice
+      const starSpinYaw = time * 0.6;
+      const starSpinPitch = -time * 0.4;
+      const starMat = rotatePitch(rotateYaw(mat, starSpinYaw), starSpinPitch);
+
+      const projStar = starBase.map((v) => {
+        const tp = transformPoint(v, starMat);
+        return project(tp, cx, cy);
+      });
+      starEdges.forEach(([i, j]) => {
+        const p1 = projStar[i];
+        const p2 = projStar[j];
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = "rgba(45, 212, 191, 0.32)";
+        ctx.lineWidth = 0.85 * p1.scale;
+        ctx.stroke();
+      });
+
+      // 5. Internal Synaptic Plexus (Floating Particles with Dynamic Micro-Filaments)
       particles.forEach((pt) => {
         pt.x += pt.vx;
         pt.y += pt.vy;
         pt.z += pt.vz;
 
         const dist = Math.hypot(pt.x, pt.y, pt.z);
-        if (dist > 65) {
+        if (dist > 60) {
           pt.vx *= -1;
           pt.vy *= -1;
           pt.vz *= -1;
         }
       });
 
-      const projParticles = particles.map((pt) => ({
-        ...project(pt, rotX, rotY, cx, cy),
-        hue: pt.hue,
-        size: pt.size,
-      }));
+      const projParticles = particles.map((pt) => {
+        const tp = transformPoint(pt, mat);
+        const p = project(tp, cx, cy);
+        return {
+          ...p,
+          hue: pt.hue,
+          size: pt.size,
+        };
+      });
 
       // Draw proximity synaptic filaments between close particles
       for (let i = 0; i < projParticles.length; i++) {
@@ -390,17 +513,15 @@ export default function Interactive3DCore() {
         ctx.fill();
       });
 
-      // 5. Outer Geodesic Crystalline Cage
+      // 6. Outer Geodesic Crystalline Cage
       const outerPulse = 1 + Math.sin(time * 2.2) * 0.025;
-      const projOuter = outerBase.map((v) =>
-        project(
+      const projOuter = outerBase.map((v) => {
+        const tp = transformPoint(
           { x: v.x * outerPulse, y: v.y * outerPulse, z: v.z * outerPulse },
-          rotX,
-          rotY,
-          cx,
-          cy
-        )
-      );
+          mat
+        );
+        return project(tp, cx, cy);
+      });
 
       // Draw Outer Cage Edges
       outerEdges.forEach(([i, j]) => {
@@ -417,7 +538,7 @@ export default function Interactive3DCore() {
         ctx.stroke();
       });
 
-      // 6. Traveling Edge Photon Energy Packets
+      // 7. Traveling Edge Photon Energy Packets
       edgePackets.forEach((pkt) => {
         pkt.progress += pkt.speed;
         if (pkt.progress >= 1) {
@@ -442,7 +563,7 @@ export default function Interactive3DCore() {
         ctx.shadowBlur = 0;
       });
 
-      // 7. Outer Cage Nodes / Vertices (with Radiant Bloom)
+      // 8. Outer Cage Nodes / Vertices (with Radiant Bloom)
       projOuter.forEach((p) => {
         const alpha = Math.max(0.25, (p.z + 100) / 200);
 
