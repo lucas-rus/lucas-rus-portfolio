@@ -834,82 +834,126 @@ export default function Home() {
         <SectionDividerWithTelemetry label="SEC_05 // COMMS & DIRECT TRANSMISSION" />
       </div>
 
-      {/* Footer / Contact Section */}
-      <footer id="contact" className="relative z-10 pt-16 pb-20 border-t border-white/5 overflow-hidden">
-        {/* Ambient bottom glow radiating upward */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-blue-600/10 via-indigo-600/5 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
+      {/* Contact & Footer Section */}
+      <footer id="contact" className="relative z-10 pt-10 pb-20 overflow-hidden">
+        {/* Subtle, soft ambient glow centered underneath */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-600/[0.04] rounded-full blur-[150px] pointer-events-none -z-10" />
 
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          {/* Contact Highlight Card */}
-          <div className="glass-card p-8 sm:p-12 rounded-3xl border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-2xl mb-12 relative overflow-hidden">
-            {/* Subtle inner top highlight */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="border border-slate-800/80 bg-slate-900/30 backdrop-blur-md rounded-2xl p-6 sm:p-10 lg:p-12">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              {/* Left Column: Heading & Context */}
+              <div className="lg:col-span-7 space-y-4">
+                <div className="inline-flex items-center space-x-2 text-xs font-mono text-cyan-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                  <span className="tracking-widest uppercase">Contact &amp; Collaboration</span>
+                </div>
 
-            <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-300 backdrop-blur-sm mb-6">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-teal-400 mr-2 animate-pulse" />
-              Direct Channel
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                  Let&apos;s build something impactful.
+                </h2>
+
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                  I am actively seeking software engineering and AI systems roles. Whether you are scaling mission-critical data engines, building compiler-guided AI pipelines, or exploring offensive security, my inbox is open.
+                </p>
+
+                {/* Location & Status Badges */}
+                <div className="pt-2 flex flex-wrap items-center gap-2.5 text-xs text-slate-400 font-mono">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-slate-800/60 border border-slate-700/60 text-slate-300">
+                    📍 Timișoara, Romania (UTC+2)
+                  </span>
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 mr-1.5" />
+                    Open to Remote &amp; On-Site
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Column: Grounded, Professional Action Channels */}
+              <div className="lg:col-span-5 space-y-3">
+                {/* Primary Email Channel */}
+                <a
+                  href="mailto:lucas.rus.gheorghiu@gmail.com"
+                  className="group flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-blue-500/50 transition-colors duration-150 shadow-sm"
+                >
+                  <div className="flex items-center space-x-3.5 min-w-0">
+                    <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 shrink-0">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Direct Email</div>
+                      <div className="text-xs sm:text-sm font-medium text-white truncate">lucas.rus.gheorghiu@gmail.com</div>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors shrink-0 ml-2" />
+                </a>
+
+                {/* Resume Download Channel */}
+                <a
+                  href="/Lucas_Rus_CV.pdf"
+                  download="Lucas_Rus_CV.pdf"
+                  className="group flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-teal-500/50 transition-colors duration-150 shadow-sm"
+                >
+                  <div className="flex items-center space-x-3.5 min-w-0">
+                    <div className="p-2 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 shrink-0">
+                      <Download className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Curriculum Vitae</div>
+                      <div className="text-xs sm:text-sm font-medium text-white">Download Resume (PDF)</div>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400 shrink-0 ml-2">
+                    854 KB
+                  </span>
+                </a>
+
+                {/* Social Profiles Grid */}
+                <div className="grid grid-cols-3 gap-2 pt-1">
+                  <a
+                    href="https://github.com/lucas-rus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-600 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
+                  >
+                    <Github className="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" />
+                    <span>GitHub</span>
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/lucas-rus-96492a222"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-blue-500/50 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
+                  >
+                    <Linkedin className="w-3.5 h-3.5 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                    <span>LinkedIn</span>
+                  </a>
+
+                  <a
+                    href="https://lucas-rus.itch.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-red-500/50 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
+                  >
+                    <Gamepad2 className="w-3.5 h-3.5 text-red-400 group-hover:text-red-300 transition-colors" />
+                    <span>Itch.io</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-white tracking-tight">
-              Let&apos;s build something impactful.
-            </h2>
-            <p className="text-slate-400 mb-8 max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
-              I am always open to discussing new engineering ventures, high-performance data systems, or offensive security challenges.
-            </p>
-
-            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mb-8">
-              <a
-                href="mailto:lucas.rus.gheorghiu@gmail.com"
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium text-sm transition-all shadow-lg shadow-blue-900/30 hover:shadow-blue-900/50 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <Mail className="w-4 h-4" />
-                <span>lucas.rus.gheorghiu@gmail.com</span>
-              </a>
-
-              <a
-                href="/Lucas_Rus_CV.pdf"
-                download="Lucas_Rus_CV.pdf"
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 border border-slate-700/80 bg-slate-800/50 hover:bg-slate-800 text-slate-200 hover:text-white rounded-xl font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm backdrop-blur-sm"
-              >
-                <Download className="w-4 h-4 text-cyan-400" />
-                <span>Download CV</span>
-              </a>
+            {/* Bottom Sub-Footer Bar */}
+            <div className="mt-10 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500">
+              <div className="flex items-center space-x-2">
+                <span className="text-slate-400 font-medium">Lucas Rus</span>
+                <span>•</span>
+                <span>Software Engineer</span>
+              </div>
+              <div>
+                © {new Date().getFullYear()} • Built with Next.js &amp; React
+              </div>
             </div>
-
-            {/* Social Channels */}
-            <div className="flex justify-center space-x-3 pt-2">
-              <a
-                href="https://github.com/lucas-rus"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 rounded-xl text-slate-400 hover:text-white transition-all shadow-sm"
-                title="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/lucas-rus-96492a222"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 rounded-xl text-slate-400 hover:text-white transition-all shadow-sm"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="https://lucas-rus.itch.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-slate-900/80 border border-slate-800 hover:border-red-500/50 rounded-xl text-slate-400 hover:text-white transition-all shadow-sm"
-                title="Itch.io Games & Prototypes"
-              >
-                <Gamepad2 className="w-5 h-5 text-red-400" />
-              </a>
-            </div>
-          </div>
-
-          <div className="text-xs text-slate-500 font-mono tracking-wide">
-            © {new Date().getFullYear()} Lucas Rus. Designed &amp; engineered with Next.js 16, React 19 &amp; Tailwind CSS v4.
           </div>
         </div>
       </footer>
