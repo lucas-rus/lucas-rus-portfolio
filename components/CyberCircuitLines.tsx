@@ -198,7 +198,7 @@ export function CyberCircuitBackground() {
 
 export function SectionDividerWithTelemetry({ label, coords }: { label: string; coords?: string }) {
   return (
-    <div className="relative w-full py-8 flex items-center justify-between z-10 select-none">
+    <div className="relative w-full py-4 sm:py-6 md:py-8 flex items-center justify-between z-10 select-none">
       <div className="flex items-center space-x-3">
         <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8]"></div>
         <span className="font-mono text-xs uppercase tracking-widest text-cyan-400 font-semibold">

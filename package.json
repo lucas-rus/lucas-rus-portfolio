@@ -11,6 +11,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^3.0.26",
     "@ai-sdk/react": "^3.0.79",
+    "@types/three": "^0.186.0",
     "ai": "^6.0.77",
     "clsx": "^2.1.1",
     "framer-motion": "^12.33.0",
@@ -18,7 +19,8 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.186.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

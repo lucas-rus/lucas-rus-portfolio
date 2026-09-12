@@ -233,41 +233,41 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-44 md:pb-28 px-4 max-w-6xl mx-auto z-10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-center">
-          <FadeIn className="md:col-span-7 space-y-6" delay={0.1}>
+      <section className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 px-4 max-w-6xl mx-auto z-10">
+        <div className="grid md:grid-cols-12 gap-6 sm:gap-10 md:gap-12 items-center">
+          <FadeIn className="md:col-span-7 space-y-4 sm:space-y-6" delay={0.1}>
             <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3 py-1 text-[11px] sm:text-xs font-medium text-teal-300 backdrop-blur-sm shadow-sm max-w-full">
               <span className="flex h-2 w-2 rounded-full bg-teal-400 mr-2 shrink-0 animate-pulse"></span>
               <span className="hidden sm:inline">Available for Software Engineering & AI Systems Roles</span>
               <span className="sm:hidden">Available for SWE & AI Systems Roles</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
               Lucas{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-300">
                 Rus
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-300 font-light leading-snug">
+            <p className="text-base sm:text-xl md:text-2xl text-slate-300 font-light leading-snug">
               High-throughput data engines, agentic LLM automation & offensive security.
             </p>
 
-            <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-base md:text-lg text-slate-400 max-w-xl leading-relaxed">
               Software engineer focused on architecting mission-critical systems: consolidating 1.8M+ entities with sub-5ms query performance, engineering compiler-guided document pipelines, and training frontier autonomous coding agents.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2">
               {/* Primary Radiant Button */}
               <a
                 href="#projects"
-                className="w-full sm:w-auto relative group inline-flex items-center justify-center rounded-xl p-[1px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="flex-1 sm:flex-initial relative group inline-flex items-center justify-center rounded-xl p-[1px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-blue-600 via-teal-500 to-indigo-600 opacity-60 blur-md group-hover:opacity-90 group-hover:blur-lg transition-all duration-500 -z-10" />
-                <span className="w-full sm:w-auto justify-center relative flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-teal-500 group-hover:from-blue-500 group-hover:via-blue-400 group-hover:to-teal-400 text-white font-medium text-sm sm:text-base shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] transition-all duration-300">
+                <span className="w-full sm:w-auto justify-center relative flex items-center space-x-1.5 sm:space-x-2 px-3.5 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-teal-500 group-hover:from-blue-500 group-hover:via-blue-400 group-hover:to-teal-400 text-white font-medium text-xs sm:text-base shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] transition-all duration-300">
                   <span>Explore Ventures</span>
-                  <ArrowUpRight className="w-4 h-4 text-white/85 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                  <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/85 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                 </span>
               </a>
 
@@ -275,36 +275,36 @@ export default function Home() {
               <a
                 href="/Lucas_Rus_CV.pdf"
                 download="Lucas_Rus_CV.pdf"
-                className="w-full sm:w-auto relative group inline-flex items-center justify-center p-[1px] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="flex-1 sm:flex-initial relative group inline-flex items-center justify-center p-[1px] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-slate-700 via-teal-500/40 to-slate-700 group-hover:from-cyan-500/60 group-hover:via-blue-500/50 group-hover:to-teal-400/60 transition-all duration-500" />
-                <span className="w-full sm:w-auto justify-center relative flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 group-hover:bg-slate-850/90 backdrop-blur-md text-white font-medium text-sm sm:text-base shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] transition-all duration-300">
-                  <Download className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300 group-hover:translate-y-0.5 transition-all duration-200" />
+                <span className="w-full sm:w-auto justify-center relative flex items-center space-x-1.5 sm:space-x-2 px-3.5 sm:px-6 py-2 sm:py-3 rounded-xl bg-slate-900/80 group-hover:bg-slate-850/90 backdrop-blur-md text-white font-medium text-xs sm:text-base shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] transition-all duration-300">
+                  <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 group-hover:text-cyan-300 group-hover:translate-y-0.5 transition-all duration-200" />
                   <span>Download CV</span>
                 </span>
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
               </a>
 
               {/* Social Icons Row */}
-              <div className="flex items-center gap-3 pt-1 sm:pt-0">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <a
                   href="https://github.com/lucas-rus"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 sm:p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
+                  className="p-2 sm:p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
                   title="GitHub"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
 
                 <a
                   href="https://linkedin.com/in/lucas-rus-96492a222"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 sm:p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
+                  className="p-2 sm:p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
                   title="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               </div>
             </div>
@@ -314,7 +314,8 @@ export default function Home() {
           <FadeIn className="md:col-span-5 relative space-y-4" delay={0.25}>
             <Interactive3DCore />
 
-            <div className="relative glass-card p-5 rounded-2xl shadow-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl">
+            {/* Desktop-only System Console to prevent duplicate mobile clutter */}
+            <div className="hidden md:block relative glass-card p-5 rounded-2xl shadow-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl">
               {/* Terminal Window Header */}
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/5">
                 <div className="flex items-center space-x-2">
@@ -365,15 +366,15 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 relative z-10">
+      <section id="about" className="py-10 sm:py-16 md:py-20 relative z-10">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white tracking-tight">About Me</h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-3 rounded-full"></div>
+          <div className="text-center mb-6 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">About Me</h2>
+            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-2 sm:mt-3 rounded-full"></div>
           </div>
 
           <SlideInLeft>
-            <div className="glass-card p-8 rounded-2xl text-slate-300 leading-relaxed text-base md:text-lg border border-white/5 bg-slate-900/50 space-y-6">
+            <div className="glass-card p-5 sm:p-8 rounded-2xl text-slate-300 leading-relaxed text-sm sm:text-base md:text-lg border border-white/5 bg-slate-900/50 space-y-4 sm:space-y-6">
               <p>
                 I am pursuing a degree in <strong className="text-white">Computer Science (English Stream)</strong> at the <strong>West University of Timișoara (UVT)</strong>. My approach pairs theoretical rigor in data structures and constraint satisfaction with battle-tested systems engineering.
               </p>
@@ -394,15 +395,15 @@ export default function Home() {
       </div>
 
       {/* Professional Experience Section */}
-      <section id="experience" className="py-12 px-4 max-w-6xl mx-auto z-10">
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white tracking-tight">Professional Experience</h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+      <section id="experience" className="py-8 sm:py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="mb-6 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Professional Experience</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-2 sm:mt-3 rounded-full"></div>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-5 sm:space-y-8">
           {/* Vitas Romania - Enterprise Showcase */}
-          <FadeIn delay={0.1} className="relative glass-card p-6 sm:p-8 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/60 transition-all bg-gradient-to-b from-slate-900/90 to-slate-950/90 shadow-2xl overflow-hidden">
+          <FadeIn delay={0.1} className="relative glass-card p-4 sm:p-6 md:p-8 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/60 transition-all bg-gradient-to-b from-slate-900/90 to-slate-950/90 shadow-2xl overflow-hidden">
             {/* Cyber Corner Accents */}
             <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-cyan-400"></div>
             <div className="absolute top-0 right-0 w-3.5 h-3.5 border-t-2 border-r-2 border-cyan-400"></div>
@@ -410,7 +411,7 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-cyan-400"></div>
 
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-3 pb-6 border-b border-white/10">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 sm:mb-6 gap-3 pb-4 sm:pb-6 border-b border-white/10">
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
                   <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
@@ -435,9 +436,9 @@ export default function Home() {
             </div>
 
             {/* Two Core Systems Subsections */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
               {/* System 1: Company Data Hub v2 */}
-              <div className="p-5 rounded-xl bg-slate-900/90 border border-cyan-500/20 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+              <div className="p-4 sm:p-5 rounded-xl bg-slate-900/90 border border-cyan-500/20 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-1.5">
@@ -521,11 +522,11 @@ export default function Home() {
           </FadeIn>
 
           {/* JoinStellar.ai */}
-          <FadeIn delay={0.2} className="glass-card p-7 rounded-2xl border border-white/5 hover:border-secondary/40 transition-all bg-slate-900/50">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+          <FadeIn delay={0.2} className="glass-card p-4 sm:p-6 md:p-7 rounded-2xl border border-white/5 hover:border-secondary/40 transition-all bg-slate-900/50">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-bold text-white">Private Contractor (AI Training & Evaluation)</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white">Private Contractor (AI Training &amp; Evaluation)</h3>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/10 text-secondary border border-secondary/20">
                     Agentic AI
                   </span>
@@ -537,24 +538,24 @@ export default function Home() {
               </span>
             </div>
 
-            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+            <p className="text-slate-300 text-sm leading-relaxed mb-3 sm:mb-4">
               Trained frontier autonomous coding agents to resolve real-world GitHub Pull Requests and pass comprehensive integration test suites across large open-source codebases (including <strong className="text-white">Grafana</strong> and <strong className="text-white">Godot Engine</strong>). Benchmarked multi-agent execution trajectories, stress-testing autonomous tool call sequences, code repair loops, environment interactions, and database state transitions.
             </p>
 
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-3 sm:pt-4 border-t border-white/5">
               <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Autonomous Agents</span>
               <span className="px-2.5 py-1 bg-teal-900/30 text-teal-200 text-xs rounded-lg border border-teal-500/20">TypeScript</span>
               <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">Python</span>
               <span className="px-2.5 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-lg border border-purple-500/20">Tool Benchmarking</span>
-              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Grafana & Godot</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Grafana &amp; Godot</span>
             </div>
           </FadeIn>
 
           {/* Arhebis Digital Systems */}
-          <FadeIn delay={0.3} className="glass-card p-7 rounded-2xl border border-white/5 hover:border-accent/40 transition-all bg-slate-900/50">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+          <FadeIn delay={0.3} className="glass-card p-4 sm:p-6 md:p-7 rounded-2xl border border-white/5 hover:border-accent/40 transition-all bg-slate-900/50">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
               <div>
-                <h3 className="text-xl font-bold text-white">Junior Software Developer</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Junior Software Developer</h3>
                 <p className="text-accent font-medium text-sm mt-0.5">Arhebis Digital Systems • Timișoara, RO</p>
               </div>
               <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
@@ -562,15 +563,15 @@ export default function Home() {
               </span>
             </div>
 
-            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+            <p className="text-slate-300 text-sm leading-relaxed mb-3 sm:mb-4">
               Automated commercial digital production in Photoshop and Illustrator via ExtendScript JavaScript, reducing manual graphic prep time by 60%. Built Python automation tools interfacing with Google Maps APIs to geocode addresses and automate Points of Interest (POI) maps; engineered end-to-end XML/XHTML and CSS transformation pipelines converting fixed PDFs into reflowable ePub3 books.
             </p>
 
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-3 sm:pt-4 border-t border-white/5">
               <span className="px-2.5 py-1 bg-orange-900/30 text-orange-200 text-xs rounded-lg border border-orange-500/20">ExtendScript (JS)</span>
               <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">Python</span>
               <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Google Maps API</span>
-              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">XML/XHTML & ePub3</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">XML/XHTML &amp; ePub3</span>
             </div>
           </FadeIn>
         </div>
@@ -582,15 +583,15 @@ export default function Home() {
       </div>
 
       {/* Featured Ventures & Projects Section */}
-      <section id="projects" className="py-12 px-4 max-w-6xl mx-auto z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <section id="projects" className="py-8 sm:py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-10 gap-3 sm:gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-white tracking-tight">Ventures & Technical Projects</h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Ventures &amp; Technical Projects</h2>
+            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-2 sm:mt-3 rounded-full"></div>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-2 bg-slate-900/80 p-1.5 rounded-xl border border-white/5 w-fit">
+          <div className="flex gap-1.5 bg-slate-900/80 p-1 sm:p-1.5 rounded-xl border border-white/5 w-full sm:w-fit overflow-x-auto no-scrollbar">
             {[
               { id: "all", label: "All Ventures" },
               { id: "ai", label: "AI & Vision" },
@@ -600,7 +601,7 @@ export default function Home() {
               <button
                 key={tab.id}
                 onClick={() => setActiveCategory(tab.id as ProjectCategory)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
                   activeCategory === tab.id
                     ? "bg-primary text-white shadow-sm"
                     : "text-slate-400 hover:text-white hover:bg-slate-800/50"
@@ -613,7 +614,7 @@ export default function Home() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-7">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-7">
           {filteredProjects.map((project, idx) => {
             const IconComponent = project.icon;
             return (
@@ -622,15 +623,15 @@ export default function Home() {
                 delay={0.05 * idx}
                 className="group glass-card rounded-2xl overflow-hidden hover:border-primary/50 transition-all flex flex-col bg-slate-900/50 border border-white/5"
               >
-                <div className="p-7 flex-1 flex flex-col justify-between">
+                <div className="p-4 sm:p-7 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex justify-between items-start gap-4 mb-3">
+                    <div className="flex justify-between items-start gap-3 sm:gap-4 mb-3">
                       <div className="flex items-center space-x-3">
-                        <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.iconBg} border border-white/5`}>
-                          <IconComponent className="w-6 h-6" />
+                        <div className={`p-2 sm:p-2.5 rounded-xl bg-gradient-to-br ${project.iconBg} border border-white/5 shrink-0`}>
+                          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                          <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
                             {project.title}
                           </h3>
                           {project.subtitle && (
@@ -640,23 +641,23 @@ export default function Home() {
                       </div>
 
                       {project.badge && (
-                        <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${project.badgeColor} whitespace-nowrap`}>
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-semibold border ${project.badgeColor} whitespace-nowrap shrink-0`}>
                           {project.badge}
                         </span>
                       )}
                     </div>
 
-                    <p className="text-slate-300 text-sm leading-relaxed mt-4">
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3 sm:mt-4">
                       {project.description}
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
+                  <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-white/5 flex items-center justify-between">
                     <div className="flex flex-wrap gap-1.5">
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 bg-slate-800/80 text-slate-300 text-[11px] font-mono rounded border border-slate-700/50"
+                          className="px-2 py-0.5 bg-slate-800/80 text-slate-300 text-[10px] sm:text-[11px] font-mono rounded border border-slate-700/50"
                         >
                           {tech}
                         </span>
@@ -701,14 +702,14 @@ export default function Home() {
       </div>
 
       {/* Credentials & Certifications Section (NO GPA) */}
-      <section id="credentials" className="py-12 px-4 max-w-6xl mx-auto z-10">
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white tracking-tight">Credentials & Certifications</h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+      <section id="credentials" className="py-8 sm:py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="mb-6 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Credentials &amp; Certifications</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-2 sm:mt-3 rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <FadeIn delay={0.1} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
+          <FadeIn delay={0.1} className="glass-card p-4 sm:p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
             <div>
               <span className="text-xs font-mono text-primary font-bold">University Education</span>
               <h3 className="font-bold text-base text-white mt-1">West University of Timișoara</h3>
@@ -716,12 +717,12 @@ export default function Home() {
                 BSc in Computer Science (English Stream, 2024-2027). Core focus on algorithms, data structures, and computer systems.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
+            <div className="mt-3 sm:mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
               UVT • Timișoara, Romania
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+          <FadeIn delay={0.2} className="glass-card p-4 sm:p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
             <div>
               <span className="text-xs font-mono text-secondary font-bold">Language Mastery</span>
               <h3 className="font-bold text-base text-white mt-1">Cambridge English (CAE)</h3>
@@ -729,12 +730,12 @@ export default function Home() {
                 Grade A (Score 200+). Certified CEFR Level C2: Native English language equivalence.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
+            <div className="mt-3 sm:mt-4 pt-3 border-t border-white/5 text-[11px] text-teal-300 font-medium">
               Certified CEFR C2
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.3} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+          <FadeIn delay={0.3} className="glass-card p-4 sm:p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
             <div>
               <span className="text-xs font-mono text-accent font-bold">Security Training</span>
               <h3 className="font-bold text-base text-white mt-1">Google.org Cybersecurity</h3>
@@ -742,20 +743,20 @@ export default function Home() {
                 Virtual Routes at UVT. Labs covering MITRE ATT&CK, AI SecOps, Splunk SIEM, Snort IDS, and network defense.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-orange-300 font-medium">
-              SecOps & Defense
+            <div className="mt-3 sm:mt-4 pt-3 border-t border-white/5 text-[11px] text-orange-300 font-medium">
+              SecOps &amp; Defense
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.4} className="glass-card p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
+          <FadeIn delay={0.4} className="glass-card p-4 sm:p-6 rounded-xl border border-white/5 bg-slate-900/50 flex flex-col justify-between">
             <div>
               <span className="text-xs font-mono text-purple-400 font-bold">National Credential</span>
               <h3 className="font-bold text-base text-white mt-1">CS Professional Competence</h3>
               <p className="text-slate-400 text-xs mt-2 leading-relaxed">
-                Romanian Ministry of Education (2024). Intensive Mathematics & Informatics track. Capstone: <em>Ludo 3D</em>.
+                Romanian Ministry of Education (2024). Intensive Mathematics &amp; Informatics track. Capstone: <em>Ludo 3D</em>.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 text-[11px] text-purple-300 font-medium">
+            <div className="mt-3 sm:mt-4 pt-3 border-t border-white/5 text-[11px] text-purple-300 font-medium">
               Ministry of Education
             </div>
           </FadeIn>
@@ -768,19 +769,19 @@ export default function Home() {
       </div>
 
       {/* Skills Section - Miller's Law (Chunking) */}
-      <section id="skills" className="py-12 px-4 max-w-6xl mx-auto z-10">
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white tracking-tight">Technical Proficiencies</h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-3 rounded-full"></div>
+      <section id="skills" className="py-8 sm:py-12 px-4 max-w-6xl mx-auto z-10">
+        <div className="mb-6 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Technical Proficiencies</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mt-2 sm:mt-3 rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
-          <SlideInLeft delay={0.1} className="p-6 glass-card rounded-xl border-t-2 border-primary bg-slate-900/50">
-            <div className="flex items-center space-x-3 mb-4">
-              <Terminal className="w-6 h-6 text-primary" />
-              <h3 className="font-bold text-lg text-white">Languages</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-7">
+          <SlideInLeft delay={0.1} className="p-4 sm:p-6 glass-card rounded-xl border-t-2 border-primary bg-slate-900/50">
+            <div className="flex items-center space-x-3 mb-3 sm:mb-4">
+              <Terminal className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <h3 className="font-bold text-base sm:text-lg text-white">Languages</h3>
             </div>
-            <ul className="space-y-2 text-slate-300 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2 text-slate-300 text-xs sm:text-sm">
               <li>Python</li>
               <li>TypeScript / JavaScript</li>
               <li>Java 17+</li>
@@ -791,12 +792,12 @@ export default function Home() {
             </ul>
           </SlideInLeft>
 
-          <SlideInLeft delay={0.2} className="p-6 glass-card rounded-xl border-t-2 border-secondary bg-slate-900/50">
-            <div className="flex items-center space-x-3 mb-4">
-              <Code2 className="w-6 h-6 text-secondary" />
-              <h3 className="font-bold text-lg text-white">Full-Stack & Data</h3>
+          <SlideInLeft delay={0.2} className="p-4 sm:p-6 glass-card rounded-xl border-t-2 border-secondary bg-slate-900/50">
+            <div className="flex items-center space-x-3 mb-3 sm:mb-4">
+              <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
+              <h3 className="font-bold text-base sm:text-lg text-white">Full-Stack &amp; Data</h3>
             </div>
-            <ul className="space-y-2 text-slate-300 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2 text-slate-300 text-xs sm:text-sm">
               <li>Next.js (App Router) / React 19</li>
               <li>DuckDB (Columnar OLAP)</li>
               <li>Spring Boot 3 (JPA)</li>
@@ -807,34 +808,34 @@ export default function Home() {
             </ul>
           </SlideInLeft>
 
-          <SlideInLeft delay={0.3} className="p-6 glass-card rounded-xl border-t-2 border-purple-400 bg-slate-900/50">
-            <div className="flex items-center space-x-3 mb-4">
-              <Cpu className="w-6 h-6 text-purple-400" />
-              <h3 className="font-bold text-lg text-white">AI & Vision</h3>
+          <SlideInLeft delay={0.3} className="p-4 sm:p-6 glass-card rounded-xl border-t-2 border-purple-400 bg-slate-900/50">
+            <div className="flex items-center space-x-3 mb-3 sm:mb-4">
+              <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
+              <h3 className="font-bold text-base sm:text-lg text-white">AI &amp; Vision</h3>
             </div>
-            <ul className="space-y-2 text-slate-300 text-sm">
-              <li>PyTorch & EfficientNet</li>
+            <ul className="space-y-1.5 sm:space-y-2 text-slate-300 text-xs sm:text-sm">
+              <li>PyTorch &amp; EfficientNet</li>
               <li>Multimodal LLMs (OpenAI, Gemini)</li>
               <li>Docling (CUDA) Layout OCR</li>
-              <li>Tesseract OCR & OpenCV</li>
+              <li>Tesseract OCR &amp; OpenCV</li>
               <li>Agentic Self-Correction Loops</li>
-              <li>RLHF & Data Annotation</li>
-              <li>Gradio & Streamlit</li>
+              <li>RLHF &amp; Data Annotation</li>
+              <li>Gradio &amp; Streamlit</li>
             </ul>
           </SlideInLeft>
 
-          <SlideInLeft delay={0.4} className="p-6 glass-card rounded-xl border-t-2 border-accent bg-slate-900/50">
-            <div className="flex items-center space-x-3 mb-4">
-              <Shield className="w-6 h-6 text-accent" />
-              <h3 className="font-bold text-lg text-white">Systems & Security</h3>
+          <SlideInLeft delay={0.4} className="p-4 sm:p-6 glass-card rounded-xl border-t-2 border-accent bg-slate-900/50">
+            <div className="flex items-center space-x-3 mb-3 sm:mb-4">
+              <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+              <h3 className="font-bold text-base sm:text-lg text-white">Systems &amp; Security</h3>
             </div>
-            <ul className="space-y-2 text-slate-300 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2 text-slate-300 text-xs sm:text-sm">
               <li>Linux / Bash Automation</li>
               <li>Docker Containerization</li>
-              <li>Win32 & Cocoa/IOKit APIs</li>
+              <li>Win32 &amp; Cocoa/IOKit APIs</li>
               <li>Unity 3D Engine</li>
-              <li>Metasploit & Wireshark</li>
-              <li>Splunk SIEM & Snort IDS</li>
+              <li>Metasploit &amp; Wireshark</li>
+              <li>Splunk SIEM &amp; Snort IDS</li>
               <li>Git / GitHub Actions</li>
             </ul>
           </SlideInLeft>
@@ -847,35 +848,35 @@ export default function Home() {
       </div>
 
       {/* Contact & Footer Section */}
-      <footer id="contact" className="relative z-10 pt-10 pb-20 overflow-hidden">
+      <footer id="contact" className="relative z-10 pt-6 pb-12 sm:pt-10 sm:pb-20 overflow-hidden">
         {/* Subtle, soft ambient glow centered underneath */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-600/[0.04] rounded-full blur-[150px] pointer-events-none -z-10" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="border border-slate-800/80 bg-slate-900/30 backdrop-blur-md rounded-2xl p-6 sm:p-10 lg:p-12">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="border border-slate-800/80 bg-slate-900/30 backdrop-blur-md rounded-2xl p-4 sm:p-8 lg:p-12">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
               {/* Left Column: Heading & Context */}
-              <div className="lg:col-span-7 space-y-4">
+              <div className="lg:col-span-7 space-y-3 sm:space-y-4">
                 <div className="inline-flex items-center space-x-2 text-xs font-mono text-cyan-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
                   <span className="tracking-widest uppercase">Contact &amp; Collaboration</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
                   Let&apos;s build something impactful.
                 </h2>
 
-                <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                <p className="text-slate-400 text-xs sm:text-base leading-relaxed max-w-xl">
                   I am actively seeking software engineering and AI systems roles. Whether you are scaling mission-critical data engines, building compiler-guided AI pipelines, or exploring offensive security, my inbox is open.
                 </p>
 
                 {/* Location & Status Badges */}
-                <div className="pt-2 flex flex-wrap items-center gap-2.5 text-xs text-slate-400 font-mono">
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-slate-800/60 border border-slate-700/60 text-slate-300">
-                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mr-2" />
+                <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-2 sm:gap-2.5 text-[11px] sm:text-xs text-slate-400 font-mono">
+                  <span className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-md bg-slate-800/60 border border-slate-700/60 text-slate-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mr-1.5 sm:mr-2" />
                     Timișoara, Romania (UTC+2)
                   </span>
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                  <span className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 mr-1.5" />
                     Open to Remote &amp; Hybrid
                   </span>
@@ -883,11 +884,11 @@ export default function Home() {
               </div>
 
               {/* Right Column: Grounded, Professional Action Channels */}
-              <div className="lg:col-span-5 space-y-3">
+              <div className="lg:col-span-5 space-y-2.5 sm:space-y-3">
                 {/* Primary Email Channel */}
                 <a
                   href="mailto:lucas.rus.gheorghiu@gmail.com"
-                  className="group flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-blue-500/50 transition-colors duration-150 shadow-sm"
+                  className="group flex items-center justify-between p-3 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-blue-500/50 transition-colors duration-150 shadow-sm"
                 >
                   <div className="flex items-center space-x-3.5 min-w-0">
                     <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 shrink-0">
@@ -905,7 +906,7 @@ export default function Home() {
                 <a
                   href="/Lucas_Rus_CV.pdf"
                   download="Lucas_Rus_CV.pdf"
-                  className="group flex items-center justify-between p-3.5 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-teal-500/50 transition-colors duration-150 shadow-sm"
+                  className="group flex items-center justify-between p-3 sm:p-4 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-teal-500/50 transition-colors duration-150 shadow-sm"
                 >
                   <div className="flex items-center space-x-3.5 min-w-0">
                     <div className="p-2 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 shrink-0">
@@ -922,12 +923,12 @@ export default function Home() {
                 </a>
 
                 {/* Social Profiles Grid */}
-                <div className="grid grid-cols-3 gap-2 pt-1">
+                <div className="grid grid-cols-3 gap-2 pt-0.5">
                   <a
                     href="https://github.com/lucas-rus"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-600 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
+                    className="group flex items-center justify-center space-x-2 py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-600 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
                   >
                     <Github className="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" />
                     <span>GitHub</span>
@@ -937,7 +938,7 @@ export default function Home() {
                     href="https://www.linkedin.com/in/lucas-rus-96492a222"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-blue-500/50 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
+                    className="group flex items-center justify-center space-x-2 py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-blue-500/50 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
                   >
                     <Linkedin className="w-3.5 h-3.5 text-blue-400 group-hover:text-blue-300 transition-colors" />
                     <span>LinkedIn</span>
@@ -947,7 +948,7 @@ export default function Home() {
                     href="https://lucas-rus.itch.io"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-red-500/50 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
+                    className="group flex items-center justify-center space-x-2 py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-red-500/50 transition-colors duration-150 text-xs font-medium text-slate-300 hover:text-white shadow-sm"
                   >
                     <Gamepad2 className="w-3.5 h-3.5 text-red-400 group-hover:text-red-300 transition-colors" />
                     <span>Itch.io</span>
@@ -957,7 +958,7 @@ export default function Home() {
             </div>
 
             {/* Bottom Sub-Footer Bar */}
-            <div className="mt-10 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500">
+            <div className="mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 text-[11px] sm:text-xs font-mono text-slate-500">
               <div className="flex items-center space-x-2">
                 <span className="text-slate-400 font-medium">Lucas Rus</span>
                 <span>•</span>
