@@ -85,22 +85,22 @@ body {
 @keyframes auroraFloat1 {
   0%, 100% {
     transform: translate(0, 0) scale(1);
-    opacity: 0.12;
+    opacity: 1;
   }
   50% {
-    transform: translate(35px, -25px) scale(1.08);
-    opacity: 0.18;
+    transform: translate(35px, -25px) scale(1.06);
+    opacity: 0.88;
   }
 }
 
 @keyframes auroraFloat2 {
   0%, 100% {
     transform: translate(0, 0) scale(1);
-    opacity: 0.10;
+    opacity: 1;
   }
   50% {
-    transform: translate(-30px, 20px) scale(1.06);
-    opacity: 0.16;
+    transform: translate(-30px, 20px) scale(1.05);
+    opacity: 0.85;
   }
 }
 

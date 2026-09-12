@@ -164,9 +164,12 @@ export default function Home() {
     <div className="min-h-screen font-sans relative overflow-x-hidden bg-[#0a0f1d] text-slate-100 selection:bg-primary/30 selection:text-white">
       {/* Ambient Depth Gradients & Cyber Circuit Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden w-full max-w-[100vw]">
-        <div className="absolute -top-40 -left-40 w-[650px] h-[650px] bg-blue-600/15 rounded-full blur-[140px] animate-aurora-1"></div>
-        <div className="absolute top-1/3 -right-40 w-[580px] h-[580px] bg-teal-500/12 rounded-full blur-[150px] animate-aurora-2"></div>
-        <div className="absolute bottom-10 left-1/4 w-[520px] h-[520px] bg-indigo-600/15 rounded-full blur-[130px] animate-aurora-1" style={{ animationDelay: "-8s" }}></div>
+        {/* Luminous bluish atmospheric shade radiating from the top */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_65%_at_50%_-15%,rgba(59,130,246,0.18),rgba(255,255,255,0))] pointer-events-none" />
+        <div className="absolute -top-40 -left-40 w-[680px] h-[680px] bg-blue-600/22 rounded-full blur-[140px] animate-aurora-1"></div>
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-500/12 rounded-full blur-[160px] animate-aurora-2"></div>
+        <div className="absolute top-1/3 -right-40 w-[580px] h-[580px] bg-teal-500/14 rounded-full blur-[150px] animate-aurora-2"></div>
+        <div className="absolute bottom-10 left-1/4 w-[540px] h-[540px] bg-indigo-600/18 rounded-full blur-[130px] animate-aurora-1" style={{ animationDelay: "-8s" }}></div>
         <CyberCircuitBackground />
       </div>
 
@@ -239,9 +242,10 @@ export default function Home() {
       <section className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-44 md:pb-28 px-4 max-w-6xl mx-auto z-10">
         <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-center">
           <FadeIn className="md:col-span-7 space-y-6" delay={0.1}>
-            <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-medium text-teal-300 backdrop-blur-sm shadow-sm">
-              <span className="flex h-2 w-2 rounded-full bg-teal-400 mr-2 animate-pulse"></span>
-              Available for Software Engineering & AI Systems Roles
+            <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3 py-1 text-[11px] sm:text-xs font-medium text-teal-300 backdrop-blur-sm shadow-sm max-w-full">
+              <span className="flex h-2 w-2 rounded-full bg-teal-400 mr-2 shrink-0 animate-pulse"></span>
+              <span className="hidden sm:inline">Available for Software Engineering & AI Systems Roles</span>
+              <span className="sm:hidden">Available for SWE & AI Systems Roles</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
