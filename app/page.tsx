@@ -196,7 +196,6 @@ export default function Home() {
             </Link>
 
             <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-              <a href="#about" className="hover:text-primary transition-colors">About</a>
               <a href="#experience" className="hover:text-primary transition-colors">Experience</a>
               <a href="#projects" className="hover:text-primary transition-colors">Ventures</a>
               <a href="#credentials" className="hover:text-primary transition-colors">Credentials</a>
@@ -365,29 +364,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-10 sm:py-16 md:py-20 relative z-10">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-6 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">About Me</h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-2 sm:mt-3 rounded-full"></div>
-          </div>
 
-          <SlideInLeft>
-            <div className="glass-card p-5 sm:p-8 rounded-2xl text-slate-300 leading-relaxed text-sm sm:text-base md:text-lg border border-white/5 bg-slate-900/50 space-y-4 sm:space-y-6">
-              <p>
-                I am pursuing a degree in <strong className="text-white">Computer Science (English Stream)</strong> at the <strong>West University of Timișoara (UVT)</strong>. My approach pairs theoretical rigor in data structures and constraint satisfaction with battle-tested systems engineering.
-              </p>
-              <p>
-                As a former <strong className="text-white">competitive debate trainer and tournament referee</strong> at C.D. Loga National College, I spent years dissecting arguments, structuring formal logic, and communicating complex technical abstractions with clarity. In software teams, this enables me to rapidly bridge the gap between low-level architectural execution and strategic product goals.
-              </p>
-              <p>
-                From architecting zero-dependency columnar OLAP intelligence engines indexing millions of records in <strong className="text-primary">DuckDB</strong> to validating autonomous coding agent trajectories on <strong className="text-secondary">Grafana and Godot</strong>, I engineer systems that are deterministic, fast, and secure.
-              </p>
-            </div>
-          </SlideInLeft>
-        </div>
-      </section>
 
       {/* Section Divider */}
       <div className="max-w-6xl mx-auto px-4">
