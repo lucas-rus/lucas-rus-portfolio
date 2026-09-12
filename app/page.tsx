@@ -872,7 +872,8 @@ export default function Home() {
                 {/* Location & Status Badges */}
                 <div className="pt-2 flex flex-wrap items-center gap-2.5 text-xs text-slate-400 font-mono">
                   <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-slate-800/60 border border-slate-700/60 text-slate-300">
-                    📍 Timișoara, Romania (UTC+2)
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mr-2" />
+                    Timișoara, Romania (UTC+2)
                   </span>
                   <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 mr-1.5" />
