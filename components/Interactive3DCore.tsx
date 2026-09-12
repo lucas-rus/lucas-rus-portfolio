@@ -33,16 +33,82 @@ interface AmbientStar3D {
   altitude: number;
 }
 
-type Matrix3x3 = [
-  number, number, number,
-  number, number, number,
-  number, number, number
-];
+// True Screen-Space Quaternion Class (Identical mechanics to Three.js)
+class Quaternion {
+  x: number;
+  y: number;
+  z: number;
+  w: number;
+
+  constructor(x = 0, y = 0, z = 0, w = 1) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.w = w;
+  }
+
+  setFromAxisAngle(ax: number, ay: number, az: number, angle: number): this {
+    const half = angle / 2;
+    const s = Math.sin(half);
+    this.x = ax * s;
+    this.y = ay * s;
+    this.z = az * s;
+    this.w = Math.cos(half);
+    return this;
+  }
+
+  premultiply(q: Quaternion): this {
+    const qax = q.x, qay = q.y, qaz = q.z, qaw = q.w;
+    const qbx = this.x, qby = this.y, qbz = this.z, qbw = this.w;
+
+    this.x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
+    this.y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
+    this.z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
+    this.w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
+    return this;
+  }
+
+  normalize(): this {
+    let l = Math.hypot(this.x, this.y, this.z, this.w);
+    if (l === 0) {
+      this.x = 0;
+      this.y = 0;
+      this.z = 0;
+      this.w = 1;
+    } else {
+      l = 1 / l;
+      this.x *= l;
+      this.y *= l;
+      this.z *= l;
+      this.w *= l;
+    }
+    return this;
+  }
+
+  rotateVector(p: Point3D): Point3D {
+    const qx = this.x, qy = this.y, qz = this.z, qw = this.w;
+    const vx = p.x, vy = p.y, vz = p.z;
+
+    const tx = 2 * (qy * vz - qz * vy);
+    const ty = 2 * (qz * vx - qx * vz);
+    const tz = 2 * (qx * vy - qy * vx);
+
+    return {
+      x: vx + qw * tx + (qy * tz - qz * ty),
+      y: vy + qw * ty + (qz * tx - qx * tz),
+      z: vz + qw * tz + (qx * ty - qy * tx),
+    };
+  }
+
+  clone(): Quaternion {
+    return new Quaternion(this.x, this.y, this.z, this.w);
+  }
+}
 
 export default function Interactive3DCore() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [statusText, setStatusText] = useState("CORE_SYNAPSE_ONLINE");
+  const [statusText, setStatusText] = useState("CORE_RESONANCE_ACTIVE");
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -186,134 +252,67 @@ export default function Interactive3DCore() {
       });
     }
 
-    // ================= ROTATION MATRIX ENGINE (NO GIMBAL LOCK) =================
-    const multiplyMatrix = (a: Matrix3x3, b: Matrix3x3): Matrix3x3 => [
-      a[0] * b[0] + a[1] * b[3] + a[2] * b[6],
-      a[0] * b[1] + a[1] * b[4] + a[2] * b[7],
-      a[0] * b[2] + a[1] * b[5] + a[2] * b[8],
+    // ================= ROTATION ENGINE (QUATERNION SCREEN-SPACE) =================
+    // Zero gimbal lock, unrestricted 360-degree rotation across all axes
+    const rootQuat = new Quaternion();
+    rootQuat.premultiply(new Quaternion().setFromAxisAngle(0, 1, 0, 0.45));
+    rootQuat.premultiply(new Quaternion().setFromAxisAngle(1, 0, 0, 0.25));
 
-      a[3] * b[0] + a[4] * b[3] + a[5] * b[6],
-      a[3] * b[1] + a[4] * b[4] + a[5] * b[7],
-      a[3] * b[2] + a[4] * b[5] + a[5] * b[8],
-
-      a[6] * b[0] + a[7] * b[3] + a[8] * b[6],
-      a[6] * b[1] + a[7] * b[4] + a[8] * b[7],
-      a[6] * b[2] + a[7] * b[5] + a[8] * b[8],
-    ];
-
-    const rotatePitch = (m: Matrix3x3, angle: number): Matrix3x3 => {
-      const c = Math.cos(angle);
-      const s = Math.sin(angle);
-      const rot: Matrix3x3 = [
-        1, 0, 0,
-        0, c, -s,
-        0, s, c
-      ];
-      return multiplyMatrix(rot, m);
-    };
-
-    const rotateYaw = (m: Matrix3x3, angle: number): Matrix3x3 => {
-      const c = Math.cos(angle);
-      const s = Math.sin(angle);
-      const rot: Matrix3x3 = [
-        c, 0, -s,
-        0, 1, 0,
-        s, 0, c
-      ];
-      return multiplyMatrix(rot, m);
-    };
-
-    const orthonormalize = (m: Matrix3x3): Matrix3x3 => {
-      let r0x = m[0], r0y = m[1], r0z = m[2];
-      const l0 = Math.hypot(r0x, r0y, r0z) || 1;
-      r0x /= l0; r0y /= l0; r0z /= l0;
-
-      let r1x = m[3], r1y = m[4], r1z = m[5];
-      const dot = r1x * r0x + r1y * r0y + r1z * r0z;
-      r1x -= dot * r0x; r1y -= dot * r0y; r1z -= dot * r0z;
-      const l1 = Math.hypot(r1x, r1y, r1z) || 1;
-      r1x /= l1; r1y /= l1; r1z /= l1;
-
-      const r2x = r0y * r1z - r0z * r1y;
-      const r2y = r0z * r1x - r0x * r1z;
-      const r2z = r0x * r1y - r0y * r1x;
-
-      return [
-        r0x, r0y, r0z,
-        r1x, r1y, r1z,
-        r2x, r2y, r2z
-      ];
-    };
-
-    const transformPoint = (p: Point3D, m: Matrix3x3): Point3D => ({
-      x: m[0] * p.x + m[1] * p.y + m[2] * p.z,
-      y: m[3] * p.x + m[4] * p.y + m[5] * p.z,
-      z: m[6] * p.x + m[7] * p.y + m[8] * p.z,
-    });
-
-    const project = (p: Point3D, cx: number, cy: number) => {
-      const cameraDist = 280;
-      const scale = cameraDist / Math.max(40, cameraDist + p.z);
-      return {
-        x: cx + p.x * scale,
-        y: cy + p.y * scale,
-        z: p.z,
-        scale,
-      };
-    };
-
-    let mat: Matrix3x3 = [
-      1, 0, 0,
-      0, 1, 0,
-      0, 0, 1
-    ];
-    mat = rotateYaw(mat, 0.45);
-    mat = rotatePitch(mat, 0.32);
-
-    let velYaw = 0;
-    let velPitch = 0;
-    let prevX = 0;
-    let prevY = 0;
     let isPointerDown = false;
+    let lastPointerX = 0;
+    let lastPointerY = 0;
+    let velX = 0; // delta around screen horizontal axis
+    let velY = 0; // delta around screen vertical axis
+    let targetTiltX = 0;
+    let targetTiltY = 0;
+    let tiltX = 0;
+    let tiltY = 0;
 
     const onPointerDown = (e: PointerEvent) => {
       isPointerDown = true;
       setIsDragging(true);
-      prevX = e.clientX;
-      prevY = e.clientY;
-      velYaw = 0;
-      velPitch = 0;
+      setStatusText("ART_CALIBRATION_ACTIVE");
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
+      velX = 0;
+      velY = 0;
       canvas.setPointerCapture(e.pointerId);
-      setStatusText("3D_MANUAL_ORBIT");
     };
 
     const onPointerMove = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+      targetTiltX = normY * 0.18;
+      targetTiltY = normX * 0.18;
+
       if (!isPointerDown) return;
-      const dx = e.clientX - prevX;
-      const dy = e.clientY - prevY;
 
-      // Unconstrained 360 degree rotation in camera space
-      const dYaw = dx * 0.0075;
-      const dPitch = dy * 0.0075;
+      const dx = e.clientX - lastPointerX;
+      const dy = e.clientY - lastPointerY;
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
 
-      mat = rotateYaw(mat, dYaw);
-      mat = rotatePitch(mat, dPitch);
+      const speed = 0.0055;
+      velY = dx * speed;
+      velX = dy * speed;
 
-      velYaw = dYaw;
-      velPitch = dPitch;
+      // Screen-space world quaternion rotation
+      const qY = new Quaternion().setFromAxisAngle(0, 1, 0, velY);
+      const qX = new Quaternion().setFromAxisAngle(1, 0, 0, velX);
 
-      prevX = e.clientX;
-      prevY = e.clientY;
+      rootQuat.premultiply(qY);
+      rootQuat.premultiply(qX);
     };
 
     const onPointerUp = (e: PointerEvent) => {
-      if (!isPointerDown) return;
       isPointerDown = false;
       setIsDragging(false);
+      setStatusText("CORE_RESONANCE_ACTIVE");
       try {
         canvas.releasePointerCapture(e.pointerId);
       } catch {}
-      setStatusText("CORE_SYNAPSE_ONLINE");
     };
 
     canvas.addEventListener("pointerdown", onPointerDown);
@@ -321,33 +320,49 @@ export default function Interactive3DCore() {
     canvas.addEventListener("pointerup", onPointerUp);
     canvas.addEventListener("pointercancel", onPointerUp);
 
+    const project = (p: Point3D, cx: number, cy: number) => {
+      const cameraDist = 280;
+      const scale = cameraDist / Math.max(40, cameraDist - p.z);
+      return {
+        x: cx + p.x * scale,
+        y: cy - p.y * scale,
+        z: p.z,
+        scale,
+      };
+    };
+
     let time = 0;
 
     // ================= ANIMATION RENDER LOOP =================
     const render = () => {
       time += 0.018;
 
-      if (isPointerDown) {
-        // Direct pointer control
-      } else {
-        // Smooth inertia
-        mat = rotateYaw(mat, velYaw);
-        mat = rotatePitch(mat, velPitch);
-        velYaw *= 0.93;
-        velPitch *= 0.93;
+      // World-space Inertia & Gentle Drift
+      if (!isPointerDown) {
+        if (Math.abs(velX) > 0.00008 || Math.abs(velY) > 0.00008) {
+          const qY = new Quaternion().setFromAxisAngle(0, 1, 0, velY);
+          const qX = new Quaternion().setFromAxisAngle(1, 0, 0, velX);
+          rootQuat.premultiply(qY);
+          rootQuat.premultiply(qX);
 
-        // Gentle auto-rotation when at rest
-        if (Math.hypot(velYaw, velPitch) < 0.0008) {
-          mat = rotateYaw(mat, 0.0035);
-          mat = rotatePitch(mat, 0.0012);
+          velX *= 0.945;
+          velY *= 0.945;
+        } else {
+          // Slow, hypnotic idle rotation around world Y
+          const idleQ = new Quaternion().setFromAxisAngle(0, 1, 0, 0.003);
+          rootQuat.premultiply(idleQ);
         }
+
+        // Tactile hover parallax
+        tiltX += (targetTiltX - tiltX) * 0.05;
+        tiltY += (targetTiltY - tiltY) * 0.05;
       }
 
-      mat = orthonormalize(mat);
+      rootQuat.normalize();
 
       ctx.clearRect(0, 0, cssWidth, cssHeight);
-      const cx = cssWidth / 2;
-      const cy = cssHeight / 2;
+      const cx = cssWidth / 2 + tiltY * 10;
+      const cy = cssHeight / 2 + tiltX * 10;
 
       // 1. Ambient Background Core Glow
       const corePulse = 1 + Math.sin(time * 2.5) * 0.08;
@@ -368,8 +383,8 @@ export default function Interactive3DCore() {
         const worldY = star.orbitRadius * Math.sin(star.altitude) * Math.sin(star.driftAngle);
         const worldZ = star.orbitRadius * Math.cos(star.altitude);
 
-        const tp = transformPoint({ x: worldX, y: worldY, z: worldZ }, mat);
-        const p = project(tp, cx, cy);
+        const rotatedStar = rootQuat.rotateVector({ x: worldX, y: worldY, z: worldZ });
+        const p = project(rotatedStar, cx, cy);
 
         const depthAlpha = Math.max(0.12, Math.min(0.95, (p.z + 200) / 400));
         const twinkle = 0.5 + 0.5 * Math.sin(time * star.twinkleSpeed + star.twinklePhase);
@@ -406,14 +421,15 @@ export default function Interactive3DCore() {
       });
 
       // 3. Inner Counter-Rotating Octahedron Core
-      const innerSpinYaw = -time * 0.7;
-      const innerSpinPitch = time * 0.45;
-      const innerMat = rotatePitch(rotateYaw(mat, innerSpinYaw), innerSpinPitch);
+      const innerSpin = new Quaternion()
+        .setFromAxisAngle(0, 1, 0, -time * 0.65)
+        .premultiply(new Quaternion().setFromAxisAngle(1, 0, 0, time * 0.4));
+      const innerQuat = rootQuat.clone().premultiply(innerSpin);
 
       const projInner = innerBase.map((v) => {
         const breathe = 1 + Math.sin(time * 3 + v.x) * 0.04;
-        const tp = transformPoint({ x: v.x * breathe, y: v.y * breathe, z: v.z * breathe }, innerMat);
-        return project(tp, cx, cy);
+        const rotV = innerQuat.rotateVector({ x: v.x * breathe, y: v.y * breathe, z: v.z * breathe });
+        return project(rotV, cx, cy);
       });
 
       // Draw Inner Edges (Luminous Indigo/Violet)
@@ -441,13 +457,14 @@ export default function Interactive3DCore() {
       });
 
       // 4. Inner Secondary Star Lattice
-      const starSpinYaw = time * 0.6;
-      const starSpinPitch = -time * 0.4;
-      const starMat = rotatePitch(rotateYaw(mat, starSpinYaw), starSpinPitch);
+      const starSpin = new Quaternion()
+        .setFromAxisAngle(0, 0, 1, time * 0.75)
+        .premultiply(new Quaternion().setFromAxisAngle(0, 1, 0, -time * 0.55));
+      const starQuat = rootQuat.clone().premultiply(starSpin);
 
       const projStar = starBase.map((v) => {
-        const tp = transformPoint(v, starMat);
-        return project(tp, cx, cy);
+        const rotV = starQuat.rotateVector(v);
+        return project(rotV, cx, cy);
       });
       starEdges.forEach(([i, j]) => {
         const p1 = projStar[i];
@@ -475,8 +492,8 @@ export default function Interactive3DCore() {
       });
 
       const projParticles = particles.map((pt) => {
-        const tp = transformPoint(pt, mat);
-        const p = project(tp, cx, cy);
+        const rotPt = rootQuat.rotateVector(pt);
+        const p = project(rotPt, cx, cy);
         return {
           ...p,
           hue: pt.hue,
@@ -516,11 +533,12 @@ export default function Interactive3DCore() {
       // 6. Outer Geodesic Crystalline Cage
       const outerPulse = 1 + Math.sin(time * 2.2) * 0.025;
       const projOuter = outerBase.map((v) => {
-        const tp = transformPoint(
-          { x: v.x * outerPulse, y: v.y * outerPulse, z: v.z * outerPulse },
-          mat
-        );
-        return project(tp, cx, cy);
+        const rotV = rootQuat.rotateVector({
+          x: v.x * outerPulse,
+          y: v.y * outerPulse,
+          z: v.z * outerPulse,
+        });
+        return project(rotV, cx, cy);
       });
 
       // Draw Outer Cage Edges
