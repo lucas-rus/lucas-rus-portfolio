@@ -164,12 +164,12 @@ export default function Home() {
     <div className="min-h-screen font-sans relative overflow-x-hidden bg-[#0a0f1d] text-slate-100 selection:bg-primary/30 selection:text-white">
       {/* Ambient Depth Gradients & Cyber Circuit Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden w-full max-w-[100vw]">
-        {/* Luminous bluish atmospheric shade radiating from the top */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_65%_at_50%_-15%,rgba(59,130,246,0.18),rgba(255,255,255,0))] pointer-events-none" />
-        <div className="absolute -top-40 -left-40 w-[680px] h-[680px] bg-blue-600/22 rounded-full blur-[140px] animate-aurora-1"></div>
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-500/12 rounded-full blur-[160px] animate-aurora-2"></div>
-        <div className="absolute top-1/3 -right-40 w-[580px] h-[580px] bg-teal-500/14 rounded-full blur-[150px] animate-aurora-2"></div>
-        <div className="absolute bottom-10 left-1/4 w-[540px] h-[540px] bg-indigo-600/18 rounded-full blur-[130px] animate-aurora-1" style={{ animationDelay: "-8s" }}></div>
+        {/* Subtle atmospheric blue wash */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-10%,rgba(59,130,246,0.07),rgba(255,255,255,0))] pointer-events-none" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] animate-aurora-1"></div>
+        <div className="absolute top-1/3 -right-40 w-[550px] h-[550px] bg-teal-500/8 rounded-full blur-[160px] animate-aurora-2"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-600/9 rounded-full blur-[150px] animate-aurora-1" style={{ animationDelay: "-8s" }}></div>
+        <div className="absolute -bottom-20 right-1/4 w-[550px] h-[450px] bg-blue-600/7 rounded-full blur-[160px] animate-aurora-2"></div>
         <CyberCircuitBackground />
       </div>
 
@@ -192,46 +192,28 @@ export default function Home() {
               <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
             </div>
 
-            <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
-              {/* Sleek Cyber-Glass Resume Capsule */}
+            <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+              {/* Professional Refined Resume Button */}
               <a
                 href="/Lucas_Rus_CV.pdf"
                 download="Lucas_Rus_CV.pdf"
-                className="inline-flex relative group items-center justify-center p-[1px] rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white bg-slate-900/70 hover:bg-slate-800/90 border border-slate-700/60 hover:border-slate-500/80 backdrop-blur-md transition-all duration-200 shadow-sm"
               >
-                {/* Subtle animated gradient border trace */}
-                <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 via-blue-500/20 to-teal-400/30 group-hover:from-cyan-400 group-hover:via-blue-500 group-hover:to-teal-300 rounded-full transition-all duration-500" />
-                
-                {/* Inner glass capsule body */}
-                <span className="relative flex items-center space-x-1 sm:space-x-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#0d1527]/90 group-hover:bg-[#111c34]/95 backdrop-blur-md text-[11px] sm:text-xs font-medium text-slate-200 group-hover:text-white transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
-                  <Download className="w-3.5 h-3.5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-                  <span className="tracking-wide">Resume</span>
-                  <span className="hidden sm:inline text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400 group-hover:text-cyan-300 group-hover:border-cyan-500/30 transition-all">
-                    PDF
-                  </span>
+                <Download className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-300 transition-colors" />
+                <span>Resume</span>
+                <span className="hidden sm:inline-block text-[9px] font-mono font-medium px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400 group-hover:text-slate-200 transition-colors">
+                  PDF
                 </span>
-
-                {/* Shimmer light beam sweep on hover */}
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
               </a>
 
-              {/* Sleek Radiant Ambient Contact Button */}
+              {/* Professional High-Polish Contact CTA */}
               <a
                 href="#contact"
-                className="relative group inline-flex items-center justify-center rounded-full p-[1px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center space-x-1.5 sm:space-x-2 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 border border-blue-400/30 shadow-[0_1px_3px_rgba(0,0,0,0.3),0_0_12px_rgba(59,130,246,0.25)] hover:shadow-[0_1px_3px_rgba(0,0,0,0.3),0_0_16px_rgba(59,130,246,0.4)] transition-all duration-200 active:scale-[0.98]"
               >
-                {/* Ambient glowing aura underneath */}
-                <span className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 opacity-60 blur-[6px] group-hover:opacity-100 group-hover:blur-[10px] transition-all duration-500 -z-10" />
-
-                {/* Inner solid radiant pill */}
-                <span className="relative flex items-center space-x-1 sm:space-x-2 px-2.5 sm:px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 group-hover:from-blue-500 group-hover:via-indigo-500 group-hover:to-teal-400 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] transition-all duration-300">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_6px_#34d399]"></span>
-                  </span>
-                  <span>Contact</span>
-                  <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/80 group-hover:text-white" />
-                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_4px_#34d399]" />
+                <span>Contact</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150" />
               </a>
             </div>
           </div>
@@ -852,67 +834,82 @@ export default function Home() {
         <SectionDividerWithTelemetry label="SEC_05 // COMMS & DIRECT TRANSMISSION" />
       </div>
 
-      {/* Footer / Contact */}
-      <footer id="contact" className="bg-[#070b14] border-t border-white/5 py-16 z-10 relative">
+      {/* Footer / Contact Section */}
+      <footer id="contact" className="relative z-10 pt-16 pb-20 border-t border-white/5 overflow-hidden">
+        {/* Ambient bottom glow radiating upward */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-blue-600/10 via-indigo-600/5 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
+
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-white tracking-tight">
-            Let&apos;s build something impactful.
-          </h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto text-sm md:text-base leading-relaxed">
-            I am always open to discussing new engineering ventures, high-performance data systems, or offensive security challenges.
-          </p>
+          {/* Contact Highlight Card */}
+          <div className="glass-card p-8 sm:p-12 rounded-3xl border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-2xl mb-12 relative overflow-hidden">
+            {/* Subtle inner top highlight */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
 
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <a
-              href="mailto:lucas.rus.gheorghiu@gmail.com"
-              className="px-6 py-3 bg-primary hover:bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg shadow-blue-900/30 flex items-center space-x-2 text-sm"
-            >
-              <Mail className="w-4 h-4" />
-              <span>lucas.rus.gheorghiu@gmail.com</span>
-            </a>
+            <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-300 backdrop-blur-sm mb-6">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-teal-400 mr-2 animate-pulse" />
+              Direct Channel
+            </div>
 
-            <a
-              href="/Lucas_Rus_CV.pdf"
-              download="Lucas_Rus_CV.pdf"
-              className="px-6 py-3 border border-slate-700 bg-slate-800/40 hover:bg-slate-800 text-white rounded-xl font-medium transition-all flex items-center space-x-2 text-sm"
-            >
-              <Download className="w-4 h-4 text-secondary" />
-              <span>Download CV</span>
-            </a>
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-white tracking-tight">
+              Let&apos;s build something impactful.
+            </h2>
+            <p className="text-slate-400 mb-8 max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
+              I am always open to discussing new engineering ventures, high-performance data systems, or offensive security challenges.
+            </p>
+
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mb-8">
+              <a
+                href="mailto:lucas.rus.gheorghiu@gmail.com"
+                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium text-sm transition-all shadow-lg shadow-blue-900/30 hover:shadow-blue-900/50 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Mail className="w-4 h-4" />
+                <span>lucas.rus.gheorghiu@gmail.com</span>
+              </a>
+
+              <a
+                href="/Lucas_Rus_CV.pdf"
+                download="Lucas_Rus_CV.pdf"
+                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 border border-slate-700/80 bg-slate-800/50 hover:bg-slate-800 text-slate-200 hover:text-white rounded-xl font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm backdrop-blur-sm"
+              >
+                <Download className="w-4 h-4 text-cyan-400" />
+                <span>Download CV</span>
+              </a>
+            </div>
+
+            {/* Social Channels */}
+            <div className="flex justify-center space-x-3 pt-2">
+              <a
+                href="https://github.com/lucas-rus"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 rounded-xl text-slate-400 hover:text-white transition-all shadow-sm"
+                title="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/lucas-rus-96492a222"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 rounded-xl text-slate-400 hover:text-white transition-all shadow-sm"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://lucas-rus.itch.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-slate-900/80 border border-slate-800 hover:border-red-500/50 rounded-xl text-slate-400 hover:text-white transition-all shadow-sm"
+                title="Itch.io Games & Prototypes"
+              >
+                <Gamepad2 className="w-5 h-5 text-red-400" />
+              </a>
+            </div>
           </div>
 
-          <div className="flex justify-center space-x-4 mb-12">
-            <a
-              href="https://github.com/lucas-rus"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-primary/50 text-slate-400 hover:text-white transition-all"
-              title="GitHub"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/lucas-rus-96492a222"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-primary/50 text-slate-400 hover:text-white transition-all"
-              title="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="https://lucas-rus.itch.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-primary/50 text-slate-400 hover:text-white transition-all"
-              title="Itch.io Games & Prototypes"
-            >
-              <Gamepad2 className="w-5 h-5 text-red-400" />
-            </a>
-          </div>
-
-          <div className="text-xs text-slate-500 font-mono">
-            © {new Date().getFullYear()} Lucas Rus. Designed & engineered with Next.js 16, React 19 & Tailwind CSS v4.
+          <div className="text-xs text-slate-500 font-mono tracking-wide">
+            © {new Date().getFullYear()} Lucas Rus. Designed &amp; engineered with Next.js 16, React 19 &amp; Tailwind CSS v4.
           </div>
         </div>
       </footer>
