@@ -72,33 +72,37 @@ ABOUT LUCAS RUS:
 
 EDUCATION & CREDENTIALS:
 - University: West University of Timișoara (UVT), Faculty of Mathematics and Computer Science.
-  * Program: BSc in Computer Science (Taught in English, 2024–2027).
-- Cambridge English (CAE): Grade A — Score 200+ (Certified CEFR Level C2 / Native English Equivalence).
+  * Program: BSc in Computer Science (Taught in English, 2024-2027).
+- Cambridge English (CAE): Grade A - Score 200+ (Certified CEFR Level C2 / Native English Equivalence).
 - Google.org Cybersecurity Program: Virtual Routes at UVT (MITRE ATT&CK, AI SecOps, Splunk SIEM, Snort IDS, pfSense, Okta IAM, OWASP Top 10).
 - Professional Competence Certificate in CS: Romanian Ministry of Education (2024, Intensive Math & CS Track, Capstone: Ludo 3D).
 - Chrome Debate Club: Trainer & Tournament Referee at C.D. Loga National College. Coached debaters in formal logic, competitive argumentation, and systems rhetoric.
 
 PROFESSIONAL EXPERIENCE:
-1. Vitas Romania (Feb 2026 — Aug 2026 | Timișoara, RO)
+1. Vitas Romania (Feb 2026 - Aug 2026 | Timișoara, RO)
    * Role: Software Engineering Intern (Automation & Development)
-   * Company Data Hub v2 (06–08.2026): Engineered an enterprise Business Intelligence (BI) and corporate research platform indexing 1.8M+ Romanian commercial entities and 16 years of open-source national fiscal filings. Delivered sub-5ms query latency via an embedded DuckDB columnar OLAP engine, atomic snapshot migrations, 360° corporate dossiers (administrators, ownership, revenue trajectories, solvency ratios), and portfolio watchlist differential tracking. Built with DuckDB, Python, Parquet, Polars, and 130 automated Pytest test suites (MIT License).
-   * Trial Balance Parser & Financial Statement Mapper (02–06.2026): Automated the credit underwriting pipeline for SME loans by parsing non-standard trial balance PDFs (Balanță de Verificare) directly into official Balance Sheets (Bilanț) and P&L statements (Cont de Profit și Pierdere). Engineered a deterministic coordinate boundary reconstructor, SHA-256 layout caching (<2s execution), and bottom-up account netting complying with OMFP 1802/2014 accounting standards down to the cent, backed by 3-tier OpenAI multimodal vision fallbacks and an interactive Streamlit credit risk dashboard.
+   * Company Data Hub v2 (06-08.2026): Engineered an enterprise Business Intelligence (BI) and corporate research platform indexing 1.8M+ Romanian commercial entities and 16 years of open-source national fiscal filings. Delivered sub-5ms query latency via an embedded DuckDB columnar OLAP engine, atomic snapshot migrations, 360° corporate dossiers (administrators, ownership, revenue trajectories, solvency ratios), and portfolio watchlist differential tracking. Built with DuckDB, Python, Parquet, Polars, and 130 automated Pytest test suites (MIT License).
+   * Trial Balance Parser & Financial Statement Mapper (02-06.2026): Automated the credit underwriting pipeline for SME loans by parsing non-standard trial balance PDFs (Balanță de Verificare) directly into official Balance Sheets (Bilanț) and P&L statements (Cont de Profit și Pierdere). Engineered a deterministic coordinate boundary reconstructor, SHA-256 layout caching (<2s execution), and bottom-up account netting complying with OMFP 1802/2014 accounting standards down to the cent, backed by 3-tier OpenAI multimodal vision fallbacks and an interactive Streamlit credit risk dashboard.
 
-2. JoinStellar.ai (Nov 2024 — Present | Remote)
+2. JoinStellar.ai (Nov 2024 - Present | Remote)
    * Role: Private Contractor (AI Training & Agent Evaluation)
    * Trained frontier autonomous coding agents to resolve real-world GitHub Pull Requests (PRs) and pass comprehensive integration test suites across massive open-source codebases including Grafana and Godot Engine.
    * Benchmarked multi-agent execution trajectories, stress-testing autonomous tool call sequences, code repair loops, environment interactions, and database state transitions.
 
-3. Arhebis Digital Systems (Sep 2024 — Aug 2025 | Timișoara, RO)
+3. Arhebis Digital Systems (Sep 2024 - Aug 2025 | Timișoara, RO)
    * Role: Junior Software Developer
    * Automated digital production in Photoshop and Illustrator using ExtendScript JavaScript to batch-process illustrations and typography for commercial book publications, cutting manual graphic prep time by 60%.
    * Built Python automation tools interfacing with Google Maps APIs to geocode addresses and automate Points of Interest (POI) maps; engineered end-to-end XML/XHTML and CSS transformation pipelines converting fixed PDFs into reflowable ePub3 books.
 
-4. Outlier & DataAnnotation.tech (Oct 2024 — Jul 2025 | Remote)
-   * Role: AI Model Evaluator & Prompt Engineer
-   * Evaluated frontier LLMs across 5- to 7-axis rubrics, specializing in Romanian-English prompt localization, code syntax verification, safety red-teaming, and comparative RLHF ranking.
+4. Outlier (May 2025 - Aug 2025 | Remote)
+   * Role: AI Alignment Specialist & Prompt Engineer
+   * Conducted specialized RLHF audits and adversarial red-teaming for frontier LLMs, focusing on Romanian-English localized prompts, cultural nuance verification, and idiomatic accuracy. Evaluated model truthfulness, grammar subtleties, policy adherence, and multi-turn instruction following against strict multi-axis rubrics.
 
-5. Buildcorpmat (Dec 2023 — Mar 2024 | Timișoara, RO)
+5. DataAnnotation.tech (Oct 2024 - Dec 2024 | Remote)
+   * Role: AI Model & Multimodal Evaluator
+   * Evaluated frontier generative models across programming, mathematical reasoning, and multimodal domains. Performed rigorous image annotation and video annotation benchmarks, validating visual grounding, spatial relationships, temporal consistency, and prompt alignment. Executed comparative RLHF rankings and safety red-teaming.
+
+6. Buildcorpmat (Dec 2023 - Mar 2024 | Timișoara, RO)
    * Role: Web Developer & IT Systems Administrator
    * Redesigned commercial company website in HTML5/SCSS/JavaScript; developed customer mailing automation and administered company database and domain infrastructure.
 
@@ -122,7 +126,7 @@ FEATURED PROJECTS & VENTURES:
    * Machine learning system predicting sovereign defaults, currency collapses, and banking crises 2 years in advance across 261 countries. Features Variable Selection Networks (VSN) + LSTM Autoencoders paired with attention classifiers and GDELT sentiment analysis (75.4% precision, 0.947 AUC). Built with PyTorch, Temporal Fusion Transformers (TFT), Polars.
 
 7. Algorithmic Studies & CSP (https://github.com/lucas-rus/Theoretical_and_Experimental_Comparison_of_SAT_Solving_Algorithms)
-   * Comparative runtime and memory benchmarking of Resolution, Davis–Putnam (DP), DPLL, and Glucose3 solvers across SAT instances. Implemented Bessiere et al.'s optimal Arc Consistency (AC-2001 O(ed^2)) solver in C++ for the Map Coloring constraint satisfaction problem using support pointers.
+   * Comparative runtime and memory benchmarking of Resolution, Davis-Putnam (DP), DPLL, and Glucose3 solvers across SAT instances. Implemented Bessiere et al.'s optimal Arc Consistency (AC-2001 O(ed^2)) solver in C++ for the Map Coloring constraint satisfaction problem using support pointers.
 
 8. Systems & Creative Tech (https://lucas-rus.itch.io)
    * Mouse Mover: Ultra-lightweight native OS background utility in C++11/Obj-C++ leveraging direct Win32 SendInput and macOS Cocoa/IOKit APIs.
@@ -151,7 +155,7 @@ function generateFallbackResponse(userPrompt: string): string {
   // Explicit portfolio keywords
   const portfolioKeywords = [
     "lucas", "portfolio", "project", "venture", "experience", "vitas",
-    "joinstellar", "arhebis", "outlier", "buildcorpmat", "font", "conta",
+    "joinstellar", "arhebis", "outlier", "dataannotation", "buildcorpmat", "font", "conta",
     "hub", "gigtim", "cofound", "sat", "game", "itch", "ludo", "mouse mover",
     "digitizer", "book", "skills", "stack", "tech", "contact", "hire",
     "email", "about", "education", "cv", "resume", "cybersecurity",
@@ -171,7 +175,7 @@ function generateFallbackResponse(userPrompt: string): string {
   }
 
   if (p.includes("company data hub") || p.includes("vitas") || p.includes("trial balance") || p.includes("balanta") || p.includes("bilant")) {
-    return `At **Vitas Romania** (Feb–Aug 2026), Lucas engineered two mission-critical production systems:\n\n1. **Company Data Hub v2:** An enterprise BI & OLAP intelligence platform consolidating **1.8M+ Romanian commercial entities** and 16 years of national fiscal filings. Using an embedded **DuckDB** columnar engine, it delivers sub-5ms borrower solvency queries, atomic snapshot migrations, 360° corporate dossiers, and portfolio watchlist diffing (Python, DuckDB, Polars, Parquet, 130 Pytest suites).\n2. **Trial Balance Parser & Financial Statement Mapper:** Automated credit underwriting for SME loans by parsing non-standard *Balanță de Verificare* PDFs into official balance sheets (*Bilanț*) and P&L statements. Features deterministic coordinate boundary reconstruction, SHA-256 layout caching (<2s execution), and full OMFP 1802/2014 accounting compliance with OpenAI vision fallbacks.`;
+    return `At **Vitas Romania** (Feb-Aug 2026), Lucas engineered two mission-critical production systems:\n\n1. **Company Data Hub v2:** An enterprise BI & OLAP intelligence platform consolidating **1.8M+ Romanian commercial entities** and 16 years of national fiscal filings. Using an embedded **DuckDB** columnar engine, it delivers sub-5ms borrower solvency queries, atomic snapshot migrations, 360° corporate dossiers, and portfolio watchlist diffing (Python, DuckDB, Polars, Parquet, 130 Pytest suites).\n2. **Trial Balance Parser & Financial Statement Mapper:** Automated credit underwriting for SME loans by parsing non-standard *Balanță de Verificare* PDFs into official balance sheets (*Bilanț*) and P&L statements. Features deterministic coordinate boundary reconstruction, SHA-256 layout caching (<2s execution), and full OMFP 1802/2014 accounting compliance with OpenAI vision fallbacks.`;
   }
 
   if (p.includes("font") || p.includes("recognition")) {
@@ -214,7 +218,7 @@ export async function POST(req: Request) {
     const p = lastUserMessage.toLowerCase().trim();
     const portfolioKeywords = [
       "lucas", "rus", "portfolio", "project", "venture", "experience", "vitas",
-      "joinstellar", "arhebis", "outlier", "buildcorpmat", "font", "conta",
+      "joinstellar", "arhebis", "outlier", "dataannotation", "buildcorpmat", "font", "conta",
       "hub", "gigtim", "cofound", "sat", "game", "itch", "ludo", "mouse mover",
       "digitizer", "book", "skills", "stack", "tech", "contact", "hire",
       "email", "about", "education", "cv", "resume", "cybersecurity",

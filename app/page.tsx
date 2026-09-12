@@ -552,38 +552,8 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* DataAnnotation.tech */}
-          <FadeIn delay={0.4} className="glass-card p-4 sm:p-6 md:p-7 rounded-2xl border border-white/5 hover:border-cyan-500/40 transition-all bg-slate-900/50">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-white">AI Model &amp; Multimodal Evaluator</h3>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
-                    Multimodal AI
-                  </span>
-                </div>
-                <p className="text-cyan-400 font-medium text-sm mt-0.5">DataAnnotation.tech • Remote</p>
-              </div>
-              <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
-                Oct 2024 - Jul 2025
-              </span>
-            </div>
-
-            <p className="text-slate-300 text-sm leading-relaxed mb-3 sm:mb-4">
-              Evaluated frontier generative models across programming, mathematical reasoning, and multimodal domains. Performed rigorous image annotation and video annotation benchmarks, validating visual grounding, spatial relationships, temporal consistency, and prompt alignment. Executed comparative RLHF rankings and safety red-teaming across complex multi-turn workflows.
-            </p>
-
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-3 sm:pt-4 border-t border-white/5">
-              <span className="px-2.5 py-1 bg-cyan-900/30 text-cyan-200 text-xs rounded-lg border border-cyan-500/20">Image Annotation</span>
-              <span className="px-2.5 py-1 bg-teal-900/30 text-teal-200 text-xs rounded-lg border border-teal-500/20">Video Annotation</span>
-              <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">Multimodal AI</span>
-              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">RLHF Alignment</span>
-              <span className="px-2.5 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-lg border border-purple-500/20">Code Evaluation</span>
-            </div>
-          </FadeIn>
-
           {/* Outlier */}
-          <FadeIn delay={0.5} className="glass-card p-4 sm:p-6 md:p-7 rounded-2xl border border-white/5 hover:border-emerald-500/40 transition-all bg-slate-900/50">
+          <FadeIn delay={0.4} className="glass-card p-4 sm:p-6 md:p-7 rounded-2xl border border-white/5 hover:border-emerald-500/40 transition-all bg-slate-900/50">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
               <div>
                 <div className="flex items-center gap-2">
@@ -595,7 +565,7 @@ export default function Home() {
                 <p className="text-emerald-400 font-medium text-sm mt-0.5">Outlier.ai • Remote</p>
               </div>
               <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
-                Oct 2024 - Jun 2025
+                May 2025 - Aug 2025
               </span>
             </div>
 
@@ -609,6 +579,36 @@ export default function Home() {
               <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">Safety Red-Teaming</span>
               <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">LLM Rubrics</span>
               <span className="px-2.5 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-lg border border-purple-500/20">Linguistic Auditing</span>
+            </div>
+          </FadeIn>
+
+          {/* DataAnnotation.tech */}
+          <FadeIn delay={0.5} className="glass-card p-4 sm:p-6 md:p-7 rounded-2xl border border-white/5 hover:border-cyan-500/40 transition-all bg-slate-900/50">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">AI Model &amp; Multimodal Evaluator</h3>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                    Multimodal AI
+                  </span>
+                </div>
+                <p className="text-cyan-400 font-medium text-sm mt-0.5">DataAnnotation.tech • Remote</p>
+              </div>
+              <span className="text-xs font-mono px-3 py-1 bg-slate-800/80 border border-slate-700/60 text-slate-300 rounded-lg w-fit">
+                Oct 2024 - Dec 2024
+              </span>
+            </div>
+
+            <p className="text-slate-300 text-sm leading-relaxed mb-3 sm:mb-4">
+              Evaluated frontier generative models across programming, mathematical reasoning, and multimodal domains. Performed rigorous image annotation and video annotation benchmarks, validating visual grounding, spatial relationships, temporal consistency, and prompt alignment. Executed comparative RLHF rankings and safety red-teaming across complex multi-turn workflows.
+            </p>
+
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-3 sm:pt-4 border-t border-white/5">
+              <span className="px-2.5 py-1 bg-cyan-900/30 text-cyan-200 text-xs rounded-lg border border-cyan-500/20">Image Annotation</span>
+              <span className="px-2.5 py-1 bg-teal-900/30 text-teal-200 text-xs rounded-lg border border-teal-500/20">Video Annotation</span>
+              <span className="px-2.5 py-1 bg-blue-900/30 text-blue-200 text-xs rounded-lg border border-blue-500/20">Multimodal AI</span>
+              <span className="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700/50">RLHF Alignment</span>
+              <span className="px-2.5 py-1 bg-purple-900/30 text-purple-200 text-xs rounded-lg border border-purple-500/20">Code Evaluation</span>
             </div>
           </FadeIn>
         </div>
