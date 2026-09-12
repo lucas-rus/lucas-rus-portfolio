@@ -20,13 +20,13 @@ export default function Interactive3DCore() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || 360);
-    let height = (canvas.height = 300);
+    let width = (canvas.width = Math.min(canvas.parentElement?.clientWidth || 280, 360));
+    let height = (canvas.height = Math.min(260, Math.max(220, width * 0.8)));
 
     const handleResize = () => {
       if (!canvas || !canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = Math.min(300, width);
+      width = canvas.width = Math.min(canvas.parentElement.clientWidth, 360);
+      height = canvas.height = Math.min(260, Math.max(220, width * 0.8));
     };
     window.addEventListener("resize", handleResize);
 
@@ -293,16 +293,16 @@ export default function Interactive3DCore() {
       {/* Interactive 3D Canvas - strictly scoped drag interaction */}
       <canvas
         ref={canvasRef}
-        className={`w-full max-w-[360px] h-[280px] drop-shadow-[0_0_25px_rgba(56,189,248,0.25)] touch-none ${
+        className={`w-full max-w-full h-[240px] sm:h-[280px] drop-shadow-[0_0_25px_rgba(56,189,248,0.25)] touch-none ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
       />
 
       {/* Bottom Telemetry Bar */}
-      <div className="w-full flex items-center justify-between text-[9px] font-mono text-slate-400 px-3 pt-2 border-t border-cyan-500/20 mt-1">
-        <span className="text-cyan-300">NODE: DUCKDB_OLAP</span>
-        <span className="text-indigo-300">ENTITIES: 1.8M+</span>
-        <span className="text-emerald-400">FPS: 60</span>
+      <div className="w-full flex items-center justify-between text-[8px] sm:text-[9px] font-mono text-slate-400 px-2 sm:px-3 pt-2 border-t border-cyan-500/20 mt-1 gap-1">
+        <span className="text-cyan-300 truncate">NODE: DUCKDB_OLAP</span>
+        <span className="text-indigo-300 truncate">ENTITIES: 1.8M+</span>
+        <span className="text-emerald-400 shrink-0">FPS: 60</span>
       </div>
     </div>
   );

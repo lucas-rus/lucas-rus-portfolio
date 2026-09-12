@@ -163,18 +163,18 @@ export default function Home() {
   return (
     <div className="min-h-screen font-sans relative overflow-x-hidden bg-[#0a0f1d] text-slate-100 selection:bg-primary/30 selection:text-white">
       {/* Ambient Depth Gradients & Cyber Circuit Background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px]"></div>
-        <div className="absolute top-1/3 -right-40 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[150px]"></div>
-        <div className="absolute bottom-10 left-1/4 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[130px]"></div>
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden w-full max-w-[100vw]">
+        <div className="absolute -top-40 -left-40 w-[650px] h-[650px] bg-blue-600/15 rounded-full blur-[140px] animate-aurora-1"></div>
+        <div className="absolute top-1/3 -right-40 w-[580px] h-[580px] bg-teal-500/12 rounded-full blur-[150px] animate-aurora-2"></div>
+        <div className="absolute bottom-10 left-1/4 w-[520px] h-[520px] bg-indigo-600/15 rounded-full blur-[130px] animate-aurora-1" style={{ animationDelay: "-8s" }}></div>
         <CyberCircuitBackground />
       </div>
 
       {/* Top Navigation */}
-      <nav className="fixed top-0 w-full z-40 bg-[#0a0f1d]/85 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="fixed top-0 left-0 right-0 w-full z-40 bg-[#0a0f1d]/85 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link href="#" className="flex items-center space-x-2 group">
+            <Link href="#" className="flex items-center space-x-2 group shrink-0">
               <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-300 bg-clip-text text-transparent">
                 LR.
               </span>
@@ -189,20 +189,46 @@ export default function Home() {
               <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
             </div>
 
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
+              {/* Sleek Cyber-Glass Resume Capsule */}
               <a
                 href="/Lucas_Rus_CV.pdf"
                 download="Lucas_Rus_CV.pdf"
-                className="hidden sm:inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/40 text-slate-200 hover:text-white transition-all shadow-sm"
+                className="inline-flex relative group items-center justify-center p-[1px] rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Download className="w-3.5 h-3.5 text-primary" />
-                <span>Resume</span>
+                {/* Subtle animated gradient border trace */}
+                <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 via-blue-500/20 to-teal-400/30 group-hover:from-cyan-400 group-hover:via-blue-500 group-hover:to-teal-300 rounded-full transition-all duration-500" />
+                
+                {/* Inner glass capsule body */}
+                <span className="relative flex items-center space-x-1 sm:space-x-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#0d1527]/90 group-hover:bg-[#111c34]/95 backdrop-blur-md text-[11px] sm:text-xs font-medium text-slate-200 group-hover:text-white transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
+                  <Download className="w-3.5 h-3.5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+                  <span className="tracking-wide">Resume</span>
+                  <span className="hidden sm:inline text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400 group-hover:text-cyan-300 group-hover:border-cyan-500/30 transition-all">
+                    PDF
+                  </span>
+                </span>
+
+                {/* Shimmer light beam sweep on hover */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
               </a>
+
+              {/* Sleek Radiant Ambient Contact Button */}
               <a
                 href="#contact"
-                className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-primary hover:bg-blue-600 text-white transition-all shadow-md shadow-blue-900/30 hover:shadow-blue-900/50"
+                className="relative group inline-flex items-center justify-center rounded-full p-[1px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                Contact
+                {/* Ambient glowing aura underneath */}
+                <span className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 opacity-60 blur-[6px] group-hover:opacity-100 group-hover:blur-[10px] transition-all duration-500 -z-10" />
+
+                {/* Inner solid radiant pill */}
+                <span className="relative flex items-center space-x-1 sm:space-x-2 px-2.5 sm:px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 group-hover:from-blue-500 group-hover:via-indigo-500 group-hover:to-teal-400 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] transition-all duration-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_6px_#34d399]"></span>
+                  </span>
+                  <span>Contact</span>
+                  <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/80 group-hover:text-white" />
+                </span>
               </a>
             </div>
           </div>
@@ -210,67 +236,79 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-44 md:pb-28 px-4 max-w-6xl mx-auto z-10">
-        <div className="grid md:grid-cols-12 gap-12 items-center">
+      <section className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-44 md:pb-28 px-4 max-w-6xl mx-auto z-10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-center">
           <FadeIn className="md:col-span-7 space-y-6" delay={0.1}>
             <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-medium text-teal-300 backdrop-blur-sm shadow-sm">
               <span className="flex h-2 w-2 rounded-full bg-teal-400 mr-2 animate-pulse"></span>
               Available for Software Engineering & AI Systems Roles
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
               Lucas{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-300">
                 Rus
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-300 font-light leading-snug">
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-300 font-light leading-snug">
               High-throughput data engines, agentic LLM automation & offensive security.
             </p>
 
-            <p className="text-base md:text-lg text-slate-400 max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-xl leading-relaxed">
               Software engineer focused on architecting mission-critical systems: consolidating 1.8M+ entities with sub-5ms query performance, engineering compiler-guided document pipelines, and training frontier autonomous coding agents.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+              {/* Primary Radiant Button */}
               <a
                 href="#projects"
-                className="px-6 py-3 bg-primary text-white rounded-xl font-medium hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/30 hover:shadow-blue-900/50 flex items-center space-x-2"
+                className="w-full sm:w-auto relative group inline-flex items-center justify-center rounded-xl p-[1px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>Explore Ventures</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-blue-600 via-teal-500 to-indigo-600 opacity-60 blur-md group-hover:opacity-90 group-hover:blur-lg transition-all duration-500 -z-10" />
+                <span className="w-full sm:w-auto justify-center relative flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-teal-500 group-hover:from-blue-500 group-hover:via-blue-400 group-hover:to-teal-400 text-white font-medium text-sm sm:text-base shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] transition-all duration-300">
+                  <span>Explore Ventures</span>
+                  <ArrowUpRight className="w-4 h-4 text-white/85 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                </span>
               </a>
 
+              {/* Sleek Cyber-Glass Download CV Button */}
               <a
                 href="/Lucas_Rus_CV.pdf"
                 download="Lucas_Rus_CV.pdf"
-                className="px-6 py-3 border border-slate-700/80 bg-slate-800/40 hover:bg-slate-800/80 text-white rounded-xl font-medium transition-all backdrop-blur-sm flex items-center space-x-2 shadow-sm"
+                className="w-full sm:w-auto relative group inline-flex items-center justify-center p-[1px] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Download className="w-4 h-4 text-secondary" />
-                <span>Download CV</span>
+                <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-slate-700 via-teal-500/40 to-slate-700 group-hover:from-cyan-500/60 group-hover:via-blue-500/50 group-hover:to-teal-400/60 transition-all duration-500" />
+                <span className="w-full sm:w-auto justify-center relative flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 group-hover:bg-slate-850/90 backdrop-blur-md text-white font-medium text-sm sm:text-base shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] transition-all duration-300">
+                  <Download className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300 group-hover:translate-y-0.5 transition-all duration-200" />
+                  <span>Download CV</span>
+                </span>
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
               </a>
 
-              <a
-                href="https://github.com/lucas-rus"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
-                title="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
+              {/* Social Icons Row */}
+              <div className="flex items-center gap-3 pt-1 sm:pt-0">
+                <a
+                  href="https://github.com/lucas-rus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 sm:p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
+                  title="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
 
-              <a
-                href="https://www.linkedin.com/in/lucas-rus-96492a222"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5 text-blue-400" />
-              </a>
+                <a
+                  href="https://linkedin.com/in/lucas-rus-96492a222"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 sm:p-3 border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl transition-all"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </FadeIn>
 
