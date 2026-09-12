@@ -7,19 +7,19 @@ export default function Interactive3DCore() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [statusText, setStatusText] = useState("QUANTUM_CORE_ONLINE");
+  const [statusText, setStatusText] = useState("CORE_RESONANCE_ACTIVE");
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    // 1. Scene & Perspective Camera
+    // 1. Scene & Perspective Camera with Artistic Depth
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    camera.position.set(0, 0, 6.2);
+    const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+    camera.position.set(0, 0, 6.4);
 
-    // 2. High-Performance WebGL Renderer
+    // 2. High-Performance WebGL Renderer with Filmic Tone Mapping
     const renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
@@ -28,79 +28,79 @@ export default function Interactive3DCore() {
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.35;
 
-    // 3. Dynamic Studio Cyber Lighting Rig
-    const ambientLight = new THREE.AmbientLight(0x0a101d, 1.8);
+    // 3. Cinematic Cyber-Prism Lighting Rig
+    const ambientLight = new THREE.AmbientLight(0x060f1e, 2.2);
     scene.add(ambientLight);
 
-    // Key Light: High-intensity cyan
-    const keyLight = new THREE.PointLight(0x38bdf8, 4.5, 18);
-    keyLight.position.set(3.8, 3.2, 4.5);
+    // Key Light: Radiant electric cyan
+    const keyLight = new THREE.PointLight(0x38bdf8, 5.0, 20);
+    keyLight.position.set(3.8, 3.5, 4.8);
     scene.add(keyLight);
 
-    // Fill Light: Deep indigo/violet
-    const fillLight = new THREE.PointLight(0x818cf8, 3.2, 16);
-    fillLight.position.set(-3.8, -2.8, -3.5);
+    // Fill Light: Celestial violet/indigo
+    const fillLight = new THREE.PointLight(0x818cf8, 3.8, 18);
+    fillLight.position.set(-3.8, -3.0, -3.8);
     scene.add(fillLight);
 
-    // Top Rim Light: Crisp teal
-    const rimLight = new THREE.PointLight(0x2dd4bf, 2.5, 12);
-    rimLight.position.set(0, 4.5, -2);
+    // Rim Light: Shimmering aqua teal
+    const rimLight = new THREE.PointLight(0x2dd4bf, 3.2, 14);
+    rimLight.position.set(0, 4.8, -2.5);
     scene.add(rimLight);
 
-    // Interior Pulsing Singularity Light
-    const coreLight = new THREE.PointLight(0x38bdf8, 4.0, 7);
+    // Interior Singularity Pulse Light
+    const coreLight = new THREE.PointLight(0x06b6d4, 4.5, 8);
     coreLight.position.set(0, 0, 0);
     scene.add(coreLight);
 
-    // 4. Root Interactive Group (Oriented via Quaternions to prevent Gimbal Lock)
+    // 4. Root Interactive Group (Zero Gimbal Lock via Quaternions)
     const rootGroup = new THREE.Group();
     scene.add(rootGroup);
 
-    // --- Outer Crystal Assembly ---
+    // --- Outer Sculptural Crystal Assembly ---
     const outerGroup = new THREE.Group();
     rootGroup.add(outerGroup);
 
-    // Outer Geodesic Icosahedron Shield
-    const outerRadius = 1.6;
+    // A. Faceted Obsidian-Cyan Crystal Shell (Icosahedron)
+    const outerRadius = 1.58;
     const outerGeo = new THREE.IcosahedronGeometry(outerRadius, 0);
     const outerMat = new THREE.MeshPhysicalMaterial({
-      color: 0x081326,
-      emissive: 0x0369a1,
-      emissiveIntensity: 0.22,
-      roughness: 0.12,
-      metalness: 0.88,
-      transmission: 0.38,
-      thickness: 0.8,
+      color: 0x051329,
+      emissive: 0x0284c7,
+      emissiveIntensity: 0.18,
+      roughness: 0.08,
+      metalness: 0.25,
+      transmission: 0.42,
+      thickness: 0.9,
       transparent: true,
-      opacity: 0.58,
+      opacity: 0.62,
       reflectivity: 0.95,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.1,
+      clearcoatRoughness: 0.08,
     });
     const outerMesh = new THREE.Mesh(outerGeo, outerMat);
     outerGroup.add(outerMesh);
 
-    // Laser-cut glowing edges
+    // B. Laser-Etched Luminous Edges (Fine Hairline Filament)
     const outerEdgesGeo = new THREE.EdgesGeometry(outerGeo);
     const outerEdgesMat = new THREE.LineBasicMaterial({
-      color: 0x38bdf8,
+      color: 0x7dd3fc,
       transparent: true,
       opacity: 0.85,
     });
     const outerEdges = new THREE.LineSegments(outerEdgesGeo, outerEdgesMat);
     outerGroup.add(outerEdges);
 
-    // Vertex Nodes: Radiant diamond pips at every icosahedron vertex
+    // C. Crystalline Vertex Pips (Miniature Octahedra catching highlights)
     const vertexPositions = outerGeo.getAttribute("position");
     const vertexPipsGroup = new THREE.Group();
-    const pipGeo = new THREE.OctahedronGeometry(0.055, 0);
+    const pipGeo = new THREE.OctahedronGeometry(0.048, 0);
     const pipMat = new THREE.MeshStandardMaterial({
-      color: 0xbae6fd,
+      color: 0xe0f2fe,
       emissive: 0x38bdf8,
-      emissiveIntensity: 1.2,
-      roughness: 0.1,
+      emissiveIntensity: 1.4,
+      roughness: 0.08,
       metalness: 0.9,
     });
 
@@ -120,122 +120,93 @@ export default function Interactive3DCore() {
     }
     outerGroup.add(vertexPipsGroup);
 
-    // Edge Photons: Energy packets traveling along outer edges
-    const edgePoints: [THREE.Vector3, THREE.Vector3][] = [];
-    const edgeAttr = outerEdgesGeo.getAttribute("position");
-    for (let i = 0; i < edgeAttr.count; i += 2) {
-      edgePoints.push([
-        new THREE.Vector3(edgeAttr.getX(i), edgeAttr.getY(i), edgeAttr.getZ(i)),
-        new THREE.Vector3(edgeAttr.getX(i + 1), edgeAttr.getY(i + 1), edgeAttr.getZ(i + 1)),
-      ]);
-    }
-
-    const packetCount = 8;
-    const packetGeo = new THREE.SphereGeometry(0.045, 12, 12);
-    const packetMatCyan = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
-    const packetMatTeal = new THREE.MeshBasicMaterial({ color: 0x2dd4bf });
-
-    interface PacketData {
-      mesh: THREE.Mesh;
-      edgeIndex: number;
-      progress: number;
-      speed: number;
-    }
-
-    const packets: PacketData[] = [];
-    for (let i = 0; i < packetCount; i++) {
-      const pMesh = new THREE.Mesh(packetGeo, i % 2 === 0 ? packetMatCyan : packetMatTeal);
-      const edgeIdx = Math.floor(Math.random() * edgePoints.length);
-      const pData: PacketData = {
-        mesh: pMesh,
-        edgeIndex: edgeIdx,
-        progress: Math.random(),
-        speed: 0.008 + Math.random() * 0.01,
-      };
-      outerGroup.add(pMesh);
-      packets.push(pData);
-    }
-
-    // --- Inner Counter-Rotating Core (Nested Quantum Singularity) ---
+    // --- Inner Celestial Heart (Sculptural Dual Core) ---
     const innerGroup = new THREE.Group();
     rootGroup.add(innerGroup);
 
-    // Inner Primary Octahedron
-    const innerGeo = new THREE.OctahedronGeometry(0.78, 0);
-    const innerMat = new THREE.MeshStandardMaterial({
+    // A. The Celestial Dodecahedron (Sacred Dual of the Icosahedron)
+    const dodecaRadius = 0.82;
+    const dodecaGeo = new THREE.DodecahedronGeometry(dodecaRadius, 0);
+    const dodecaMat = new THREE.MeshPhysicalMaterial({
       color: 0x0284c7,
-      emissive: 0x06b6d4,
-      emissiveIntensity: 0.85,
-      roughness: 0.15,
-      metalness: 0.85,
-    });
-    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-    innerGroup.add(innerMesh);
-
-    // Inner Inverted Secondary Octahedron (Forms a Stellated Merkaba Star)
-    const starGeo = new THREE.OctahedronGeometry(0.78, 0);
-    const starMat = new THREE.MeshStandardMaterial({
-      color: 0x0d9488,
-      emissive: 0x2dd4bf,
-      emissiveIntensity: 0.75,
-      roughness: 0.2,
+      emissive: 0x0ea5e9,
+      emissiveIntensity: 0.65,
+      roughness: 0.12,
       metalness: 0.8,
-      wireframe: true,
+      transmission: 0.25,
+      transparent: true,
+      opacity: 0.7,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1,
+    });
+    const dodecaMesh = new THREE.Mesh(dodecaGeo, dodecaMat);
+    innerGroup.add(dodecaMesh);
+
+    // Dodecahedron fine wireframe lattice
+    const dodecaEdgesGeo = new THREE.EdgesGeometry(dodecaGeo);
+    const dodecaEdgesMat = new THREE.LineBasicMaterial({
+      color: 0xa5f3fc,
+      transparent: true,
+      opacity: 0.9,
+    });
+    const dodecaEdges = new THREE.LineSegments(dodecaEdgesGeo, dodecaEdgesMat);
+    innerGroup.add(dodecaEdges);
+
+    // B. The Singularity Core (Incandescent Star Octahedron suspended inside)
+    const starGeo = new THREE.OctahedronGeometry(0.38, 0);
+    const starMat = new THREE.MeshStandardMaterial({
+      color: 0xf0fdf4,
+      emissive: 0x2dd4bf,
+      emissiveIntensity: 1.6,
+      roughness: 0.05,
+      metalness: 0.95,
     });
     const starMesh = new THREE.Mesh(starGeo, starMat);
-    starMesh.rotation.y = Math.PI / 4;
-    starMesh.rotation.z = Math.PI / 4;
     innerGroup.add(starMesh);
 
-    // Core Wireframe Filaments
-    const innerWireGeo = new THREE.WireframeGeometry(innerGeo);
-    const innerWireMat = new THREE.LineBasicMaterial({
-      color: 0xe0f2fe,
+    // Star wireframe halo
+    const starWireGeo = new THREE.WireframeGeometry(starGeo);
+    const starWireMat = new THREE.LineBasicMaterial({
+      color: 0xffffff,
       transparent: true,
       opacity: 0.95,
     });
-    const innerWireMesh = new THREE.LineSegments(innerWireGeo, innerWireMat);
-    innerGroup.add(innerWireMesh);
+    const starWire = new THREE.LineSegments(starWireGeo, starWireMat);
+    starMesh.add(starWire);
 
-    // Internal Synaptic Connectors (Beams connecting center to outer cage)
-    const beamPositions = new Float32Array(uniqueVertices.length * 6);
-    for (let i = 0; i < uniqueVertices.length; i++) {
-      const v = uniqueVertices[i];
-      beamPositions[i * 6] = 0;
-      beamPositions[i * 6 + 1] = 0;
-      beamPositions[i * 6 + 2] = 0;
-      beamPositions[i * 6 + 3] = v.x;
-      beamPositions[i * 6 + 4] = v.y;
-      beamPositions[i * 6 + 5] = v.z;
-    }
-    const beamGeo = new THREE.BufferGeometry();
-    beamGeo.setAttribute("position", new THREE.BufferAttribute(beamPositions, 3));
-    const beamMat = new THREE.LineBasicMaterial({
-      color: 0x38bdf8,
-      transparent: true,
-      opacity: 0.2,
-    });
-    const beamLines = new THREE.LineSegments(beamGeo, beamMat);
-    rootGroup.add(beamLines);
-
-    // Ambient Particulate Field
-    const particleCount = 85;
+    // --- Organic Atmospheric Nebula Field (Luminous Stardust) ---
+    const particleCount = 95;
     const particleGeo = new THREE.BufferGeometry();
     const particlePos = new Float32Array(particleCount * 3);
+    const particleColors = new Float32Array(particleCount * 3);
+
+    const cCyan = new THREE.Color(0x38bdf8);
+    const cTeal = new THREE.Color(0x2dd4bf);
+    const cIndigo = new THREE.Color(0x818cf8);
+
     for (let i = 0; i < particleCount; i++) {
-      const r = 1.8 + Math.random() * 1.6;
+      const r = 1.65 + Math.random() * 1.5;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
+
       particlePos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
       particlePos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       particlePos[i * 3 + 2] = r * Math.cos(phi);
+
+      const col = i % 3 === 0 ? cCyan : i % 3 === 1 ? cTeal : cIndigo;
+      particleColors[i * 3] = col.r;
+      particleColors[i * 3 + 1] = col.g;
+      particleColors[i * 3 + 2] = col.b;
     }
+
     particleGeo.setAttribute("position", new THREE.BufferAttribute(particlePos, 3));
+    particleGeo.setAttribute("color", new THREE.BufferAttribute(particleColors, 3));
+
     const particleMat = new THREE.PointsMaterial({
-      color: 0x38bdf8,
-      size: 0.04,
+      size: 0.045,
+      vertexColors: true,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.7,
       blending: THREE.AdditiveBlending,
     });
     const particles = new THREE.Points(particleGeo, particleMat);
@@ -255,19 +226,19 @@ export default function Interactive3DCore() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    // --- True Quaternion Screen-Space Rotation & Inertia (Zero Gimbal Lock) ---
+    // --- True Quaternion Screen-Space Interaction (Zero Gimbal Lock) ---
     let isPointerDown = false;
     let lastPointerX = 0;
     let lastPointerY = 0;
-    let velX = 0; // angular delta around world X
-    let velY = 0; // angular delta around world Y
+    let velX = 0; // delta around screen-horizontal axis (world X)
+    let velY = 0; // delta around screen-vertical axis (world Y)
     let targetTiltX = 0;
     let targetTiltY = 0;
 
     const onPointerDown = (e: PointerEvent) => {
       isPointerDown = true;
       setIsDragging(true);
-      setStatusText("CORE_CALIBRATION_ACTIVE");
+      setStatusText("ART_CALIBRATION_ACTIVE");
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
       velX = 0;
@@ -280,8 +251,8 @@ export default function Interactive3DCore() {
       const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
       const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
 
-      targetTiltX = normY * 0.2;
-      targetTiltY = normX * 0.2;
+      targetTiltX = normY * 0.18;
+      targetTiltY = normX * 0.18;
 
       if (!isPointerDown) return;
 
@@ -290,12 +261,11 @@ export default function Interactive3DCore() {
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
 
-      // Sensitivity: positive dx turns right around world Y, positive dy tilts down around world X
-      const speed = 0.006;
+      const speed = 0.0055;
       velY = dx * speed;
       velX = dy * speed;
 
-      // Screen-space World Rotation: premultiply with world axes
+      // Screen-space world quaternion rotation
       const qY = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), velY);
       const qX = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), velX);
 
@@ -306,7 +276,7 @@ export default function Interactive3DCore() {
     const onPointerUp = (e: PointerEvent) => {
       isPointerDown = false;
       setIsDragging(false);
-      setStatusText("QUANTUM_CORE_ONLINE");
+      setStatusText("CORE_RESONANCE_ACTIVE");
       try {
         canvas.releasePointerCapture(e.pointerId);
       } catch {}
@@ -325,58 +295,52 @@ export default function Interactive3DCore() {
       animId = requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
 
-      // World-space Inertia & Idle Motion
+      // World-space Inertia & Gentle Drift
       if (!isPointerDown) {
-        if (Math.abs(velX) > 0.0001 || Math.abs(velY) > 0.0001) {
+        if (Math.abs(velX) > 0.00008 || Math.abs(velY) > 0.00008) {
           const qY = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), velY);
           const qX = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), velX);
           rootGroup.quaternion.premultiply(qY);
           rootGroup.quaternion.premultiply(qX);
 
-          velX *= 0.94;
-          velY *= 0.94;
+          velX *= 0.945;
+          velY *= 0.945;
         } else {
-          // Smooth idle rotation around world Y
-          const idleQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), 0.0035);
+          // Slow, hypnotic idle rotation around world Y
+          const idleQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), 0.003);
           rootGroup.quaternion.premultiply(idleQ);
         }
 
-        // Camera hover parallax
-        camera.position.x += (targetTiltY * 0.45 - camera.position.x) * 0.05;
-        camera.position.y += (-targetTiltX * 0.45 - camera.position.y) * 0.05;
+        // Tactile camera hover parallax
+        camera.position.x += (targetTiltY * 0.4 - camera.position.x) * 0.05;
+        camera.position.y += (-targetTiltX * 0.4 - camera.position.y) * 0.05;
         camera.lookAt(0, 0, 0);
       }
 
-      // 1. Outer Crystal subtle breathing pulse
-      const outerPulse = 1.0 + Math.sin(elapsed * 2.0) * 0.02;
-      outerGroup.scale.set(outerPulse, outerPulse, outerPulse);
+      // 1. Outer Crystal: subtle breathing expansion
+      const outerScale = 1.0 + Math.sin(elapsed * 1.8) * 0.018;
+      outerGroup.scale.set(outerScale, outerScale, outerScale);
 
-      // 2. Inner Singularity Core counter-rotation and deep breathing
-      const corePulse = 1.0 + Math.sin(elapsed * 3.2) * 0.09;
-      innerGroup.scale.set(corePulse, corePulse, corePulse);
-      innerGroup.rotation.y -= 0.015;
-      innerGroup.rotation.x += 0.009;
-      starMesh.rotation.z -= 0.012;
+      // 2. Inner Dodecahedron: smooth counter-rotation and harmonic breath
+      const innerScale = 1.0 + Math.sin(elapsed * 2.6) * 0.06;
+      innerGroup.scale.set(innerScale, innerScale, innerScale);
+      dodecaMesh.rotation.y -= 0.011;
+      dodecaMesh.rotation.x += 0.006;
+      dodecaEdges.rotation.y = dodecaMesh.rotation.y;
+      dodecaEdges.rotation.x = dodecaMesh.rotation.x;
 
-      // Pulse interior light with the core
-      coreLight.intensity = 3.5 + Math.sin(elapsed * 3.2) * 1.5;
+      // 3. Singularity Star: off-axis spin & luminous heartbeat
+      starMesh.rotation.z += 0.018;
+      starMesh.rotation.y -= 0.014;
+      const starPulse = 1.0 + Math.sin(elapsed * 4.0) * 0.12;
+      starMesh.scale.set(starPulse, starPulse, starPulse);
 
-      // 3. Photon packets traveling along outer edges
-      packets.forEach((pkt) => {
-        pkt.progress += pkt.speed;
-        if (pkt.progress >= 1.0) {
-          pkt.progress = 0;
-          pkt.edgeIndex = Math.floor(Math.random() * edgePoints.length);
-        }
-        const [p1, p2] = edgePoints[pkt.edgeIndex];
-        pkt.mesh.position.lerpVectors(p1, p2, pkt.progress);
-      });
+      // 4. Center Light: breathing luminescence
+      coreLight.intensity = 4.2 + Math.sin(elapsed * 3.0) * 1.8;
 
-      // 4. Subtle beam line opacity oscillation
-      beamMat.opacity = 0.18 + Math.sin(elapsed * 2.5) * 0.08;
-
-      // 5. Particulate drift
-      particles.rotation.y += 0.001;
+      // 5. Ambient Stardust: slow celestial drift
+      particles.rotation.y += 0.0009;
+      particles.rotation.z += 0.0004;
 
       renderer.render(scene, camera);
     };
@@ -399,17 +363,14 @@ export default function Interactive3DCore() {
       outerEdgesMat.dispose();
       pipGeo.dispose();
       pipMat.dispose();
-      packetGeo.dispose();
-      packetMatCyan.dispose();
-      packetMatTeal.dispose();
-      innerGeo.dispose();
-      innerMat.dispose();
+      dodecaGeo.dispose();
+      dodecaMat.dispose();
+      dodecaEdgesGeo.dispose();
+      dodecaEdgesMat.dispose();
       starGeo.dispose();
       starMat.dispose();
-      innerWireGeo.dispose();
-      innerWireMat.dispose();
-      beamGeo.dispose();
-      beamMat.dispose();
+      starWireGeo.dispose();
+      starWireMat.dispose();
       particleGeo.dispose();
       particleMat.dispose();
     };
