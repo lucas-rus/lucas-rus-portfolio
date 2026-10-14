@@ -1150,17 +1150,6 @@ export default function Interactive3DCore() {
       ctx.fillStyle = neb2;
       ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-      // Subtle tactical orbital star-chart rings in deep background
-      ctx.save();
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.07)";
-      ctx.lineWidth = 0.8;
-      ctx.setLineDash([4, 8]);
-      ctx.beginPath();
-      ctx.arc(cx, cy, Math.min(cssWidth, cssHeight) * 0.43, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.restore();
-
       // Central core halo behind the spacecraft
       const bgGlow = ctx.createRadialGradient(cx, cy, 6, cx, cy, 130);
       bgGlow.addColorStop(0, "rgba(56, 189, 248, 0.19)");
