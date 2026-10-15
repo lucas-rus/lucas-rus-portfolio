@@ -922,10 +922,14 @@ export default function Home() {
 
                 {/* Location & Status Badges */}
                 <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-2 sm:gap-2.5 text-[11px] sm:text-xs text-slate-400 font-mono">
-                  <span className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-md bg-slate-800/60 border border-slate-700/60 text-slate-300">
-                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 mr-1.5 sm:mr-2" />
-                    Timișoara, Romania (UTC+2)
-                  </span>
+                  <Link
+                    href="/timisoara"
+                    title="The Proclamation of Timișoara (1990)"
+                    className="group inline-flex items-center px-2 sm:px-2.5 py-1 rounded-md bg-slate-800/60 hover:bg-cyan-500/15 border border-slate-700/60 hover:border-cyan-400/60 text-slate-300 hover:text-cyan-200 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-[0_0_12px_rgba(56,189,248,0.2)] active:scale-[0.98]"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 group-hover:animate-ping mr-1.5 sm:mr-2" />
+                    <span>Timișoara, Romania (UTC+2)</span>
+                  </Link>
                   <span className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 mr-1.5" />
                     Open to Remote &amp; Hybrid
