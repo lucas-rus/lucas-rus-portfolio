@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Flame, Globe, Landmark, MapPin, ScrollText, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Flame, Landmark, ScrollText } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
-import { CyberCircuitBackground, SectionDividerWithTelemetry } from "@/components/CyberCircuitLines";
+import { CyberCircuitBackground } from "@/components/CyberCircuitLines";
 
 type ViewLang = "both" | "en" | "ro";
 
 interface ProclamationDoc {
   title: string;
-  subtitle: string;
   locationBadge: string;
   date: string;
   preamble: string[];
@@ -19,8 +18,7 @@ interface ProclamationDoc {
 
 const PROCLAMATION_EN: ProclamationDoc = {
   title: "The Proclamation of Timișoara",
-  subtitle: "Foundational Charter of the Romanian Revolution & Democratic Renewal",
-  locationBadge: "Opera Square (Piața Operei) • Timișoara, First Free City of Romania",
+  locationBadge: "Opera Square (Piața Operei) • Timișoara, The City of Freedom",
   date: "March 11, 1990",
   preamble: [
     'The people of the city of Timișoara were the initiators of the Romanian Revolution. Between December 16 and 20, 1989, they waged, all on their own, a fierce war against one of the most powerful and odious repressive systems in the entire world. It was a terrifying clash, the true scale of which only we, the people of Timișoara, fully know. On one side stood the unarmed population; on the other, the Securitate, the Militia, the Army, and zealous troops of Party activists. Yet all methods and means of repression proved powerless before the Timișoarans\' desire for freedom and their determination to prevail. Neither arrests, nor beatings, nor even mass assassinations could stop them. Every bullet fired brought another hundred fighters to the barricades of the revolution. And we won. On December 20, 1989, Timișoara definitively came under the control of its people, transforming itself into a free city within the vast prison that Romania had become in those days. From that day forward, all activity in the city was directed from the balcony of the Opera Square by the Romanian Democratic Front, at that moment the exponent of the Timișoara Revolution. On that same day, the army fraternized with the demonstrators, resolving to defend alongside them the victory that had been won. On December 21, in Opera Square, over one hundred thousand voices chanted: "We are ready to die!"',
@@ -116,8 +114,7 @@ const PROCLAMATION_EN: ProclamationDoc = {
 
 const PROCLAMATION_RO: ProclamationDoc = {
   title: "Proclamația de la Timișoara",
-  subtitle: "Carta Fundamentală a Revoluției Române de la Timișoara",
-  locationBadge: "Piața Operei • Timișoara, Primul Oraș Liber al României",
+  locationBadge: "Piața Operei • Timișoara, Orașul Libertății",
   date: "11 martie 1990",
   preamble: [
     'Populația orașului Timișoara a fost inițiatoarea Revoluției române. Între 16 și 20 decembrie 1989, ea a purtat, de una singură, un înverșunat război cu unul dintre cele mai puternice și mai odioase sisteme represive din întreaga lume. A fost o încleștare cumplită, pe care numai noi, timișorenii, o cunoaștem la adevăratele ei proporții. De-o parte populația neînarmată, de cealaltă parte Securitatea, Miliția, Armata și trupele zeloase de activiști ai partidului. Toate metodele și mijloacele de reprimare s-au dovedit însă neputincioase în fața dorinței de libertate a timișorenilor și hotărârii lor de a învinge. Nici arestările, nici molestările, nici chiar asasinatele în masă nu i-au putut opri. Fiecare glonț tras a adus pe baricadele revolutiei alti o sută de luptători. Și am învins. În 20 decembrie 1989 Timișoara a intrat definitiv în stăpânirea populației, transformându-se într-un oraș liber în marea închisoare care devenise în acele zile România. Din acea zi, întreaga activitate din oraș a fost condusă de la tribuna din Piața Operei de către Frontul Democrat Român, exponent în acel moment al Revoluției de la Timișoara. În aceeași zi, armata a fraternizat cu demonstranții, hotărând să apere împreună cu ei victoria obținută. În 21 decembrie, în Piața Operei, peste o sută de mii de glasuri scandau: "Suntem gata să murim!".',
@@ -237,12 +234,6 @@ function ProclamationDocumentCard({
     <article
       className={`relative glass-card rounded-2xl border ${borderClass} bg-slate-900/75 backdrop-blur-xl p-5 sm:p-8 md:p-11 shadow-2xl overflow-hidden`}
     >
-      {/* Corner Accents */}
-      <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400/70" />
-      <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-400/70" />
-      <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-cyan-400/70" />
-      <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-400/70" />
-
       {/* Document Header */}
       <header className="pb-6 sm:pb-8 mb-6 sm:mb-8 border-b border-white/10">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -275,7 +266,7 @@ function ProclamationDocumentCard({
         ))}
       </div>
 
-      {/* The 13 Points */}
+      {/* The 13 Articles */}
       <div className="space-y-5 sm:space-y-6">
         {doc.points.map((pt) => (
           <div
@@ -319,7 +310,7 @@ export default function TimisoaraProclamationPage() {
 
   return (
     <div className="min-h-screen font-sans relative overflow-x-hidden bg-[#0a0f1d] text-slate-100 selection:bg-primary/30 selection:text-white">
-      {/* Ambient Depth Gradients & Cyber Circuit Background */}
+      {/* Ambient Depth Gradients & Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden w-full max-w-[100vw]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_50%_-10%,rgba(59,130,246,0.08),rgba(255,255,255,0))] pointer-events-none" />
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] animate-aurora-1" />
@@ -365,12 +356,7 @@ export default function TimisoaraProclamationPage() {
 
       {/* Main Content */}
       <main className="relative z-10 pt-24 pb-20 sm:pt-32 sm:pb-28 px-4 max-w-5xl mx-auto">
-        <FadeIn className="space-y-4 sm:space-y-6 text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-mono text-cyan-300 backdrop-blur-sm">
-            <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-            <span>TIMIȘOARA HERITAGE ARCHIVE // 45.7537° N, 21.2257° E</span>
-          </div>
-
+        <FadeIn className="space-y-4 sm:space-y-5 text-center mb-10 sm:mb-14">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
             The Proclamation of{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-amber-300">
@@ -379,31 +365,16 @@ export default function TimisoaraProclamationPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Read from the balcony of the Opera Square on <strong className="text-white">March 11, 1990</strong> by the citizens of Timișoara—the initiators of the December 1989 Romanian Revolution—affirming the ideals of European democracy, pluralism, mutual respect, and freedom.
+            In memory of the courage and sacrifice of the citizens of Timișoara—<strong className="text-white">The City of Freedom (Orașul Libertății)</strong>—who rose between December 16 and 20, 1989 to ignite the Romanian Revolution. Proclaimed from the balcony of Opera Square on <strong className="text-white">March 11, 1990</strong>, its articles stand as a foundational moral and democratic charter for political pluralism, human dignity, mutual respect among all communities, and an uncompromising break with totalitarianism.
           </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-xs font-mono text-slate-400">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900/80 border border-slate-800 text-cyan-300">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              13 Foundational Articles
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900/80 border border-slate-800 text-amber-300">
-              <Globe className="w-3.5 h-3.5" />
-              English &amp; Romanian Verbatim Editions
-            </span>
-          </div>
         </FadeIn>
 
         {/* English Edition */}
         {(viewLang === "both" || viewLang === "en") && (
-          <section id="english-edition" className="mb-12 sm:mb-16">
-            <SectionDividerWithTelemetry
-              label="EDITION_01 // ENGLISH TRANSLATION (MARCH 11, 1990)"
-              coords="TIMIȘOARA, ROMANIA"
-            />
+          <section id="english-edition" className="mb-10 sm:mb-14">
             <ProclamationDocumentCard
               doc={PROCLAMATION_EN}
-              langTag="ENGLISH EDITION // THE PROCLAMATION OF TIMIȘOARA"
+              langTag="English"
               accentColor="cyan"
             />
           </section>
@@ -412,13 +383,9 @@ export default function TimisoaraProclamationPage() {
         {/* Romanian Original Edition */}
         {(viewLang === "both" || viewLang === "ro") && (
           <section id="romanian-edition">
-            <SectionDividerWithTelemetry
-              label="EDIȚIA_02 // TEXTUL ORIGINAL ÎN LIMBA ROMÂNĂ (11 MARTIE 1990)"
-              coords="PIAȚA OPEREI, TIMIȘOARA"
-            />
             <ProclamationDocumentCard
               doc={PROCLAMATION_RO}
-              langTag="TEXT ORIGINAL (ROMÂNĂ) // PROCLAMAȚIA DE LA TIMIȘOARA"
+              langTag="Română"
               accentColor="amber"
             />
           </section>
